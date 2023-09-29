@@ -21,54 +21,60 @@ function Header({ data }) {
   const navData = data.nav;
   const rightData = navData.rightside;
   return (
-    <div className="Header">
-      <div className="header-info flex">
-        <div className="phone flex">
-          <FontAwesomeIcon icon={faPhone} />
-          <p>{infoData.phone}</p>
+    <div className="Header  font-bold">
+      <div className="header-info bg-primary text-white font-bold flex justify-between items-center py-4 px-6">
+        <div className="contact flex gap-[1.8rem]">
+          <div className="phone flex gap-[0.2rem]">
+            <FontAwesomeIcon icon={faPhone} />
+            <p>{infoData.phone}</p>
+          </div>
+          <div className="email flex gap-[0.2rem]">
+            <FontAwesomeIcon icon={faEnvelope} />
+            <p>{infoData.email}</p>
+          </div>
         </div>
-        <div className="email flex">
-          <FontAwesomeIcon icon={faEnvelope} />
-          <p>{infoData.email}</p>
-        </div>
+
         <p className="header-message">{infoData.message}</p>
-        <div className="follow-us flex">
+
+        <div className="follow-us flex gap-4">
           <p>{infoData.socialmedia}</p>
           <FontAwesomeIcon icon={faInstagram} />
-          <FontAwesomeIcon icon={faYoutube} /* style={{color: "#ffffff",}} */ />
+          <FontAwesomeIcon icon={faYoutube} />
           <FontAwesomeIcon icon={faFacebook} />
           <FontAwesomeIcon icon={faTwitter} />
         </div>
       </div>
-      <div className="header-nav">
-        <h1>{navData.brandname}</h1>
-        <nav>
-          <Link to="/">{navData.navlinks.home}</Link>
-          <Link to="/">
-            {navData.navlinks.shop}
-            <FontAwesomeIcon icon={faAngleDown} />
-          </Link>
-          <Link to="/">{navData.navlinks.aboout}</Link>
-          <Link to="/">{navData.navlinks.blog}</Link>
-          <Link to="/">{navData.navlinks.contact}</Link>
-          <Link to="/">{navData.navlinks.pages}</Link>
-        </nav>
-        <div className="nav-right-side">
-          <Link to="/">
-            <FontAwesomeIcon icon={faUser} />
-            <span>{rightData.login} </span>
-            <span>/</span>
-            <span>{rightData.registr} </span>
-          </Link>
-          <Link to="/">
-            <FontAwesomeIcon icon={faMagnifyingGlass} />
-          </Link>
-          <Link to="/">
-            <FontAwesomeIcon icon={faCartShopping} />
-          </Link>
-          <Link to="/">
-            <FontAwesomeIcon icon={faHeart} />
-          </Link>
+      <div className="header-nav flex justify-between items-center py-4 px-6">
+        <h1 className="text-2xl">{navData.brandname}</h1>
+        <div className="flex justify-between w-[85%] ">
+          <nav className="text-tertiary flex gap-[1.3rem]">
+            <Link to="/">{navData.navlinks.home}</Link>
+            <Link className="text-primary font-medium" to="/">
+              {navData.navlinks.shop}
+              <FontAwesomeIcon icon={faAngleDown} />
+            </Link>
+            <Link to="/">{navData.navlinks.aboout}</Link>
+            <Link to="/">{navData.navlinks.blog}</Link>
+            <Link to="/">{navData.navlinks.contact}</Link>
+            <Link to="/">{navData.navlinks.pages}</Link>
+          </nav>
+          <div className="nav-right-side text-secondary flex gap-[1rem]">
+            <Link to="/">
+              <FontAwesomeIcon icon={faUser} />
+              <span>{rightData.login}</span>
+              <span> / </span>
+              <span>{rightData.registr}</span>
+            </Link>
+            <Link to="/">
+              <FontAwesomeIcon icon={faMagnifyingGlass} />
+            </Link>
+            <Link to="/">
+              <FontAwesomeIcon icon={faCartShopping} />
+            </Link>
+            <Link to="/">
+              <FontAwesomeIcon icon={faHeart} />
+            </Link>
+          </div>
         </div>
       </div>
     </div>
