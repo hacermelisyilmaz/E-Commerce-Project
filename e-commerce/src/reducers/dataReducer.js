@@ -2,6 +2,12 @@ export default function dataReducer() {
   return {
     en: {
       hero: {
+        about: {
+          title: "Get answers to all your questions.",
+          description:
+            "Problems trying to resolve the conflict between the two major realms of Classical physics: ",
+          button: "CONTACT OUR COMPANY",
+        },
         header: {
           info: {
             phone: "(225) 555-0118",
