@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import { BrowserRouter as Router } from "react-router-dom";
 import "./App.css";
 import ProductList from "./pages/ProductList";
+import About from "./pages/About";
 
 function App() {
   const language = "en";
