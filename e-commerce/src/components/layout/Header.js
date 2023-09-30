@@ -47,15 +47,15 @@ function Header({ data }) {
       <div className="header-nav flex justify-between items-center py-4 px-6">
         <h1 className="text-2xl">{navData.brandname}</h1>
         <div className="flex justify-between w-[85%] ">
-          <nav className="text-tertiary flex gap-[1.3rem]">
+          <nav className="text-accent flex gap-[1.3rem]">
             <Link to="/">{navData.navlinks.home}</Link>
             <Link className="text-primary font-medium" to="/">
               {navData.navlinks.shop}
               <FontAwesomeIcon icon={faAngleDown} />
             </Link>
-            <Link to="/">{navData.navlinks.aboout}</Link>
-            <Link to="/">{navData.navlinks.blog}</Link>
-            <Link to="/">{navData.navlinks.contact}</Link>
+            <Link to="/about">{navData.navlinks.about}</Link>
+            <Link to="/blog">{navData.navlinks.blog}</Link>
+            <Link to="/contact">{navData.navlinks.contact}</Link>
             <Link to="/">{navData.navlinks.pages}</Link>
           </nav>
           <div className="nav-right-side text-secondary flex gap-[1rem]">
