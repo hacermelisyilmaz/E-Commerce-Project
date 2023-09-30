@@ -15,6 +15,9 @@ function App() {
           <Route exact path="/">
             <Home data={data} />
           </Route>
+          <Route exact path="/about">
+            <About data={data} />
+          </Route>
           <Route exact path="/productlist">
             <ProductList data={data} />
           </Route>
