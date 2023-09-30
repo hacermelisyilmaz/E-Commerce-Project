@@ -9,9 +9,9 @@ function Features({ data }) {
   return (
     <div className="Features py-[5rem] w-[75%] mx-auto">
       <div className="flex flex-col gap-3 items-center">
-        <h3 className="text-xl text-tertiary">{data.title1}</h3>
+        <h3 className="text-xl text-accent">{data.title1}</h3>
         <h2 className="text-2xl font-bold">{data.title2}</h2>
-        <p className="text-sm text-tertiary">{data.description}</p>
+        <p className="text-sm text-accent">{data.description}</p>
       </div>
       <div className="flex justify-center gap-11">
         {data.cards.map((card, index) => {

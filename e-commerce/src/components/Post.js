@@ -15,36 +15,34 @@ function Post({ data }) {
       <div className="text-content p-6 pb-9 flex flex-col justify-between">
         <div className="first-line flex justify-between">
           <h6 className="text-sm font-bold text-secondary">{data.title1}</h6>
-          <div className="flex p-[5px] border rounded-[20px] bg-primary">
+          <div className="flex items-center p-[5px] border rounded-[20px] bg-primary">
             <FontAwesomeIcon icon={faStar} className="text-star" />
             <p className="text-white">{data.rate}</p>
           </div>
         </div>
         <h5 className="font-bold">{data.title2}</h5>
-        <p className="text-sm text-tertiary">{data.description}</p>
+        <p className="text-sm text-accent">{data.description}</p>
         <div className="flex gap-2 items-center">
           <FontAwesomeIcon icon={faDownload} />
-          <span className="text-sm font-bold text-tertiary">
-            {data.salesno}
-          </span>
+          <span className="text-sm font-bold text-accent">{data.salesno}</span>
         </div>
         <div className="flex gap-2 font-bold">
-          <span className="text-oldgray">{data.oldprice}</span>
-          <span className="text-price">{data.newprice}</span>
+          <span className="text-neutral">{data.oldsuccess}</span>
+          <span className="text-success">{data.newsuccess}</span>
         </div>
         <img src={data.colors} className="w-1/3" />
         <div className="text-xs flex justify-between">
           <div>
             <FontAwesomeIcon icon={faClock} className="text-secondary" />
-            <span className="text-tertiary ml-1">{data.hour}</span>
+            <span className="text-accent ml-1">{data.hour}</span>
           </div>
           <div>
-            <FontAwesomeIcon icon={faChartBar} className="text-iconorange" />
-            <span className="text-tertiary ml-1">{data.lessons}</span>
+            <FontAwesomeIcon icon={faChartBar} className="text-warning" />
+            <span className="text-accent ml-1">{data.lessons}</span>
           </div>
           <div>
-            <FontAwesomeIcon icon={faChartLine} className="text-price" />
-            <span className="text-tertiary ml-1">{data.progress}</span>
+            <FontAwesomeIcon icon={faChartLine} className="text-success" />
+            <span className="text-accent ml-1">{data.progress}</span>
           </div>
         </div>
         <button className="text-secondary border rounded-[37px] border-secondary py-3 px-5 flex gap-3 justify-center items-center w-36">

@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 function Footer({ data }) {
   return (
     <div className="Footer">
-      <div className="bg-lightgray">
+      <div className="bg-info">
         <div className="w-[70%] m-auto py-10 flex justify-between">
           <h1 className="text-2xl font-bold">{data.brand}</h1>
           <div className="text-secondary flex gap-5">
@@ -24,7 +24,7 @@ function Footer({ data }) {
           return (
             <div className="font-bold flex flex-col gap-5" key={index}>
               <h5>{nav.title}</h5>
-              <nav className="flex flex-col gap-3 text-tertiary">
+              <nav className="flex flex-col gap-3 text-accent">
                 <Link to={nav.nav1.link}>{nav.nav1.title}</Link>
                 <Link to={nav.nav2.link}>{nav.nav2.title}</Link>
                 <Link to={nav.nav3.link}>{nav.nav3.title}</Link>
@@ -39,7 +39,7 @@ function Footer({ data }) {
             <input
               type="email"
               placeholder={data.contact.placeholder}
-              className="bg-lightgray text-sm"
+              className="bg-info text-sm"
             />
             <button
               type="submit"
@@ -51,7 +51,7 @@ function Footer({ data }) {
           <p className="text-xs leading-7">{data.contact.caption}</p>
         </div>
       </div>
-      <div className="py-6 bg-lightgray">
+      <div className="py-6 bg-info">
         <div className="w-[70%] m-auto font-bold">
           <p>{data.copyright}</p>
         </div>
