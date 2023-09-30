@@ -413,6 +413,10 @@ export default function dataReducer() {
             newprice: "$6.48",
           },
         ],
+        pagebuttons: {
+          first: "First",
+          next: "Next",
+        },
       },
     },
   };
