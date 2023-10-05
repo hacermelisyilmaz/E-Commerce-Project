@@ -6,10 +6,10 @@ function BannerSlide({ data }) {
   const history = useHistory();
   return (
     <div className="BannerSlide py-12 w-[90%] mx-auto">
-      <div className="carousel rounded-[20px]">
+      <div className="carousel w-full h-[38rem] overflow-visible rounded-[20px]">
         <div id="slide1" className="carousel-item relative w-full bg">
-          <div className="flex justify-end items-center w-3/5">
-            <div className="text-content flex flex-col text-left gap-[1.8rem]">
+          <div className="flex justify-end items-center">
+            <div className="flex flex-col text-left gap-[1.8rem]">
               <h5 className="font-bold text-secondary">{data[0].season}</h5>
               <h2 className="font-bold text-6xl">{data[0].header}</h2>
               <div className="text-xl text-accent">
@@ -23,12 +23,12 @@ function BannerSlide({ data }) {
                 {data[0].button}
               </button>
             </div>
-            {/* <div className="w-[38%]">
-              <img src={data[0].img} />
-            </div> */}
+            <div className="h-full w-auto translate-x-16">
+              <img src={data[0].img} className="h-full" />
+            </div>
           </div>
           <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-            <a href="#slide3" className="btn btn-circle bg-transparent">
+            <a href="#slide2" className="btn btn-circle bg-transparent">
               ❮
             </a>
             <a href="#slide2" className="btn btn-circle bg-transparent">
@@ -36,7 +36,6 @@ function BannerSlide({ data }) {
             </a>
           </div>
         </div>
-
         <div id="slide2" className="carousel-item relative w-full">
           <div className="flex justify-end items-center">
             <div className="text-content flex flex-col w-1/2 text-left gap-[1.8rem]">
@@ -56,44 +55,14 @@ function BannerSlide({ data }) {
             <div className="slide-img w-[38%] right-0">
               <img src={data[1].img} />
             </div>
-          </div>
-          <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-            <a href="#slide1" className="btn btn-circle bg-transparent">
-              ❮
-            </a>
-            <a href="#slide3" className="btn btn-circle bg-transparent">
-              ❯
-            </a>
-          </div>
-        </div>
-
-        <div id="slide3" className="carousel-item relative w-full">
-          <div className="flex justify-end items-center">
-            <div className="text-content flex flex-col w-1/2 text-left gap-[1.8rem]">
-              <h5 className="font-bold">{data[0].season}</h5>
-              <h2 className="font-bold text-6xl">{data[0].header}</h2>
-              <div className="text-xl">
-                <p>{data[0].description1}</p>
-                <p>{data[0].description2}</p>
-              </div>
-              <button
-                className="font-bold text-2xl text-white bg-secondary w-1/3 border-solid rounded-[5px] px-9 py-4"
-                onClick={() => history.push("/productlist")}
-              >
-                {data[0].button}
-              </button>
+            <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
+              <a href="#slide1" className="btn btn-circle bg-transparent">
+                ❮
+              </a>
+              <a href="#slide1" className="btn btn-circle bg-transparent">
+                ❯
+              </a>
             </div>
-            <div className="slide-img w-[38%] right-0">
-              <img src={data[0].img} />
-            </div>
-          </div>
-          <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-            <a href="#slide2" className="btn btn-circle bg-transparent">
-              ❮
-            </a>
-            <a href="#slide1" className="btn btn-circle bg-transparent">
-              ❯
-            </a>
           </div>
         </div>
       </div>
