@@ -17,11 +17,12 @@ import {
 import { Link } from "react-router-dom";
 
 function Header({ data }) {
-  const infoData = data.info;
-  const navData = data.nav;
+  const infoData = data.hero.header.info;
+  const navData = data.hero.header.nav;
   const rightData = navData.rightside;
+
   return (
-    <div className="Header  font-bold">
+    <div className="Header font-bold">
       <div className="header-info bg-primary text-white font-bold flex justify-between items-center py-4 px-6">
         <div className="contact flex gap-[1.8rem]">
           <div className="phone flex gap-[0.2rem]">
@@ -45,7 +46,7 @@ function Header({ data }) {
         </div>
       </div>
       <div className="header-nav flex justify-between items-center py-4 px-6">
-        <h1 className="text-2xl">{navData.brandname}</h1>
+        <h1 className="text-2xl">{data.brand}</h1>
         <div className="flex justify-between w-[85%] ">
           <nav className="text-accent flex gap-[1.3rem]">
             <Link to="/">{navData.navlinks.home}</Link>
@@ -54,9 +55,9 @@ function Header({ data }) {
               <FontAwesomeIcon icon={faAngleDown} />
             </Link>
             <Link to="/about">{navData.navlinks.about}</Link>
-            <Link to="/blog">{navData.navlinks.blog}</Link>
+            <Link to="/pricing">{navData.navlinks.pricing}</Link>
             <Link to="/contact">{navData.navlinks.contact}</Link>
-            <Link to="/">{navData.navlinks.pages}</Link>
+            <Link to="/team">{navData.navlinks.team}</Link>
           </nav>
           <div className="nav-right-side text-secondary flex gap-[1rem]">
             <Link to="/">
