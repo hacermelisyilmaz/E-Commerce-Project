@@ -16,7 +16,7 @@ function Post({ data }) {
         <div className="first-line flex justify-between">
           <h6 className="text-sm font-bold text-secondary">{data.title1}</h6>
           <div className="flex items-center p-[5px] border rounded-[20px] bg-primary">
-            <FontAwesomeIcon icon={faStar} className="text-star" />
+            <FontAwesomeIcon icon={faStar} className="text-warning-content" />
             <p className="text-white">{data.rate}</p>
           </div>
         </div>
