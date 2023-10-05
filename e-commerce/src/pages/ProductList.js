@@ -7,11 +7,11 @@ import Shop from "../components/layout/Shop";
 function ProductList({ data }) {
   return (
     <div className="ProductList">
-      <Header data={data.hero.header} />
+      <Header data={data} />
       <Categories data={data.categories} />
       <Shop data={data.shop} />
       <Clients data={data.clients} />
-      <Footer data={data.footer} />
+      <Footer data={data} />
     </div>
   );
 }
