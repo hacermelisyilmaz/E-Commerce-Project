@@ -4,8 +4,8 @@ import Header from "./Header";
 function Hero({ data }) {
   return (
     <div className="Hero">
-      <Header data={data.header} />
-      <BannerSlide data={data.carousel} />
+      <Header data={data} />
+      <BannerSlide data={data.hero.carousel} />
     </div>
   );
 }

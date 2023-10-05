@@ -10,14 +10,14 @@ import Vision from "../components/layout/Vision";
 function Home({ data }) {
   return (
     <div className="Home">
-      <Hero data={data.hero} />
+      <Hero data={data} />
       <Clients data={data.clients} />
       <ShopCards data={data.shopcards} />
       <ProductCards data={data.productcards} />
       <Vision data={data.vision} />
       <Features data={data.features} />
       <Posts data={data.posts} />
-      <Footer data={data.footer} />
+      <Footer data={data} inner={false} />
     </div>
   );
 }

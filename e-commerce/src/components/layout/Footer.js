@@ -6,10 +6,11 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 import { Link } from "react-router-dom";
 
-function Footer({ data }) {
+function Footer({ data, inner }) {
+  const footer = data.footer;
   return (
     <div className="Footer">
-      <div className="bg-info">
+      <div className={inner ? "" : "bg-info"}>
         <div className="w-[70%] m-auto py-10 flex justify-between">
           <h1 className="text-2xl font-bold">{data.brand}</h1>
           <div className="text-secondary flex gap-5">
@@ -18,9 +19,10 @@ function Footer({ data }) {
             <FontAwesomeIcon icon={faTwitter} />
           </div>
         </div>
+        <div className="w-[70%] m-auto">{inner && <hr />}</div>
       </div>
       <div className="w-[70%] m-auto py-12 flex justify-between">
-        {data.navcontainer.map((nav, index) => {
+        {footer.navcontainer.map((nav, index) => {
           return (
             <div className="font-bold flex flex-col gap-5" key={index}>
               <h5>{nav.title}</h5>
@@ -34,26 +36,26 @@ function Footer({ data }) {
           );
         })}
         <div>
-          <h5 className="font-bold mb-5">{data.contact.title}</h5>
+          <h5 className="font-bold mb-5">{footer.contact.title}</h5>
           <div className="border rounded-[5px]">
             <input
               type="email"
-              placeholder={data.contact.placeholder}
+              placeholder={footer.contact.placeholder}
               className="bg-info text-sm"
             />
             <button
               type="submit"
               className="text-sm text-white bg-secondary py-2 px-3"
             >
-              {data.contact.button}
+              {footer.contact.button}
             </button>
           </div>
-          <p className="text-xs leading-7">{data.contact.caption}</p>
+          <p className="text-xs leading-7">{footer.contact.caption}</p>
         </div>
       </div>
       <div className="py-6 bg-info">
         <div className="w-[70%] m-auto font-bold">
-          <p>{data.copyright}</p>
+          <p>{footer.copyright}</p>
         </div>
       </div>
     </div>
