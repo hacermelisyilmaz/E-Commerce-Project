@@ -3,7 +3,7 @@ import Post from "../Post";
 function Posts({ data }) {
   return (
     <div className="Posts py-[5rem] w-[70%] m-auto">
-      <div className="flex flex-col items-center font-bold mb-24 sm:text-center">
+      <div className="flex flex-col items-center font-bold mb-24 gap-3 sm:text-center">
         <h6 className="text-sm text-secondary">{data.title1}</h6>
         <h2 className="text-[2.5rem]">{data.title2}</h2>
       </div>
