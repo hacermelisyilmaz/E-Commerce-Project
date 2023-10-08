@@ -524,14 +524,14 @@ export default function dataReducer() {
               newprice: "$6.48",
             },
             {
-              img: "/img/product/bestseller/p7.png",
+              img: "/img/product/bestseller/p1.png",
               header: "Graphic Design",
               department: "English Department",
               oldprice: "$16.48",
               newprice: "$6.48",
             },
             {
-              img: "/img/product/bestseller/p8.png",
+              img: "/img/product/bestseller/p2.png",
               header: "Graphic Design",
               department: "English Department",
               oldprice: "$16.48",
