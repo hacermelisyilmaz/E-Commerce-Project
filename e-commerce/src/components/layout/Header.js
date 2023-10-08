@@ -1,6 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faAngleDown,
+  faBars,
   faCartShopping,
   faEnvelope,
   faHeart,
@@ -23,13 +24,13 @@ function Header({ data }) {
 
   return (
     <div className="Header font-bold">
-      <div className="header-info bg-primary text-white font-bold flex justify-between items-center py-4 px-6">
+      <div className="header-info bg-primary text-white font-bold flex justify-between items-center py-4 px-6 sm:hidden">
         <div className="contact flex gap-[1.8rem]">
-          <div className="phone flex gap-[0.2rem]">
+          <div className="phone flex items-center gap-[0.2rem]">
             <FontAwesomeIcon icon={faPhone} />
             <p>{infoData.phone}</p>
           </div>
-          <div className="email flex gap-[0.2rem]">
+          <div className="email flex items-center gap-[0.2rem]">
             <FontAwesomeIcon icon={faEnvelope} />
             <p>{infoData.email}</p>
           </div>
@@ -45,12 +46,28 @@ function Header({ data }) {
           <FontAwesomeIcon icon={faTwitter} />
         </div>
       </div>
-      <div className="header-nav flex justify-between items-center py-4 px-6">
-        <h1 className="text-2xl">{data.brand}</h1>
-        <div className="flex justify-between w-[85%] ">
-          <nav className="text-accent flex gap-[1.3rem]">
+      <div className="header-nav flex justify-between items-center py-4 px-6 sm:flex-col">
+        <div className="w-fit flex justify-between">
+          <h1 className="text-2xl">{data.brand}</h1>
+          <div className="hidden sm:flex sm:items-center sm:gap-6">
+            <Link to="/">
+              <FontAwesomeIcon icon={faMagnifyingGlass} />
+            </Link>
+            <Link to="/">
+              <FontAwesomeIcon icon={faCartShopping} />
+            </Link>
+            <Link to="/">
+              <FontAwesomeIcon icon={faBars} />
+            </Link>
+          </div>
+        </div>
+        <div className="flex justify-between w-[85%] sm:pt-20 sm:justify-center">
+          <nav className="text-accent flex items-baseline gap-[1.3rem] sm:flex-col sm:items-center sm:text-3xl">
             <Link to="/">{navData.navlinks.home}</Link>
-            <Link className="text-primary font-medium" to="/">
+            <Link
+              className="flex items-center gap-1 text-primary font-medium sm:hidden"
+              to="/productlist"
+            >
               {navData.navlinks.shop}
               <FontAwesomeIcon icon={faAngleDown} />
             </Link>
@@ -59,7 +76,7 @@ function Header({ data }) {
             <Link to="/contact">{navData.navlinks.contact}</Link>
             <Link to="/team">{navData.navlinks.team}</Link>
           </nav>
-          <div className="nav-right-side text-secondary flex gap-[1rem]">
+          <div className="nav-right-side text-secondary flex gap-[1rem] sm:hidden">
             <Link to="/">
               <FontAwesomeIcon icon={faUser} />
               <span>{rightData.login}</span>

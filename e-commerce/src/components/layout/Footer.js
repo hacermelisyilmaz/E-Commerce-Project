@@ -11,7 +11,7 @@ function Footer({ data, inner }) {
   return (
     <div className="Footer">
       <div className={inner ? "" : "bg-info"}>
-        <div className="w-[70%] m-auto py-10 flex justify-between">
+        <div className="w-[70%] m-auto py-10 flex justify-between sm:flex-col sm:gap-4">
           <h1 className="text-2xl font-bold">{data.brand}</h1>
           <div className="text-secondary flex gap-5">
             <FontAwesomeIcon icon={faFacebook} />
@@ -21,7 +21,7 @@ function Footer({ data, inner }) {
         </div>
         <div className="w-[70%] m-auto">{inner && <hr />}</div>
       </div>
-      <div className="w-[70%] m-auto py-12 flex justify-between">
+      <div className="w-[70%] m-auto py-12 flex justify-between sm:flex-col sm:gap-10">
         {footer.navcontainer.map((nav, index) => {
           return (
             <div className="font-bold flex flex-col gap-5" key={index}>
