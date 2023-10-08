@@ -5,7 +5,12 @@ module.exports = {
     "./node_modules/flowbite-react/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      screens: {
+        sm: { max: "800px" },
+        desktop: { min: "800px" },
+      },
+    },
   },
   plugins: [require("daisyui")],
   daisyui: {
