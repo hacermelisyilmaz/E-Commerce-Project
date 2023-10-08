@@ -246,8 +246,8 @@ export default function dataReducer() {
         carousel: [
           {
             img: "/img/carousel/first-3x.png",
-            season: "SUMMER 2023",
-            header: "NEW COLLECTION",
+            subtitle: "SUMMER 2023",
+            title: "NEW COLLECTION",
             description1: "We know how large objects will act,",
             description2: "but things on a small scale.",
             button: "SHOP NOW",
