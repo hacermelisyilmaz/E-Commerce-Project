@@ -37,15 +37,15 @@ function Footer({ data, inner }) {
         })}
         <div>
           <h5 className="font-bold mb-5">{footer.contact.title}</h5>
-          <div className="border rounded-[5px]">
+          <div className="flex flex-wrap border-0 border-solid rounded-[5px] overflow-hidden">
             <input
               type="email"
               placeholder={footer.contact.placeholder}
-              className="bg-info text-sm"
+              className="bg-info text-sm leading-7 flex-1 py-4 pl-5"
             />
             <button
               type="submit"
-              className="text-sm text-white bg-secondary py-2 px-3"
+              className="text-sm text-white bg-secondary flex-1 py-4 px-3"
             >
               {footer.contact.button}
             </button>
@@ -54,7 +54,7 @@ function Footer({ data, inner }) {
         </div>
       </div>
       <div className="py-6 bg-info">
-        <div className="w-[70%] m-auto font-bold">
+        <div className="w-[70%] m-auto font-bold sm:text-accent sm:text-sm sm:text-center sm:w-1/2">
           <p>{footer.copyright}</p>
         </div>
       </div>
