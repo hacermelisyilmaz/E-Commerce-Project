@@ -13,7 +13,7 @@ function App() {
   const language = "en";
   const data = useSelector((store) => store[language]);
   return (
-    <div className="App text-primary">
+    <div className="App text-primary overflow-hidden">
       <Switch>
         <Route exact path="/">
           <Home data={data} />
