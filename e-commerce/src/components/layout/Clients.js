@@ -4,7 +4,7 @@ function Clients({ data, bg }) {
       <div className="w-[70%] flex flex-wrap justify-between items-center text-center mx-auto py-12 sm:flex-col sm:gap-16">
         {data.logos.map((url, index) => {
           return (
-            <div>
+            <div key={index}>
               <img
                 src={url}
                 key={index}
