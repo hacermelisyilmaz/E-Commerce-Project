@@ -52,27 +52,27 @@ export default function dataReducer() {
         {
           name: "CLOTHES",
           noitems: "5 Items",
-          img: "../public/img/categories/clothes1.jpg",
+          img: "/img/categories/clothes1.jpg",
         },
         {
           name: "CLOTHES",
           noitems: "5 Items",
-          img: "../public/img/categories/clothes2.jpg",
+          img: "/img/categories/clothes2.jpg",
         },
         {
           name: "CLOTHES",
           noitems: "5 Items",
-          img: "../public/img/categories/clothes3.jpg",
+          img: "/img/categories/clothes3.jpg",
         },
         {
           name: "CLOTHES",
           noitems: "5 Items",
-          img: "../public/img/categories/clothes4.jpg",
+          img: "/img/categories/clothes4.jpg",
         },
         {
           name: "CLOTHES",
           noitems: "5 Items",
-          img: "../public/img/categories/clothes5.jpg",
+          img: "/img/categories/clothes5.jpg",
         },
       ],
 
