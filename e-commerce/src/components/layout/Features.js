@@ -8,7 +8,7 @@ import {
 function Features({ data }) {
   return (
     <div className="Features py-[5rem] w-[75%] mx-auto sm:text-center">
-      <div className="flex flex-col gap-3 items-center">
+      <div className="flex flex-col gap-3 items-center sm:pb-20">
         <h3 className="text-xl text-accent">{data.title1}</h3>
         <h2 className="text-2xl font-bold">{data.title2}</h2>
         <p className="text-sm text-accent">{data.description}</p>
