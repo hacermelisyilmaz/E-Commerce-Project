@@ -1,16 +1,20 @@
-function Clients({ data }) {
+function Clients({ data, bg }) {
   return (
-    <div className="Clients w-[70%] flex flex-wrap justify-between text-center mx-auto py-12">
-      {data.logos.map((url, index) => {
-        return (
-          <img
-            src={url}
-            key={index}
-            className="max-w-full h-auto"
-            alt={`Client ${index + 1}`}
-          />
-        );
-      })}
+    <div className={bg ? "Clients bg-info" : "Clients"}>
+      <div className="w-[70%] flex flex-wrap justify-between items-center text-center mx-auto py-12 sm:flex-col sm:gap-16">
+        {data.logos.map((url, index) => {
+          return (
+            <div>
+              <img
+                src={url}
+                key={index}
+                className="max-w-full h-auto"
+                alt={`Client ${index + 1}`}
+              />
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 }
