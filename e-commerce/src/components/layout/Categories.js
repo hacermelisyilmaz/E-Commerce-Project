@@ -12,15 +12,16 @@ function Categories({ data }) {
           <p className="text-neutral">Shop</p>
         </div>
       </div>
-      <div className="w-3/4 mx-auto flex justify-center gap-4 pb-12 sm:flex-col">
+      <div className="w-3/4 mx-auto flex justify-center gap-4 pb-12 sm:flex-col sm:items-center">
         {data.map((cat, index) => {
           return (
-            <div
-              className="category bg-cover min-w-[205px] min-h-[223px] text-white flex flex-col justify-center items-center gap-2"
-              key={index}
-            >
-              <h6 className="font-bold">{cat.name}</h6>
-              <p>{cat.noitems}</p>
+            <div className="relative" key={index}>
+              <img src={cat.img} className="object-cover" />
+              <div className="bg-[#21212140] w-full h-full absolute top-0 right-0 hover:hidden"></div>
+              <div className="w-full h-full absolute top-0 right-0 text-white flex flex-col justify-center items-center gap-2">
+                <h6 className="font-bold">{cat.name}</h6>
+                <p>{cat.noitems}</p>
+              </div>
             </div>
           );
         })}
