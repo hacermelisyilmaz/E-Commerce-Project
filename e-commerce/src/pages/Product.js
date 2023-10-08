@@ -11,6 +11,8 @@ import {
 import Header from "../components/layout/Header";
 import { Link } from "react-router-dom";
 import ProductCard from "../components/ProductCard";
+import Clients from "../components/layout/Clients";
+import Footer from "../components/layout/Footer";
 
 function Product({ data }) {
   const { details, nav, description, bestseller } = data.product;
@@ -43,17 +45,17 @@ function Product({ data }) {
         <div className="flex justify-between">
           <div>
             <div className="carousel w-full">
-              <div id="slide1" className="carousel-item relative w-full">
+              <div id="product1" className="carousel-item relative w-full">
                 <img src={details.images.img1} className="w-full" />
                 <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-                  <a href="#slide2" className="btn btn-circle bg-transparent">
+                  <a href="#product2" className="btn btn-circle bg-transparent">
                     <FontAwesomeIcon
                       icon={faChevronLeft}
                       style={{ color: "#ffffff" }}
                       className="text-5xl"
                     />
                   </a>
-                  <a href="#slide2" className="btn btn-circle bg-transparent">
+                  <a href="#product2" className="btn btn-circle bg-transparent">
                     <FontAwesomeIcon
                       icon={faChevronRight}
                       style={{ color: "#ffffff" }}
@@ -62,17 +64,17 @@ function Product({ data }) {
                   </a>
                 </div>
               </div>
-              <div id="slide2" className="carousel-item relative w-full">
+              <div id="product2" className="carousel-item relative w-full">
                 <img src={details.images.img2} className="w-full" />
                 <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-                  <a href="#slide1" className="btn btn-circle bg-transparent">
+                  <a href="#product1" className="btn btn-circle bg-transparent">
                     <FontAwesomeIcon
                       icon={faChevronLeft}
                       style={{ color: "#ffffff" }}
                       className="text-5xl"
                     />
                   </a>
-                  <a href="#slide1" className="btn btn-circle bg-transparent">
+                  <a href="#product1" className="btn btn-circle bg-transparent">
                     <FontAwesomeIcon
                       icon={faChevronRight}
                       style={{ color: "#ffffff" }}
@@ -83,10 +85,10 @@ function Product({ data }) {
               </div>
             </div>
             <div className="flex w-full py-5 gap-5">
-              <a href="#slide1" className="w-24 h-20">
+              <a href="#product1" className="w-24 h-20">
                 <img src={details.images.img1} className="w-full" />
               </a>
-              <a href="#slide2" className="w-24 h-20">
+              <a href="#product2" className="w-24 h-20">
                 <img src={details.images.img2} className="w-full" />
               </a>
             </div>
@@ -139,18 +141,24 @@ function Product({ data }) {
         </div>
       </div>
 
-      <div>
-        <div>
-          <Link to="#">{nav[0]}</Link>
-          <Link to="#">{nav[1]}</Link>
-          <Link to="#">{nav[2]}</Link>
+      <div className="px-44">
+        <div className="py-3 flex justify-center font-bold text-accent">
+          <Link to="#" className="p-6">
+            {nav[0]}
+          </Link>
+          <Link to="#" className="p-6">
+            {nav[1]}
+          </Link>
+          <Link to="#" className="p-6">
+            {nav[2]}
+          </Link>
         </div>
-        <hr />
-        <div className="flex">
+        <hr className="pb-4" />
+        <div className="pt-6 flex justify-between">
           <img src={description.img} />
-          <div>
-            <h5>{description.title1}</h5>
-            <div>
+          <div className="flex flex-col gap-7 mx-7 w-1/3">
+            <h5 className="text-2xl font-bold">{description.title1}</h5>
+            <div className="text-sm text-accent flex flex-col gap-5">
               {description.p.map((bullet, index) => {
                 return (
                   <div key={index}>
@@ -160,27 +168,33 @@ function Product({ data }) {
               })}
             </div>
           </div>
-          <div>
-            <div>
-              <h5>{description.title2}</h5>
-              <div>
+          <div className="font-bold">
+            <div className="flex flex-col gap-7">
+              <h5 className="text-2xl">{description.title2}</h5>
+              <div className="flex flex-col gap-2">
                 {description.b1.map((bullet, index) => {
                   return (
-                    <div key={index}>
-                      <FontAwesomeIcon icon={faAngleRight} />
+                    <div key={index} className="flex text-sm text-accent gap-5">
+                      <FontAwesomeIcon
+                        icon={faAngleRight}
+                        className="text-base"
+                      />
                       <p>{bullet}</p>
                     </div>
                   );
                 })}
               </div>
             </div>
-            <div>
-              <h5>{description.title3}</h5>
-              <div>
+            <div className="flex flex-col gap-7 pt-6">
+              <h5 className="text-2xl">{description.title3}</h5>
+              <div className="flex flex-col gap-2">
                 {description.b2.map((bullet, index) => {
                   return (
-                    <div key={index}>
-                      <FontAwesomeIcon icon={faAngleRight} />
+                    <div key={index} className="flex text-sm text-accent gap-5">
+                      <FontAwesomeIcon
+                        icon={faAngleRight}
+                        className="text-base"
+                      />
                       <p>{bullet}</p>
                     </div>
                   );
@@ -191,15 +205,18 @@ function Product({ data }) {
         </div>
       </div>
 
-      <div className="bg-info">
+      <div className="bg-info py-12 px-44 flex flex-col gap-6">
         <h3>{bestseller.title}</h3>
         <hr />
-        <div>
+        <div className="flex flex-wrap justify-between">
           {bestseller.products.map((product, index) => {
-            <ProductCard key={index} data={product} />;
+            return <ProductCard key={index} data={product} />;
           })}
         </div>
       </div>
+
+      <Clients data={data.clients} bg={true} />
+      <Footer data={data} inner={true} />
     </div>
   );
 }
