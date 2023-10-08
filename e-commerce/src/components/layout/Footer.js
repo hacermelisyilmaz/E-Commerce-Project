@@ -26,7 +26,7 @@ function Footer({ data, inner }) {
           return (
             <div className="font-bold flex flex-col gap-5" key={index}>
               <h5>{nav.title}</h5>
-              <nav className="flex flex-col gap-3 text-accent">
+              <nav className="flex flex-col gap-3 text-accent sm:text-sm">
                 <Link to={nav.nav1.link}>{nav.nav1.title}</Link>
                 <Link to={nav.nav2.link}>{nav.nav2.title}</Link>
                 <Link to={nav.nav3.link}>{nav.nav3.title}</Link>
