@@ -10,9 +10,9 @@ import {
 
 function Post({ data }) {
   return (
-    <div className="Post flex">
+    <div className="Post flex sm:flex-col">
       <img src={data.img} />
-      <div className="text-content p-6 pb-9 flex flex-col justify-between">
+      <div className="text-content p-6 pb-9 flex flex-col justify-between sm:gap-2">
         <div className="first-line flex justify-between">
           <h6 className="text-sm font-bold text-secondary">{data.title1}</h6>
           <div className="flex items-center p-[5px] border rounded-[20px] bg-primary">
