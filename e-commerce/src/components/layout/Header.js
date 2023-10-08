@@ -47,7 +47,7 @@ function Header({ data }) {
         </div>
       </div>
       <div className="header-nav flex justify-between items-center py-4 px-6 sm:flex-col">
-        <div className="w-fit flex justify-between">
+        <div className="w-fit flex justify-between sm:w-full">
           <h1 className="text-2xl">{data.brand}</h1>
           <div className="hidden sm:flex sm:items-center sm:gap-6">
             <Link to="/">
