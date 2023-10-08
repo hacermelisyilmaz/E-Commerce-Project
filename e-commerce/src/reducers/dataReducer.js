@@ -718,13 +718,23 @@ export default function dataReducer() {
       },
 
       shopcards: {
-        images: [
-          "/img/shopcards/shopcard1.jpg",
-          "/img/shopcards/shopcard2.jpg",
-          "/img/shopcards/shopcard3.jpg",
+        cards: [
+          {
+            img: "/img/shopcards/shopcard1.jpg",
+            message: "Top Product of the Week",
+            button: "EXPLORE ITEMS",
+          },
+          {
+            img: "/img/shopcards/shopcard2.jpg",
+            message: "Top Product of the Week",
+            button: "EXPLORE ITEMS",
+          },
+          {
+            img: "/img/shopcards/shopcard3.jpg",
+            message: "Top Product of the Week",
+            button: "EXPLORE ITEMS",
+          },
         ],
-        message: "Top Product of the Week",
-        button: "EXPLORE ITEMS",
       },
 
       team: {
