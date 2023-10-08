@@ -6,10 +6,10 @@ function BannerSlide({ data }) {
   const history = useHistory();
   return (
     <div className="BannerSlide py-12 w-[90%] mx-auto">
-      <div className="carousel w-full h-[38rem] overflow-visible rounded-[20px]">
+      <div className="carousel w-full h-[38rem] rounded-[20px]">
         <div id="slide1" className="carousel-item relative w-full bg">
           <div className="flex justify-end items-center">
-            <div className="flex flex-col text-left gap-[1.8rem]">
+            <div className="pl-28 flex flex-col text-left gap-[1.8rem]">
               <h5 className="font-bold text-secondary">{data[0].season}</h5>
               <h2 className="font-bold text-6xl">{data[0].header}</h2>
               <div className="text-xl text-accent">
@@ -17,7 +17,7 @@ function BannerSlide({ data }) {
                 <p>{data[0].description2}</p>
               </div>
               <button
-                className="font-bold text-2xl text-white bg-secondary w-[40%] border-solid rounded-[5px] px-9 py-4"
+                className="font-bold text-2xl text-white bg-secondary w-fit border-solid rounded-[5px] px-9 py-4"
                 onClick={() => history.push("/productlist")}
               >
                 {data[0].button}
