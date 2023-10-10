@@ -97,12 +97,18 @@ function Header({ data }) {
                 : "nav-right-side text-secondary flex gap-[1rem] sm:hidden"
             }
           >
-            <Link to="/">
+            <div>
               <FontAwesomeIcon icon={faUser} />
               <span>{rightData.login}</span>
               <span> / </span>
-              <span>{rightData.registr}</span>
-            </Link>
+              <span
+                onClick={() => {
+                  history.push("/signup");
+                }}
+              >
+                {rightData.registr}
+              </span>
+            </div>
             <Link to="/">
               <FontAwesomeIcon icon={faMagnifyingGlass} />
             </Link>

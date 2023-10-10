@@ -7,8 +7,8 @@ import ProductCard from "../ProductCard";
 
 function Shop({ data }) {
   const clickHandler = (e) => {
-    e.target.classList.add("hover:bg-secondary");
-    e.target.classList.add("hover:text-white");
+    e.target.classList.add("bg-secondary");
+    e.target.classList.add("text-white");
   };
 
   return (

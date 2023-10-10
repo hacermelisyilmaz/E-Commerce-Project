@@ -1,13 +1,16 @@
 import { Route, Switch } from "react-router-dom";
-import Home from "./pages/Home";
 import { useSelector } from "react-redux";
-import "./App.css";
+
+import Home from "./pages/Home";
 import ProductList from "./pages/ProductList";
 import About from "./pages/About";
 import Pricing from "./pages/Pricing";
 import Team from "./pages/Team";
 import Contact from "./pages/Contact";
 import Product from "./pages/Product";
+import SignUp from "./pages/SignUp";
+
+import "./App.css";
 
 function App() {
   const language = "en";
@@ -18,22 +21,25 @@ function App() {
         <Route exact path="/">
           <Home data={data} />
         </Route>
-        <Route exact path="/about">
+        <Route path="/about">
           <About data={data} />
         </Route>
-        <Route exact path="/contact">
+        <Route path="/contact">
           <Contact data={data} />
         </Route>
-        <Route exact path="/pricing">
+        <Route path="/pricing">
           <Pricing data={data} />
         </Route>
-        <Route exact path="/productlist">
+        <Route path="/productlist">
           <ProductList data={data} />
         </Route>
-        <Route exact path="/productlist/:productID">
+        <Route path="/productlist/:productID">
           <Product data={data} />
         </Route>
-        <Route exact path="/team">
+        <Route path="/signup">
+          <SignUp data={data} />
+        </Route>
+        <Route path="/team">
           <Team data={data} />
         </Route>
       </Switch>

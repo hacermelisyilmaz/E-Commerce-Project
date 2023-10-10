@@ -13,7 +13,7 @@ function Footer({ data, inner }) {
       <div className={inner ? "" : "bg-info"}>
         <div className="w-[70%] m-auto py-10 flex justify-between sm:flex-col sm:gap-4">
           <h1 className="text-2xl font-bold">{data.brand}</h1>
-          <div className="text-secondary flex gap-5">
+          <div className="text-secondary flex gap-5 sm:text-2xl">
             <FontAwesomeIcon icon={faFacebook} />
             <FontAwesomeIcon icon={faInstagram} />
             <FontAwesomeIcon icon={faTwitter} />

@@ -6,7 +6,7 @@ function PricingPlan({ data, index }) {
   return (
     <div
       tabIndex={index}
-      className="PricingPlan border border-solid rounded-xl border-secondary py-12 px-10 flex flex-col gap-9 items-center focus:bg-primary focus:text-white focus:py-16"
+      className="PricingPlan border border-solid rounded-xl border-secondary py-12 px-10 flex flex-col gap-9 items-center focus:bg-primary focus:text-white focus:py-16 sm:focus:py-12"
     >
       <h2 className="text-2xl">{type}</h2>
       <p className="w-2/3 text-base text-accent text-center">{description}</p>

@@ -21,10 +21,12 @@ function Contact({ data }) {
     <div className="Contact">
       <InnerHeader data={data} />
 
-      <div className="pt-28 w-[73%] mx-auto flex">
-        <div className="flex flex-col gap-9 font-bold">
+      <div className="pt-28 w-[73%] mx-auto flex sm:w-full sm:flex-col sm:px-8 sm:text-center sm:gap-10">
+        <div className="flex flex-col gap-9 font-bold sm:items-center">
           <h5 className="text-sm">{section1.subtitle}</h5>
-          <h1 className="text-6xl leading-[5rem]">{section1.title}</h1>
+          <h1 className="text-6xl leading-[5rem] sm:text-4xl">
+            {section1.title}
+          </h1>
           <p className="font-normal text-xl text-accent">
             {section1.description}
           </p>
@@ -32,22 +34,25 @@ function Contact({ data }) {
             <p>{section1.numbers.phone}</p>
             <p>{section1.numbers.fax}</p>
           </div>
-          <div className="flex gap-8 text-2xl p-2">
+          <div className="flex gap-8 text-2xl p-2 sm:text-3xl">
             <FontAwesomeIcon icon={faTwitter} />
             <FontAwesomeIcon icon={faSquareFacebook} />
             <FontAwesomeIcon icon={faInstagram} />
             <FontAwesomeIcon icon={faLinkedin} />
           </div>
         </div>
-        <img src={section1.img} className="-translate-y-24 translate-x-32" />
+        <img
+          src={section1.img}
+          className="-translate-y-24 translate-x-32 sm:translate-x-0 sm:translate-y-0"
+        />
       </div>
 
-      <div className="pb-20 flex flex-col items-center">
-        <div className="w-2/5 mb-20 font-bold text-center flex flex-col gap-2">
+      <div className="pb-20 flex flex-col items-center sm:my-16 sm:mx-10">
+        <div className="w-2/5 mb-20 font-bold text-center flex flex-col gap-2 sm:w-full sm:">
           <h5 className="text-sm">{section2.subtitle}</h5>
           <h2 className="text-[2.5rem] leading-[3rem]">{section2.title}</h2>
         </div>
-        <div className="flex justify-center">
+        <div className="flex justify-center sm:flex-col sm:gap-7">
           {section2.ways.map((card, index) => {
             return (
               <div
@@ -75,7 +80,7 @@ function Contact({ data }) {
         </div>
       </div>
 
-      <div className="pb-20 font-bold flex flex-col items-center gap-4">
+      <div className="pb-20 font-bold flex flex-col items-center gap-4 sm:gap-7">
         <FontAwesomeIcon
           icon={faArrowTurnDown}
           className="text-[5rem] text-secondary"

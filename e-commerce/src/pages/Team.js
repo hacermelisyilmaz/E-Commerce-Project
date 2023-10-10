@@ -15,9 +15,11 @@ function Team({ data }) {
       <InnerHeader data={data} />
 
       <div>
-        <div className="p-12 font-bold flex flex-col gap-4 items-center">
+        <div className="p-12 font-bold flex flex-col gap-4 items-center sm:text-center">
           <h5 className="text-base text-accent">{section.subtitle}</h5>
-          <h1 className="text-[3.6rem] leading-[5rem]">{section.title}</h1>
+          <h1 className="text-[3.6rem] leading-[5rem] sm:text-4xl">
+            {section.title}
+          </h1>
           <nav className="text-sm flex items-center gap-4">
             <Link to="/">{section.history.prev}</Link>
             <FontAwesomeIcon
@@ -29,14 +31,14 @@ function Team({ data }) {
             </Link>
           </nav>
         </div>
-        <div className="flex flex-col flex-wrap gap-[10px] max-h-[34rem]">
+        <div className="flex flex-col flex-wrap gap-[10px] max-h-[34rem] sm:max-h-fit">
           {section.images.map((img, index) => {
-            return <img key={index} src={img} />;
+            return <img key={index} src={img} className="object-cover" />;
           })}
         </div>
       </div>
 
-      <div className="mx-48 py-28">
+      <div className="mx-48 py-28 sm:mx-8">
         <h2 className="text-center text-[2.5rem] leading-[3rem] font-bold mb-28">
           {title}
         </h2>

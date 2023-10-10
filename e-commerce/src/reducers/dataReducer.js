@@ -754,6 +754,8 @@ export default function dataReducer() {
           ],
         },
         title: "Meet Our Team",
+        description:
+          "Problems trying to resolve the conflict between the two major realms of Classical physics: Newtonian mechanics ",
         people: [
           {
             img: "/img/team/dianne.png",
