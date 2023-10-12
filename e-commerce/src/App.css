@@ -20,3 +20,21 @@
 .PricingPlan:focus button {
   background-color: #23a6f0;
 }
+
+@layer components {
+  .blue-button {
+    @apply font-bold text-lg text-white bg-secondary w-fit border-solid rounded-[5px] px-7 py-3;
+  }
+  .form-group {
+    @apply flex flex-col;
+  }
+  .form-label {
+    @apply text-lg;
+  }
+  .form-input {
+    @apply mb-1 mt-4 px-4 py-3 border border-solid border-white rounded-md shadow-sm;
+  }
+  .form-footnote {
+    @apply text-accent text-xs leading-7;
+  }
+}
