@@ -737,6 +737,92 @@ export default function dataReducer() {
         ],
       },
 
+      signup: {
+        name: {
+          label: "Name:",
+          placeholder: "Name *",
+          footnote: "Please type your name and surname.",
+          errorMsg: {
+            required: "Name field cannot be empty.",
+            length: "Name must be at least 3 characters.",
+          },
+        },
+        email: {
+          label: "Email:",
+          placeholder: "Email *",
+          footnote: "We'll never share your email with anyone else.",
+          errorMsg: {
+            required: "Email field cannot be empty.",
+          },
+        },
+        password: {
+          label: "Password:",
+          placeholder: "Password *",
+          footnote: "Set a password.",
+          errorMsg: {
+            required: "Password field cannot be empty.",
+            length: "Name must be at least 8 characters.",
+            upper: "Password must include at least one upper case character.",
+            lower: "Password must include at least one lower case character.",
+            special:
+              "Password must include at least one special character: !#$%&'()*+,-./:;<=>?@[]^_`{|}~",
+          },
+        },
+        passmatch: {
+          label: "Confirm Password:",
+          placeholder: "Re-enter your password *",
+          footnote: "Please re-enter your password.",
+          errorMsg: {
+            required: "You must re-enter your password.",
+            match: "Passwords must match.",
+          },
+        },
+        role: {
+          label: "Role:",
+          admin: "Admin",
+          store: "Store",
+          customer: "Customer",
+          footnote: "Choose a role from the list.",
+        },
+        store: {
+          name: {
+            label: "Store Name:",
+            placeholder: "Store Name *",
+            footnote: "Enter the store name.",
+            errorMsg: {
+              required: "Store name field cannot be empty.",
+              length: "Store name must be at least 3 characters.",
+            },
+          },
+          taxid: {
+            label: "Store Tax ID:",
+            placeholder: "TXXXXVXXXXXX *",
+            footnote: "Enter the store tax ID.",
+            errorMsg: {
+              required: "Tax ID field cannot be empty.",
+              length: "Tax ID must be 12 characters (including letters).",
+            },
+          },
+          bank: {
+            label: "Store Bank Account:",
+            placeholder: "Store Bank Account *",
+            footnote: "Enter the IBAN adress.",
+            errorMsg: {
+              required: "Bank account field cannot be empty.",
+              minlength:
+                "IBAN cannot be less than 26 characters, including country code.",
+              maxlength:
+                "IBAN cannot be more than 26 characters, including country code.",
+            },
+          },
+        },
+        button: "Submit",
+        submission: {
+          success: "You need to click link in email to activate your account!",
+          fail: "Something went wrong. Please try again.",
+        },
+      },
+
       team: {
         section: {
           subtitle: "WHAT WE DO",
