@@ -47,7 +47,9 @@ function About({ data }) {
           <h3 className="font-bold text-2xl w-[50%] sm:text-center sm:w-full sm:px-14">
             {section2.title}
           </h3>
-          <p className="text-sm sm:px-8">{section2.description}</p>
+          <p className="text-sm sm:px-8 sm:text-center">
+            {section2.description}
+          </p>
         </div>
       </div>
 
