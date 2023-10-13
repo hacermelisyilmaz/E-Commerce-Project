@@ -738,6 +738,12 @@ export default function dataReducer() {
       },
 
       signup: {
+        header: {
+          subtitle: "Join Our Shopping Community",
+          title: "Create Your Account",
+          description:
+            "Sign up and become a member to unlock a world of shopping delights. Let's get started on your shopping journey!",
+        },
         name: {
           label: "Name:",
           placeholder: "Name *",
