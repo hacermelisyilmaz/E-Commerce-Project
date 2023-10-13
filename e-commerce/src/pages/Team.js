@@ -31,7 +31,7 @@ function Team({ data }) {
             </Link>
           </nav>
         </div>
-        <div className="flex flex-col flex-wrap gap-[10px] max-h-[34rem] sm:max-h-fit">
+        <div className="flex flex-col flex-wrap gap-[10px] max-h-[34rem] sm:max-h-fit sm:flex-row sm:justify-center sm:gap-1">
           {section.images.map((img, index) => {
             return <img key={index} src={img} className="object-cover" />;
           })}
