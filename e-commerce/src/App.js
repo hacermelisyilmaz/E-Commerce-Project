@@ -14,7 +14,8 @@ import "./App.css";
 
 function App() {
   const language = "en";
-  const data = useSelector((store) => store[language]);
+  //const language = useSelector(store => store.global.language);
+  const data = useSelector((store) => store.data[language]);
   return (
     <div className="App text-primary overflow-hidden">
       <Switch>
