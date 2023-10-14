@@ -1,4 +1,4 @@
 import { legacy_createStore as createStore } from "redux";
-import dataReducer from "../reducers/dataReducer";
+import indexReducer from "../reducers/indexReducer";
 
-export const store = createStore(dataReducer);
+export const store = createStore(indexReducer);
