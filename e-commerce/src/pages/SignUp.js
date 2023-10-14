@@ -81,7 +81,7 @@ function SignUp({ data }) {
   }, []);
 
   return (
-    <div className="SignUp bg-info min-h-screen p-10">
+    <div className="SignUp bg-info min-h-screen py-10 px-80 sm:p-10">
       <ToastContainer
         position="top-right"
         autoClose={5000}
@@ -274,8 +274,9 @@ function SignUp({ data }) {
               </select>
               <p className="form-footnote">{role.footnote}</p>
             </div>
+
             {isStore && (
-              <div>
+              <div className="flex flex-col gap-4 px-8">
                 <div className="form-group">
                   <label className="form-label" htmlFor="storename">
                     {store.name.label}
