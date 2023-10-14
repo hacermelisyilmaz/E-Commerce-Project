@@ -1,3 +1,11 @@
+import {
+  SET_ACTIVE_PAGE,
+  SET_FETCH_STATE,
+  SET_PAGE_COUNT,
+  SET_PRODUCT_LIST,
+  SET_TOTAL_PRODUCT_COUNT,
+} from "../actions/productActions.js";
+
 const initialState = {
   productList: [],
   totalProductCount: 0,
