@@ -81,7 +81,10 @@ function Pricing({ data }) {
         <div className="w-[73%] mx-auto flex flex-wrap justify-center gap-7 sm:w-full sm:flex-col sm:px-10">
           {faqs.qas.map((qa, index) => {
             return (
-              <div className="max-w-[45%] p-6 flex gap-5 sm:max-w-full">
+              <div
+                className="max-w-[45%] p-6 flex gap-5 sm:max-w-full"
+                key={index}
+              >
                 <FontAwesomeIcon
                   icon={faChevronRight}
                   className="text-secondary text-base sm:hidden"
