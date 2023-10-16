@@ -13,6 +13,7 @@ import {
   setPassword,
   setRoleID,
 } from "../actions/userActions";
+import { getRoles } from "../actions/rolesActions";
 
 function SignUp({ data }) {
   const {
@@ -26,12 +27,13 @@ function SignUp({ data }) {
     button,
     submission,
   } = data.signup;
-  const [isLoading, setLoading] = useState(false);
   const [isSubmitting, setSubmitting] = useState(false);
   const [isStore, setStore] = useState(false);
-  const [roles, setRoles] = useState();
   const history = useHistory();
   const dispatch = useDispatch();
+  const roles = useSelector((store) => store.roles.roles);
+  const loading = useSelector((store) => store.roles.loading);
+  console.log(roles, loading);
   const userData = useSelector((store) => store.user);
 
   const {
@@ -94,15 +96,7 @@ function SignUp({ data }) {
   };
 
   useEffect(() => {
-    axiosInstance
-      .get("/roles")
-      .then((response) => {
-        setRoles(response.data);
-        setLoading(true);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    dispatch(getRoles());
   }, []);
 
   return (
@@ -119,7 +113,7 @@ function SignUp({ data }) {
         pauseOnHover
         theme="colored"
       />
-      {isLoading ? (
+      {loading ? (
         <div>
           <div className="p-12 font-bold flex flex-col gap-4 items-center text-center sm:text-center">
             <h2 className="text-base text-accent sm:text-sm">
