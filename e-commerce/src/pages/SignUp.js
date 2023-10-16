@@ -36,18 +36,19 @@ function SignUp({ data }) {
       email: "",
       password: "",
       role_id: "",
-      storename: "",
-      storetaxid: "",
-      storeiban: "",
+      store: { name: "", tax_no: "", bank_account: "" },
     },
     mode: "all",
   });
 
   const onSubmit = (formData) => {
     setSubmitting(true);
+    const { name, email, password, role_id, store } = formData;
+    const signUpData = { name, email, password, role_id, store };
+    console.log(signUpData);
 
     axiosInstance
-      .post("/signup", formData)
+      .post("/signup", signUpData)
       .then((response) => {
         setSubmitting(false);
         window.confirm(`${response.message}\n${submission.success}`) &&
