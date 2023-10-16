@@ -6,6 +6,13 @@ import axiosInstance from "../api/axiosInstance";
 import Spinner from "../components/Spinner";
 import { ToastContainer, toast } from "react-toastify";
 import { useHistory } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  setEmail,
+  setName,
+  setPassword,
+  setRoleID,
+} from "../actions/userActions";
 
 function SignUp({ data }) {
   const {
@@ -24,6 +31,8 @@ function SignUp({ data }) {
   const [isStore, setStore] = useState(false);
   const [roles, setRoles] = useState();
   const history = useHistory();
+  const dispatch = useDispatch();
+  const userData = useSelector((store) => store.user);
 
   const {
     register,
@@ -54,8 +63,14 @@ function SignUp({ data }) {
       role_id,
       store: { name: storename, tax_no: storetaxid, bank_account: storeiban },
     };
-    console.log(signUpData);
-
+    /* 
+    dispatch(setName(name));
+    dispatch(setPassword(password));
+    dispatch(setEmail(email));
+    dispatch(setRoleID(role_id));
+    console.log(userData);
+    history.goBack();
+    */
     axiosInstance
       .post("/signup", signUpData)
       .then((response) => {
