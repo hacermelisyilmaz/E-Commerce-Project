@@ -36,15 +36,24 @@ function SignUp({ data }) {
       email: "",
       password: "",
       role_id: "",
-      store: { name: "", tax_no: "", bank_account: "" },
+      storename: "",
+      storetaxid: "",
+      storeiban: "",
     },
     mode: "all",
   });
 
   const onSubmit = (formData) => {
     setSubmitting(true);
-    const { name, email, password, role_id, store } = formData;
-    const signUpData = { name, email, password, role_id, store };
+    const { name, email, password, role_id, storename, storetaxid, storeiban } =
+      formData;
+    const signUpData = {
+      name,
+      email,
+      password,
+      role_id,
+      store: { name: storename, tax_no: storetaxid, bank_account: storeiban },
+    };
     console.log(signUpData);
 
     axiosInstance
@@ -315,32 +324,23 @@ function SignUp({ data }) {
                       onChange: (event) => {
                         let { value, selectionStart } = event.target;
                         const numericValue = value.replace(/[^\d]/g, "");
-                        const totalDigits = numericValue.length;
-
-                        // Restrict the total number of digits to 20
                         const truncatedValue = numericValue.slice(0, 10);
 
-                        // Calculate the cursor position
                         let cursorPosition;
 
                         if (selectionStart <= 1) {
-                          // Ensure cursor is after 'T'
                           cursorPosition = 2;
                         } else if (selectionStart <= 5) {
-                          // Ensure cursor is after 4 digits
                           cursorPosition = selectionStart;
                         } else {
-                          // Ensure cursor is after 4 digits
                           cursorPosition = selectionStart + 1;
                         }
 
-                        // Create the formatted value
                         const formattedValue = `T${truncatedValue.slice(
                           0,
                           4
                         )}V${truncatedValue.slice(4)}`;
 
-                        // Update the value in the input and set cursor position
                         event.target.value = formattedValue;
                         event.target.setSelectionRange(
                           cursorPosition,
