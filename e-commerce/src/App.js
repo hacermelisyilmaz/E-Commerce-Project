@@ -12,6 +12,7 @@ import Product from "./pages/Product";
 import SignUp from "./pages/SignUp";
 
 import "./App.css";
+import LogIn from "./pages/LogIn";
 
 function App() {
   const language = "en";
@@ -28,6 +29,9 @@ function App() {
         </Route>
         <Route path="/contact">
           <Contact data={data} />
+        </Route>
+        <Route path="/login">
+          <LogIn data={data} />
         </Route>
         <Route path="/pricing">
           <Pricing data={data} />

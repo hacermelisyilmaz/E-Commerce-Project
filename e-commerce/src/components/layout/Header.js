@@ -97,9 +97,15 @@ function Header({ data }) {
                 : "nav-right-side text-secondary flex gap-[1rem] sm:hidden"
             }
           >
-            <div>
+            <div className="flex items-center gap-3">
               <FontAwesomeIcon icon={faUser} />
-              <span>{rightData.login}</span>
+              <span
+                onClick={() => {
+                  history.push("/login");
+                }}
+              >
+                {rightData.login}
+              </span>
               <span> / </span>
               <span
                 onClick={() => {
