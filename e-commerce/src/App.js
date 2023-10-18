@@ -1,5 +1,6 @@
 import { Route, Switch } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { ToastContainer } from "react-toastify";
 
 import Home from "./pages/Home";
 import ProductList from "./pages/ProductList";
