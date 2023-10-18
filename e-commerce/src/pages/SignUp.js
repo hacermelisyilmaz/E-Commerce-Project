@@ -10,7 +10,6 @@ import axiosInstance from "../api/axiosInstance";
 import Spinner from "../components/Spinner";
 import { fetchRoles } from "../store/actions/rolesActions";
 import { FETCH_STATES } from "../store/reducers/rolesReducer";
-import { setUser } from "../store/actions/userActions";
 
 function SignUp({ data }) {
   const {
@@ -65,8 +64,6 @@ function SignUp({ data }) {
       role_id,
       store: { name: storename, tax_no: storetaxid, bank_account: storeiban },
     };
-
-    dispatch(setUser(signUpData));
 
     axiosInstance
       .post("/signup", signUpData)
