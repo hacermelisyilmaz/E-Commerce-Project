@@ -1,38 +1,12 @@
-import {
-  SET_EMAIL,
-  SET_NAME,
-  SET_PASSWORD,
-  SET_ROLE_ID,
-} from "../../actions/userActions.js";
+import { SET_USER } from "../actions/userActions";
 
-const initialState = {
-  name: "",
-  email: "",
-  password: "",
-  role_id: "",
-};
+const initialState = {};
 
 const userReducer = (state = initialState, action) => {
   switch (action.type) {
-    case SET_NAME:
+    case SET_USER:
       return {
-        ...state,
-        name: action.payload,
-      };
-    case SET_EMAIL:
-      return {
-        ...state,
-        email: action.payload,
-      };
-    case SET_PASSWORD:
-      return {
-        ...state,
-        password: action.payload,
-      };
-    case SET_ROLE_ID:
-      return {
-        ...state,
-        role_id: action.payload,
+        ...action.payload,
       };
     default:
       return state;
