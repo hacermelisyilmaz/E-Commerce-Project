@@ -10,6 +10,7 @@ import axiosInstance from "../api/axiosInstance";
 import Spinner from "../components/Spinner";
 import { fetchRoles } from "../store/actions/rolesActions";
 import { FETCH_STATES } from "../store/reducers/rolesReducer";
+import { setUser } from "../store/actions/userActions";
 
 function SignUp({ data }) {
   const {
@@ -53,8 +54,10 @@ function SignUp({ data }) {
 
   const onSubmit = (formData) => {
     setSubmitting(true);
+
     const { name, email, password, role_id, storename, storetaxid, storeiban } =
       formData;
+
     const signUpData = {
       name,
       email,
@@ -63,12 +66,14 @@ function SignUp({ data }) {
       store: { name: storename, tax_no: storetaxid, bank_account: storeiban },
     };
 
+    dispatch(setUser(signUpData));
+
     axiosInstance
       .post("/signup", signUpData)
       .then((response) => {
         setSubmitting(false);
-        toast.success(`${submission.fail}`, {
-          position: "top-right",
+        toast.warning(`${submission.success}`, {
+          position: "bottom-right",
           autoClose: 5000,
           hideProgressBar: false,
           closeOnClick: true,
