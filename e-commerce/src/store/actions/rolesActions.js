@@ -1,4 +1,4 @@
-import axiosInstance from "../api/axiosInstance";
+import axiosInstance from "../../api/axiosInstance";
 
 export const FETCH_ROLES_REQUEST = "FETCH_ROLES_REQUEST";
 export const FETCH_ROLES_SUCCESS = "FETCH_ROLES_SUCCESS";
