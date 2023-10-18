@@ -8,6 +8,7 @@ import { toast } from "react-toastify";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchRoles } from "../store/actions/rolesActions";
+import { FETCH_STATES } from "../store/reducers/rolesReducer";
 
 function SignUp({ data }) {
   const {
@@ -21,14 +22,15 @@ function SignUp({ data }) {
     button,
     submission,
   } = data.signup;
+
   const [isSubmitting, setSubmitting] = useState(false);
   const [isStore, setStore] = useState(false);
+
   const history = useHistory();
   const dispatch = useDispatch();
+
   const roles = useSelector((store) => store.roles.roles);
-  const loading = useSelector((store) => store.roles.loading);
-  console.log(roles, loading);
-  const userData = useSelector((store) => store.user);
+  const fetchState = useSelector((store) => store.roles.fetchState);
 
   const {
     register,
@@ -97,7 +99,7 @@ function SignUp({ data }) {
 
   return (
     <div className="SignUp bg-info min-h-screen py-10 px-80 sm:p-10">
-      {loading ? (
+      {fetchState === FETCH_STATES.FETCHED ? (
         <div>
           <div className="p-12 font-bold flex flex-col gap-4 items-center text-center sm:text-center">
             <h2 className="text-base text-accent sm:text-sm">
