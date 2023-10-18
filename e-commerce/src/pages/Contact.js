@@ -1,4 +1,4 @@
-import InnerHeader from "../components/layout/InnerHeader.js";
+import Header from "../components/layout/Header.js";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faArrowTurnDown,
@@ -19,7 +19,7 @@ function Contact({ data }) {
 
   return (
     <div className="Contact">
-      <InnerHeader data={data} />
+      <Header data={data} />
 
       <div className="pt-28 w-[73%] mx-auto flex sm:w-full sm:flex-col sm:px-8 sm:text-center sm:gap-10">
         <div className="flex flex-col gap-9 font-bold sm:items-center">

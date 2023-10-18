@@ -1,11 +1,4 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faFacebook,
-  faInstagram,
-  faTwitter,
-} from "@fortawesome/free-brands-svg-icons";
-import { Link } from "react-router-dom";
-import InnerHeader from "../components/layout/InnerHeader";
+import Header from "../components/layout/Header";
 import Clients from "../components/layout/Clients.js";
 import Footer from "../components/layout/Footer.js";
 import TeamCard from "../components/TeamCard";
@@ -18,7 +11,7 @@ function About({ data }) {
 
   return (
     <div className="About">
-      <InnerHeader data={data} />
+      <Header data={data} />
 
       <div className="w-[73%] mx-auto flex justify-between sm:w-full sm:px-4 sm:flex-col">
         <div className="font-bold flex flex-col gap-9 py-28 h-fit sm:w-full sm:items-center sm:text-center sm:px-14">

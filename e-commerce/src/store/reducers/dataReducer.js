@@ -285,12 +285,6 @@ export default function dataReducer() {
         },
       },
 
-      innerheader: {
-        nav: ["Home", "Team", "Pricing", "Contact"],
-        login: "Login",
-        signup: "Become a member",
-      },
-
       posts: {
         title1: "Practice Advice",
         title2: "Featured Posts",

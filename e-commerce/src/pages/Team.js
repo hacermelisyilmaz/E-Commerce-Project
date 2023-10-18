@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
-import InnerHeader from "../components/layout/InnerHeader.js";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
+
+import Header from "../components/layout/Header.js";
 import TeamCard from "../components/TeamCard.js";
 import Footer from "../components/layout/Footer.js";
 import Trial from "../components/layout/Trial.js";
@@ -12,7 +13,7 @@ function Team({ data }) {
 
   return (
     <div className="Team">
-      <InnerHeader data={data} />
+      <Header data={data} />
 
       <div>
         <div className="p-12 font-bold flex flex-col gap-4 items-center sm:text-center">

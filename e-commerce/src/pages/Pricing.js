@@ -1,13 +1,14 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import PricingPlan from "../components/PricingPlan";
 import {
   faAngleRight,
   faChevronRight,
 } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
+
+import PricingPlan from "../components/PricingPlan";
 import Clients from "../components/layout//Clients.js";
 import Trial from "../components/layout/Trial";
-import InnerHeader from "../components/layout/InnerHeader";
+import Header from "../components/layout/Header";
 import Footer from "../components/layout/Footer";
 
 function Pricing({ data }) {
@@ -15,11 +16,10 @@ function Pricing({ data }) {
   const { title, description, monthly, yearly, save, plans } =
     pricing.pricingplans;
   const faqs = pricing.faqs;
-  const trial = pricing.trial;
 
   return (
     <div className="Pricing">
-      <InnerHeader data={data} />
+      <Header data={data} />
       <div className="p-12 font-bold flex flex-col gap-4 items-center sm:text-center">
         <h5 className="text-base text-accent">{pricing.subtitle}</h5>
         <h1 className="text-[3.6rem] leading-[5rem] sm:text-4xl">
