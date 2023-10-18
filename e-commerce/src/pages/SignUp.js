@@ -416,10 +416,10 @@ function SignUp({ data }) {
                     : "blue-button mx-auto flex gap-4 items-center bg-secondary-focus"
                 }
               >
-                <span>{button}</span>
                 <span>
                   {isSubmitting && <Spinner className="text-white" />}
                 </span>
+                <span>{button}</span>
               </button>
             </form>
           </div>
