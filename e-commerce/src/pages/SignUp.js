@@ -4,16 +4,10 @@ import "react-toastify/dist/ReactToastify.css";
 
 import axiosInstance from "../api/axiosInstance";
 import Spinner from "../components/Spinner";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  setEmail,
-  setName,
-  setPassword,
-  setRoleID,
-} from "../actions/userActions";
-import { getRoles } from "../actions/rolesActions";
+import { fetchRoles } from "../store/actions/rolesActions";
 
 function SignUp({ data }) {
   const {
@@ -80,8 +74,7 @@ function SignUp({ data }) {
           progress: undefined,
           theme: "colored",
         });
-        window.confirm(`${response.message}\n${submission.success}`) &&
-          history.goBack();
+        history.goBack();
       })
       .catch((error) => {
         setSubmitting(false);
@@ -99,12 +92,11 @@ function SignUp({ data }) {
   };
 
   useEffect(() => {
-    dispatch(getRoles());
+    dispatch(fetchRoles());
   }, []);
 
   return (
     <div className="SignUp bg-info min-h-screen py-10 px-80 sm:p-10">
-      
       {loading ? (
         <div>
           <div className="p-12 font-bold flex flex-col gap-4 items-center text-center sm:text-center">
