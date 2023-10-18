@@ -4,7 +4,7 @@ import {
   FETCH_ROLES_SUCCESS,
 } from "../actions/rolesActions";
 
-const FETCH_STATES = {
+export const FETCH_STATES = {
   NOT_FETCHED: "not fetched",
   FETCHING: "fetching",
   FETCHED: "fetched",
