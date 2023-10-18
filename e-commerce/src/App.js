@@ -19,7 +19,7 @@ function App() {
   //const language = useSelector(store => store.global.language);
   const data = useSelector((store) => store.data[language]);
   return (
-    <div className="App text-primary overflow-hidden">
+    <div className="App min-h-screen text-primary overflow-hidden">
       <Switch>
         <Route exact path="/">
           <Home data={data} />
