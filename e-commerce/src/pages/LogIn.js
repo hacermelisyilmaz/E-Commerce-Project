@@ -77,10 +77,6 @@ function LogIn({ data }) {
               type="password"
               {...register("password", {
                 required: `${password.errorMsg.required}`,
-                minLength: {
-                  value: 8,
-                  message: `${password.errorMsg.length}`,
-                },
               })}
             />
             {errors.password ? (

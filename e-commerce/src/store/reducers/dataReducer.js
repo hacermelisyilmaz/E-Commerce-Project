@@ -260,10 +260,9 @@ export default function dataReducer() {
         password: {
           label: "Password:",
           placeholder: "Password *",
-          footnote: "Set a password.",
+          footnote: "Enter your password.",
           errorMsg: {
-            required: "Password field cannot be empty.",
-            length: "Name must be at least 8 characters.",
+            required: "Please enter your password.",
           },
         },
         button: "Log In",
