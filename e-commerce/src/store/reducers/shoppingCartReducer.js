@@ -5,7 +5,7 @@ import {
   SET_ADDRESS_INFO,
   SET_PAYMENT_INFO,
   UPDATE_CART_ITEM_QUANTITY,
-} from "../actions/shoppingCartActions";
+} from "../../actions/shoppingCartActions";
 
 const initialState = {
   cart: [],

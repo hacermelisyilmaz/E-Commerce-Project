@@ -3,7 +3,7 @@ import {
   SET_LANGUAGE,
   SET_ROLES,
   SET_THEME,
-} from "../actions/globalActions.js";
+} from "../../actions/globalActions.js";
 
 const initialState = {
   roles: [],

@@ -65,18 +65,21 @@ function SignUp({ data }) {
       role_id,
       store: { name: storename, tax_no: storetaxid, bank_account: storeiban },
     };
-    /* 
-    dispatch(setName(name));
-    dispatch(setPassword(password));
-    dispatch(setEmail(email));
-    dispatch(setRoleID(role_id));
-    console.log(userData);
-    history.goBack();
-    */
+
     axiosInstance
       .post("/signup", signUpData)
       .then((response) => {
         setSubmitting(false);
+        toast.success(`${submission.fail}`, {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
         window.confirm(`${response.message}\n${submission.success}`) &&
           history.goBack();
       })
@@ -101,18 +104,7 @@ function SignUp({ data }) {
 
   return (
     <div className="SignUp bg-info min-h-screen py-10 px-80 sm:p-10">
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="colored"
-      />
+      
       {loading ? (
         <div>
           <div className="p-12 font-bold flex flex-col gap-4 items-center text-center sm:text-center">

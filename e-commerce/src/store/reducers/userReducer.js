@@ -3,7 +3,7 @@ import {
   SET_NAME,
   SET_PASSWORD,
   SET_ROLE_ID,
-} from "../actions/userActions.js";
+} from "../../actions/userActions.js";
 
 const initialState = {
   name: "",
