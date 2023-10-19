@@ -266,6 +266,9 @@ export default function dataReducer() {
           },
         },
         button: "Log In",
+        submission: {
+          fail: "Login failed. Please try again.",
+        },
       },
 
       hero: {
