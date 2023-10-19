@@ -1,8 +1,34 @@
-export const SET_USER = "SET_USER";
+import axiosInstance from "../../api/axiosInstance";
+
+export const SET_USER_REQUEST = "SET_USER_REQUEST";
+export const SET_USER_SUCCESS = "SET_USER_SUCCESS";
+export const SET_USER_FAILURE = "SET_USER_FAILURE";
+
+const setUserRequest = () => ({
+  type: SET_USER_REQUEST,
+});
+
+const setUserSuccess = (roles) => ({
+  type: SET_USER_SUCCESS,
+  payload: roles,
+});
+
+const setUserFailure = (error) => ({
+  type: SET_USER_FAILURE,
+  payload: error,
+});
 
 export const setUser = (userData) => {
-  return {
-    type: SET_USER,
-    payload: userData,
+  return (dispatch) => {
+    dispatch(setUserRequest());
+
+    axiosInstance
+      .post("/login", userData)
+      .then((response) => {
+        dispatch(setUserSuccess(response.data));
+      })
+      .catch((error) => {
+        dispatch(setUserFailure(error.message));
+      });
   };
 };
