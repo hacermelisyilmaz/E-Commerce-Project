@@ -1,13 +1,23 @@
 import { useForm } from "react-hook-form";
 import Header from "../components/layout/Header";
-import { useState } from "react";
 import Spinner from "../components/Spinner";
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+
+import { setUser } from "../store/actions/userActions";
+import { FETCH_STATES } from "../store/reducers/userReducer";
+import { useEffect } from "react";
+import { toast } from "react-toastify";
+import useLocalStorage from "../localstorage/useLocalStorage";
 
 function LogIn({ data }) {
-  const { header, email, password, button } = data.login;
+  const { header, email, password, button, submission } = data.login;
   const { subtitle, title, description } = header;
 
-  const [isSubmitting, setSubmitting] = useState(false);
+  const [token, setToken] = useLocalStorage("token", "");
+  const user = useSelector((store) => store.user);
+  const history = useHistory();
+  const dispatch = useDispatch();
 
   const {
     register,
@@ -22,13 +32,31 @@ function LogIn({ data }) {
   });
 
   const onSubmit = (formData) => {
-    setSubmitting(true);
+    dispatch(setUser(formData));
   };
 
+  useEffect(() => {
+    if (user.fetchState === FETCH_STATES.FETCHED) {
+      setToken(user.user.token);
+      history.push("/");
+    } else if (user.fetchState === FETCH_STATES.FETCH_FAILED) {
+      toast.error(`${submission.fail}`, {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+    }
+  }, [user]);
+
   return (
-    <div className="LogIn">
+    <div className="LogIn h-full">
       <Header data={data} />
-      <div className="bg-info py-10 px-[20%] h-screen sm:p-10">
+      <div className="bg-info py-10 px-[20%] sm:p-10">
         <div className="p-12 font-bold flex flex-col gap-4 items-center text-center sm:text-center">
           <h2 className="text-base text-accent sm:text-sm">{subtitle}</h2>
           <h1 className="text-6xl leading-[5rem] sm:text-4xl">{title}</h1>
@@ -89,14 +117,18 @@ function LogIn({ data }) {
           </div>
           <button
             type="submit"
-            disabled={!isValid || isSubmitting}
+            disabled={!isValid || user.fetchState === FETCH_STATES.FETCHING}
             className={
-              !isSubmitting && isValid
+              !(user.fetchState === FETCH_STATES.FETCHING) && isValid
                 ? "blue-button mx-auto flex gap-4 items-center"
                 : "blue-button mx-auto flex gap-4 items-center bg-secondary-focus"
             }
           >
-            <span className={isSubmitting ? "" : "hidden"}>
+            <span
+              className={
+                user.fetchState === FETCH_STATES.FETCHING ? "" : "hidden"
+              }
+            >
               {<Spinner className="text-white" />}
             </span>
             <span>{button}</span>
