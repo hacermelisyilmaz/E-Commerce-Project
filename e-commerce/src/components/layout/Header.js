@@ -15,13 +15,16 @@ import {
   faTwitter,
   faYoutube,
 } from "@fortawesome/free-brands-svg-icons";
+import MD5 from "crypto-js/md5";
 import { Link, useLocation, useHistory } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 function Header({ data }) {
   const infoData = data.hero.header.info;
   const navData = data.hero.header.nav;
   const rightData = navData.rightside;
 
+  const user = useSelector((store) => store.user.user);
   const location = useLocation();
   const history = useHistory();
 
@@ -76,7 +79,7 @@ function Header({ data }) {
           </div>
         </div>
         <div className="flex justify-between w-[85%] sm:pt-20 sm:justify-center sm:flex-col sm:gap-[1.3rem]">
-          <nav className="text-accent flex items-baseline gap-[1.3rem] sm:flex-col sm:items-center sm:text-3xl">
+          <nav className="text-accent flex items-center gap-[1.3rem] sm:flex-col sm:items-center sm:text-3xl">
             <Link to="/">{navData.navlinks.home}</Link>
             <Link
               className="flex items-center gap-1 text-primary font-medium sm:hidden"
@@ -93,28 +96,41 @@ function Header({ data }) {
           <div
             className={
               location.pathname === "/productlist"
-                ? "nav-right-side text-secondary flex gap-[1rem] sm:flex-col sm:text-3xl sm:items-center sm:gap-[1.3rem]"
-                : "nav-right-side text-secondary flex gap-[1rem] sm:hidden"
+                ? "nav-right-side text-secondary flex gap-[1rem] items-center sm:flex-col sm:text-3xl sm:items-center sm:gap-[1.3rem]"
+                : "nav-right-side text-secondary flex gap-[1rem] items-center sm:hidden"
             }
           >
-            <div className="flex items-center gap-3">
-              <FontAwesomeIcon icon={faUser} />
-              <span
-                onClick={() => {
-                  history.push("/login");
-                }}
-              >
-                {rightData.login}
-              </span>
-              <span> / </span>
-              <span
-                onClick={() => {
-                  history.push("/signup");
-                }}
-              >
-                {rightData.registr}
-              </span>
-            </div>
+            {Object.keys(user).length ? (
+              <div className="flex items-center gap-3">
+                <img
+                  src={`https://www.gravatar.com/avatar/${MD5(
+                    user.email
+                  )}?s=24`}
+                  className="border-2 border-solid border-secondary-content rounded-[50%]"
+                />
+                <p>{user.name}</p>
+              </div>
+            ) : (
+              <div className="flex items-center gap-3">
+                <FontAwesomeIcon icon={faUser} />
+                <span
+                  onClick={() => {
+                    history.push("/login");
+                  }}
+                >
+                  {rightData.login}
+                </span>
+                <span> / </span>
+                <span
+                  onClick={() => {
+                    history.push("/signup");
+                  }}
+                >
+                  {rightData.registr}
+                </span>
+              </div>
+            )}
+
             <Link to="/">
               <FontAwesomeIcon icon={faMagnifyingGlass} />
             </Link>
