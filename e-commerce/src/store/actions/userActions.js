@@ -8,9 +8,9 @@ const setUserRequest = () => ({
   type: SET_USER_REQUEST,
 });
 
-const setUserSuccess = (roles) => ({
+export const setUserSuccess = (user) => ({
   type: SET_USER_SUCCESS,
-  payload: roles,
+  payload: user,
 });
 
 const setUserFailure = (error) => ({
@@ -21,7 +21,6 @@ const setUserFailure = (error) => ({
 export const setUser = (userData) => {
   return (dispatch) => {
     dispatch(setUserRequest());
-
     axiosInstance
       .post("/login", userData)
       .then((response) => {

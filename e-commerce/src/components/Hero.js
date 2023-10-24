@@ -1,5 +1,5 @@
-import BannerSlide from "../BannerSlide";
-import Header from "./Header";
+import BannerSlide from "./BannerSlide";
+import Header from "./layout/Header";
 
 function Hero({ data }) {
   return (

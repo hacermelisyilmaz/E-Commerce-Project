@@ -1,5 +1,5 @@
 import { useHistory } from "react-router-dom";
-import ProductCard from "../ProductCard";
+import ProductCard from "./ProductCard";
 
 function ProductCards({ data }) {
   const respProducts = data.products.slice(0, 6);

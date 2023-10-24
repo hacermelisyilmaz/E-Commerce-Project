@@ -8,7 +8,7 @@ import { setUser } from "../store/actions/userActions";
 import { FETCH_STATES } from "../store/reducers/userReducer";
 import { useEffect } from "react";
 import { toast } from "react-toastify";
-import useLocalStorage from "../localstorage/useLocalStorage";
+import useLocalStorage from "../hooks/useLocalStorage";
 
 function LogIn({ data }) {
   const { header, email, password, button, submission } = data.login;

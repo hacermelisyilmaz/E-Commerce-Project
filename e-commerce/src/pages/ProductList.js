@@ -1,8 +1,8 @@
-import Categories from "../components/layout/Categories";
+import Categories from "../components/Categories";
 import Clients from "../components/layout/Clients";
 import Footer from "../components/layout/Footer";
 import Header from "../components/layout/Header";
-import Shop from "../components/layout/Shop";
+import Shop from "../components/Shop";
 
 function ProductList({ data }) {
   return (

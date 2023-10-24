@@ -5,7 +5,7 @@ import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
 import Header from "../components/layout/Header.js";
 import TeamCard from "../components/TeamCard.js";
 import Footer from "../components/layout/Footer.js";
-import Trial from "../components/layout/Trial.js";
+import Trial from "../components/Trial.js";
 
 function Team({ data }) {
   const team = data.team;

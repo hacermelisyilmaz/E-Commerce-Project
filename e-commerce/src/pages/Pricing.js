@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 
 import PricingPlan from "../components/PricingPlan";
 import Clients from "../components/layout//Clients.js";
-import Trial from "../components/layout/Trial";
+import Trial from "../components/Trial";
 import Header from "../components/layout/Header";
 import Footer from "../components/layout/Footer";
 

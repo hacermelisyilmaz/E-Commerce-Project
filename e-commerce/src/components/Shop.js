@@ -3,7 +3,7 @@ import {
   faTableCellsLarge,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import ProductCard from "../ProductCard";
+import ProductCard from "./ProductCard";
 
 function Shop({ data }) {
   const clickHandler = (e) => {
