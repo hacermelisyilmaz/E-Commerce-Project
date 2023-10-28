@@ -29,11 +29,11 @@ function Categories({ data }) {
         {categories.slice(0, 5).map((cat) => {
           return (
             <Link
-              className="CategoryCard relative max-h-56 max-w-[18%] overflow-hidden"
+              className="CategoryCard relative max-h-56 max-w-[18%] overflow-hidden sm:max-w-full sm:max-h-full sm:aspect-square"
               key={cat.id}
               to={`/shopping/${cat.code.slice(2)}`}
             >
-              <img src={cat.img} className="object-cover" />
+              <img src={cat.img} className="object-cover h-full w-full" />
               <div className="CategoryCardFilter bg-[#21212140] w-full h-full absolute top-0 right-0"></div>
               <div className="w-full h-full absolute top-0 right-0 text-white flex flex-col justify-center items-center gap-2">
                 <h6 className="font-bold">{cat.title}</h6>
