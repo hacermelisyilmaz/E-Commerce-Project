@@ -1,5 +1,4 @@
 import {
-  SET_CATEGORIES,
   SET_LANGUAGE,
   SET_ROLES,
   SET_THEME,
@@ -7,7 +6,6 @@ import {
 
 const initialState = {
   roles: [],
-  categories: [],
   theme: "",
   language: "",
 };
@@ -18,11 +16,6 @@ const globalReducer = (state = initialState, action) => {
       return {
         ...state,
         roles: action.payload,
-      };
-    case SET_CATEGORIES:
-      return {
-        ...state,
-        categories: action.payload,
       };
     case SET_THEME:
       return {
