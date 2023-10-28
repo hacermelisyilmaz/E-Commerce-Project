@@ -63,12 +63,12 @@ function Header({ data }) {
             {data.brand}
           </h1>
           <div className="hidden sm:flex sm:items-center sm:gap-6">
-            {location.pathname === "/productlist" || (
+            {location.pathname === "/shopping" || (
               <Link to="/">
                 <FontAwesomeIcon icon={faMagnifyingGlass} />
               </Link>
             )}
-            {location.pathname === "/productlist" || (
+            {location.pathname === "/shopping" || (
               <Link to="/">
                 <FontAwesomeIcon icon={faCartShopping} />
               </Link>
@@ -83,7 +83,7 @@ function Header({ data }) {
             <Link to="/">{navData.navlinks.home}</Link>
             <Link
               className="flex items-center gap-1 text-primary font-medium sm:hidden"
-              to="/productlist"
+              to="/shopping"
             >
               {navData.navlinks.shop}
               <FontAwesomeIcon icon={faAngleDown} />
@@ -95,7 +95,7 @@ function Header({ data }) {
           </nav>
           <div
             className={
-              location.pathname === "/productlist"
+              location.pathname === "/shopping"
                 ? "nav-right-side text-secondary flex gap-[1rem] items-center sm:flex-col sm:text-3xl sm:items-center sm:gap-[1.3rem]"
                 : "nav-right-side text-secondary flex gap-[1rem] items-center sm:hidden"
             }

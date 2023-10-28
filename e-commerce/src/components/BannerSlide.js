@@ -25,7 +25,7 @@ function BannerSlide({ data }) {
               </div>
               <button
                 className="font-bold text-2xl text-white bg-secondary w-fit border-solid rounded-[5px] px-9 py-4"
-                onClick={() => history.push("/productlist")}
+                onClick={() => history.push("/shopping")}
               >
                 {data[0].button}
               </button>
@@ -60,7 +60,7 @@ function BannerSlide({ data }) {
               </div>
               <button
                 className="font-bold text-2xl text-white bg-secondary w-1/3 border-solid rounded-[5px] px-9 py-4"
-                onClick={() => history.push("/productlist")}
+                onClick={() => history.push("/shopping")}
               >
                 {data[1].button}
               </button>

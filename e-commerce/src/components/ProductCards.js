@@ -24,7 +24,7 @@ function ProductCards({ data }) {
       </div>
       <button
         className="mt-8 border rounded border-secondary text-secondary font-bold px-10 py-4"
-        onClick={() => history.push("/productlist")}
+        onClick={() => history.push("/shopping")}
       >
         {data.button}
       </button>
