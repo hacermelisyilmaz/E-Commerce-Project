@@ -48,33 +48,10 @@ export default function dataReducer() {
         },
       },
 
-      categories: [
-        {
-          name: "CLOTHES",
-          noitems: "5 Items",
-          img: "/img/categories/clothes1.jpg",
-        },
-        {
-          name: "CLOTHES",
-          noitems: "5 Items",
-          img: "/img/categories/clothes2.jpg",
-        },
-        {
-          name: "CLOTHES",
-          noitems: "5 Items",
-          img: "/img/categories/clothes3.jpg",
-        },
-        {
-          name: "CLOTHES",
-          noitems: "5 Items",
-          img: "/img/categories/clothes4.jpg",
-        },
-        {
-          name: "CLOTHES",
-          noitems: "5 Items",
-          img: "/img/categories/clothes5.jpg",
-        },
-      ],
+      categories: {
+        title: "Shop",
+        prev: "Home",
+      },
 
       clients: {
         title: "Big Companies Are Here",

@@ -3,17 +3,11 @@ import {
   FETCH_ROLES_REQUEST,
   FETCH_ROLES_SUCCESS,
 } from "../actions/rolesActions";
-
-export const FETCH_STATES = {
-  NOT_FETCHED: "not fetched",
-  FETCHING: "fetching",
-  FETCHED: "fetched",
-  FETCH_FAILED: "failed",
-};
+import fetchStates from "../fetchStates";
 
 const initialState = {
   roles: [],
-  fetchState: FETCH_STATES.NOT_FETCHED,
+  fetchState: fetchStates.NOT_FETCHED,
   error: null,
 };
 
@@ -22,20 +16,20 @@ const rolesReducer = (state = initialState, action) => {
     case FETCH_ROLES_REQUEST:
       return {
         ...state,
-        fetchState: FETCH_STATES.FETCHING,
+        fetchState: fetchStates.FETCHING,
         error: null,
       };
     case FETCH_ROLES_SUCCESS:
       return {
         ...state,
-        fetchState: FETCH_STATES.FETCHED,
+        fetchState: fetchStates.FETCHED,
         roles: action.payload,
         error: null,
       };
     case FETCH_ROLES_FAILURE:
       return {
         ...state,
-        fetchState: FETCH_STATES.FETCH_FAILED,
+        fetchState: fetchStates.FETCH_FAILED,
         error: action.payload,
       };
     default:
