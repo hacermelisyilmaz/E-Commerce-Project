@@ -22,9 +22,13 @@ import { useSelector } from "react-redux";
 function Header({ data }) {
   const infoData = data.hero.header.info;
   const navData = data.hero.header.nav;
+  const dropdownData = data.hero.header.shopdropdown;
   const rightData = navData.rightside;
 
   const user = useSelector((store) => store.user.user);
+  const categories = useSelector(
+    (store) => store.product.categories.categoryList
+  );
   const location = useLocation();
   const history = useHistory();
 
@@ -81,13 +85,47 @@ function Header({ data }) {
         <div className="flex justify-between w-[85%] sm:pt-20 sm:justify-center sm:flex-col sm:gap-[1.3rem]">
           <nav className="text-accent flex items-center gap-[1.3rem] sm:flex-col sm:items-center sm:text-3xl">
             <Link to="/">{navData.navlinks.home}</Link>
-            <Link
-              className="flex items-center gap-1 text-primary font-medium sm:hidden"
-              to="/shopping"
-            >
-              {navData.navlinks.shop}
-              <FontAwesomeIcon icon={faAngleDown} />
-            </Link>
+            <div className="dropdown dropdown-hover">
+              <label tabIndex={0}>
+                <Link
+                  className="flex items-center gap-1 sm:hidden"
+                  to="/shopping"
+                >
+                  {navData.navlinks.shop}
+                  <FontAwesomeIcon icon={faAngleDown} />
+                </Link>
+              </label>
+              <div
+                tabIndex={0}
+                className="dropdown-content z-[1] menu p-4 shadow-xl bg-info rounded-box w-52 flex gap-4"
+              >
+                <ul>
+                  <li className="text-black">{dropdownData.header1}</li>
+                  {categories.slice(0, 8).map((cat) => {
+                    return (
+                      <li>
+                        <Link to={`/shopping/${cat.code.slice(2)}`}>
+                          {cat.title}
+                        </Link>
+                      </li>
+                    );
+                  })}
+                </ul>
+                <ul>
+                  <li className="text-black">{dropdownData.header2}</li>
+                  {categories.slice(8).map((cat) => {
+                    return (
+                      <li>
+                        <Link to={`/shopping/${cat.code.slice(2)}`}>
+                          {cat.title}
+                        </Link>
+                      </li>
+                    );
+                  })}
+                </ul>
+              </div>
+            </div>
+
             <Link to="/about">{navData.navlinks.about}</Link>
             <Link to="/pricing">{navData.navlinks.pricing}</Link>
             <Link to="/contact">{navData.navlinks.contact}</Link>
