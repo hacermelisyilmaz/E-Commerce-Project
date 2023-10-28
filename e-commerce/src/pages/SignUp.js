@@ -9,7 +9,7 @@ import Header from "../components/layout/Header";
 import axiosInstance from "../api/axiosInstance";
 import Spinner from "../components/Spinner";
 import { fetchRoles } from "../store/actions/rolesActions";
-import { FETCH_STATES } from "../store/reducers/rolesReducer";
+import fetchStates from "../store/fetchStates";
 
 function SignUp({ data }) {
   const {
@@ -102,7 +102,7 @@ function SignUp({ data }) {
 
   return (
     <div className="SignUp">
-      {fetchState === FETCH_STATES.FETCHED ? (
+      {fetchState === fetchStates.FETCHED ? (
         <div>
           <Header data={data} />
           <div className="bg-info min-h-screen py-10 px-80 sm:p-10">
