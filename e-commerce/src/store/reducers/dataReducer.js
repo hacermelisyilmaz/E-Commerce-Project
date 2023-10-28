@@ -288,6 +288,10 @@ export default function dataReducer() {
               registr: "Register",
             },
           },
+          shopdropdown: {
+            header1: "Women",
+            header2: "Men",
+          },
         },
       },
 
