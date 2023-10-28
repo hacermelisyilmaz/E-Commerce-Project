@@ -1,8 +1,6 @@
 import {
-  FETCH_CATEGORIES_FAILURE,
-  FETCH_CATEGORIES_REQUEST,
-  FETCH_CATEGORIES_SUCCESS,
   SET_ACTIVE_PAGE,
+  SET_CATEGORIES,
   SET_PAGE_COUNT,
   SET_PRODUCT_LIST,
   SET_TOTAL_PRODUCT_COUNT,
@@ -61,33 +59,10 @@ const productReducer = (state = initialState, action) => {
           activePage: action.payload,
         },
       };
-    case FETCH_CATEGORIES_REQUEST:
+    case SET_CATEGORIES:
       return {
         ...state,
-        categories: {
-          ...state.categories,
-          fetchState: fetchStates.FETCHING,
-          error: null,
-        },
-      };
-    case FETCH_CATEGORIES_SUCCESS:
-      return {
-        ...state,
-        categories: {
-          ...state.categories,
-          fetchState: fetchStates.FETCHED,
-          categoryList: action.payload,
-          error: null,
-        },
-      };
-    case FETCH_CATEGORIES_FAILURE:
-      return {
-        ...state,
-        categories: {
-          ...state.categories,
-          fetchState: fetchStates.FETCH_FAILED,
-          error: action.payload,
-        },
+        categories: action.payload,
       };
     default:
       return state;
