@@ -38,3 +38,7 @@
     @apply text-accent text-xs leading-7;
   }
 }
+
+.CategoryCard:hover .CategoryCardFilter {
+  display: none;
+}
