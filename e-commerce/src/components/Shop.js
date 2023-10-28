@@ -24,11 +24,16 @@ function Shop({ data }) {
             <FontAwesomeIcon icon={faListCheck} />
           </div>
         </div>
+        <input
+          placeholder="Search"
+          className="bg-info border border-solid border-neutral rounded-[5px] py-3 pl-4 pr-7"
+        />
         <div className="flex gap-3">
           <select
             id="filter"
             name="filter"
-            className="bg-info border-0 border-solid rounded-[5px] py-3 pl-4 pr-7"
+            title="filter"
+            className="bg-info border border-solid border-neutral rounded-[5px] py-3 pl-4 pr-7"
           >
             <option value={data.fopt1}>{data.fopt1}</option>
           </select>
