@@ -69,30 +69,12 @@ function SignUp({ data }) {
       .post("/signup", signUpData)
       .then((response) => {
         setSubmitting(false);
-        toast.warning(`${submission.success}`, {
-          position: "bottom-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "colored",
-        });
+        toast.warning(`${submission.success}`);
         history.goBack();
       })
       .catch((error) => {
         setSubmitting(false);
-        toast.error(`${submission.fail}`, {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "colored",
-        });
+        toast.error(`${submission.fail}`);
       });
   };
 
