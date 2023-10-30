@@ -30,10 +30,7 @@ const productReducer = (state = initialState, action) => {
     case SET_PRODUCT_LIST:
       return {
         ...state,
-        products: {
-          ...state.products,
-          productList: [...state.products.productList, action.payload],
-        },
+        products: action.payload,
       };
     case SET_TOTAL_PRODUCT_COUNT:
       return {

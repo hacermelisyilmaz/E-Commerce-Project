@@ -7,10 +7,42 @@ export const SET_PAGE_COUNT = "SET_PAGE_COUNT";
 export const SET_ACTIVE_PAGE = "SET_ACTIVE_PAGE";
 export const SET_CATEGORIES = "SET_CATEGORIES";
 
-export const setProductList = (products) => {
-  return {
-    type: SET_PRODUCT_LIST,
-    payload: products,
+export const setProductList = (params) => {
+  return (dispatch) => {
+    dispatch({
+      type: SET_PRODUCT_LIST,
+      payload: {
+        productList: [],
+        totalProductCount: 0,
+        fetchState: fetchStates.FETCHING,
+        error: "",
+      },
+    });
+
+    axiosInstance
+      .get("/categories", { params })
+      .then((response) => {
+        dispatch({
+          type: SET_PRODUCT_LIST,
+          payload: {
+            productList: response.data,
+            totalProductCount: response.data.length,
+            fetchState: fetchStates.FETCHED,
+            error: "",
+          },
+        });
+      })
+      .catch((error) => {
+        dispatch({
+          type: SET_PRODUCT_LIST,
+          payload: {
+            productList: [],
+            totalProductCount: 0,
+            fetchState: fetchStates.FETCH_FAILED,
+            error: error.message,
+          },
+        });
+      });
   };
 };
 
