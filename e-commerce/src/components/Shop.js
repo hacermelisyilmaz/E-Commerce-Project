@@ -64,7 +64,7 @@ function Shop({ data }) {
     dispatch(setProductList(axiosParams));
   }, []);
 
-  useEffect(() => {
+  /*   useEffect(() => {
     setAxiosParams({ ...axiosParams, category: location.pathname.slice(10) });
     setAxiosParams({
       ...axiosParams,
@@ -74,7 +74,7 @@ function Shop({ data }) {
 
     console.log("axios params: ", axiosParams);
     dispatch(setProductList(axiosParams));
-  }, [axiosParams]);
+  }, [axiosParams]); */
 
   return (
     <div className="Shop">
