@@ -10,6 +10,7 @@ function Categories({ data }) {
   const categories = useSelector(
     (store) => store.product.categories.categoryList
   );
+  categories.sort((a, b) => b.rating - a.rating);
 
   useEffect(() => {
     dispatch(fetchCategories());
