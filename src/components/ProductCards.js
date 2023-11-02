@@ -1,8 +1,10 @@
 import { useHistory } from "react-router-dom";
 import ProductCard from "./ProductCard";
+import { useSelector } from "react-redux";
 
 function ProductCards({ data }) {
-  const respProducts = data.products.slice(0, 6);
+  const { productList } = useSelector((store) => store.product.products);
+  const respProducts = productList.slice(0, 8);
   const history = useHistory();
 
   return (
@@ -13,7 +15,7 @@ function ProductCards({ data }) {
         <p className="text-sm text-accent">{data.description}</p>
       </div>
       <div className="flex flex-wrap justify-center gap-8 p-6 sm:hidden">
-        {data.products.map((card, index) => {
+        {respProducts.map((card, index) => {
           return <ProductCard data={card} key={index} />;
         })}
       </div>
