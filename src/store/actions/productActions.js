@@ -2,7 +2,6 @@ import axiosInstance from "../../api/axiosInstance";
 import fetchStates from "../fetchStates";
 
 export const SET_PRODUCT_LIST = "SET_PRODUCT_LIST";
-export const SET_TOTAL_PRODUCT_COUNT = "SET_TOTAL_PRODUCT_COUNT";
 export const SET_PAGE_COUNT = "SET_PAGE_COUNT";
 export const SET_ACTIVE_PAGE = "SET_ACTIVE_PAGE";
 export const SET_CATEGORIES = "SET_CATEGORIES";
@@ -20,13 +19,13 @@ export const setProductList = (params) => {
     });
 
     axiosInstance
-      .get("/categories", { params })
+      .get("/products", { params })
       .then((response) => {
         dispatch({
           type: SET_PRODUCT_LIST,
           payload: {
-            productList: response.data,
-            totalProductCount: response.data.length,
+            productList: response.data.products,
+            totalProductCount: response.data.total,
             fetchState: fetchStates.FETCHED,
             error: "",
           },
@@ -43,12 +42,6 @@ export const setProductList = (params) => {
           },
         });
       });
-  };
-};
-
-export const setTotalProductCount = () => {
-  return {
-    type: SET_TOTAL_PRODUCT_COUNT,
   };
 };
 
