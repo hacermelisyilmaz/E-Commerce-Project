@@ -3,7 +3,6 @@ import {
   SET_CATEGORIES,
   SET_PAGE_COUNT,
   SET_PRODUCT_LIST,
-  SET_TOTAL_PRODUCT_COUNT,
 } from "../actions/productActions.js";
 import fetchStates from "../fetchStates.js";
 
@@ -31,14 +30,6 @@ const productReducer = (state = initialState, action) => {
       return {
         ...state,
         products: action.payload,
-      };
-    case SET_TOTAL_PRODUCT_COUNT:
-      return {
-        ...state,
-        products: {
-          ...state.products,
-          totalProductCount: state.products.totalProductCount + 1,
-        },
       };
     case SET_PAGE_COUNT:
       return {
