@@ -5,76 +5,40 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { useHistory, useLocation } from "react-router-dom";
 
 import { setProductList } from "../store/actions/productActions";
-import ProductCard from "./ProductCard";
+import useQueryParams from "../hooks/useQueryParams";
+import Products from "./Products";
 
 function Shop({ data }) {
   const products = useSelector((store) => store.product.products);
-  const { productList, totalProductCount } = products;
+  const { totalProductCount } = products;
 
   const dispatch = useDispatch();
-  const history = useHistory();
-  const location = useLocation();
-  const [axiosParams, setAxiosParams] = useState({
+
+  const [filterParams, setFilterParams] = useState({
     category: "",
-    search: "",
+    filter: "",
     sort: "",
   });
-
-  console.log("location: ", location);
+  const [queryParams, setQueryParams] = useQueryParams();
 
   const clickHandler = (e) => {
     e.target.classList.add("bg-secondary");
     e.target.classList.add("text-white");
   };
 
-  const createQueryString = (queryObject = {}) => {
-    let queryString = Object.keys(queryObject)
-      .filter(
-        (key) =>
-          queryObject[key] &&
-          !(Array.isArray(queryObject[key]) && !queryObject[key].length)
-      )
-      .map((key) => {
-        return Array.isArray(queryObject[key])
-          ? queryObject[key]
-              .map(
-                (item) =>
-                  `${encodeURIComponent(key)}=${encodeURIComponent(item)}`
-              )
-              .join("&")
-          : `${encodeURIComponent(key)}=${encodeURIComponent(
-              queryObject[key]
-            )}`;
-      })
-      .join("&");
-    return queryString ? `?${queryString}` : "";
-  };
-
-  const submitHandler = (axiosParams) => {
-    history.push({
-      pathname: location.pathname,
-      search: createQueryString(axiosParams),
-    });
+  const submitHandler = () => {
+    setQueryParams(filterParams);
   };
 
   useEffect(() => {
-    dispatch(setProductList(axiosParams));
+    dispatch(setProductList(queryParams));
   }, []);
 
-  /*   useEffect(() => {
-    setAxiosParams({ ...axiosParams, category: location.pathname.slice(10) });
-    setAxiosParams({
-      ...axiosParams,
-      search: location.search.slice(8, location.search.indexOf("&")),
-    });
-    //setAxiosParams({...axiosParams, sort: location.search.slice(8, location.search.indexOf("&"))});
-
-    console.log("axios params: ", axiosParams);
-    dispatch(setProductList(axiosParams));
-  }, [axiosParams]); */
+  useEffect(() => {
+    dispatch(setProductList(queryParams));
+  }, [queryParams]);
 
   return (
     <div className="Shop">
@@ -93,12 +57,12 @@ function Shop({ data }) {
           </div>
         </div>
         <input
-          id="search"
-          name="search"
+          id="filter"
+          name="filter"
           placeholder="Search"
           className="bg-info border border-solid border-neutral rounded-[5px] py-3 pl-4 pr-7"
           onChange={(e) => {
-            setAxiosParams({ ...axiosParams, search: e.target.value });
+            setFilterParams({ ...filterParams, filter: e.target.value });
           }}
         />
         <div className="flex gap-3">
@@ -108,12 +72,13 @@ function Shop({ data }) {
             className="bg-info border border-solid border-neutral rounded-[5px] py-3 pl-4 pr-7"
             defaultValue={data.fopt1}
             onChange={(e) => {
-              setAxiosParams({ ...axiosParams, sort: e.target.value });
+              setFilterParams({ ...filterParams, sort: e.target.value });
             }}
           >
-            <option value="popularity">{data.fopt1}</option>
-            <option value="price-asc">{data.fopt2}</option>
-            <option value="price-desc">{data.fopt3}</option>
+            <option value="price:asc">{data.p_asc}</option>
+            <option value="price:desc">{data.p_desc}</option>
+            <option value="rating:asc">{data.r_asc}</option>
+            <option value="rating:desc">{data.r_desc}</option>
           </select>
           <button
             type="submit"
@@ -123,12 +88,10 @@ function Shop({ data }) {
           </button>
         </div>
       </form>
-      <div className="flex flex-wrap justify-center gap-7 w-3/4 mx-auto sm:flex-col sm:items-center sm:gap-4">
-        {productList.map((card) => {
-          return <ProductCard data={card} key={card.id} />;
-        })}
-      </div>
-      <div className="flex justify-center font-bold text-secondary bg-white w-fit mx-auto border border-solid border-neutral rounded-lg">
+
+      <Products data={products} />
+
+      <div className="mt-8 flex justify-center font-bold text-secondary bg-white w-fit mx-auto border border-solid border-neutral rounded-lg">
         <button
           className="text-base py-6 px-6 border border-solid border-neutral"
           onClick={clickHandler}
