@@ -1,6 +1,12 @@
+import { useHistory } from "react-router-dom";
+
 function ProductCard({ data }) {
+  const history = useHistory();
   return (
-    <div className="ProductCard w-[15rem]">
+    <div
+      className="ProductCard w-[15rem]"
+      onClick={() => history.push(`/shopping/${data.id}`)}
+    >
       <img
         src={data.images.length ? data.images[0] : ""}
         className="w-full h-[18.75rem] object-cover sm:w-full sm:h-[26.7rem]"
