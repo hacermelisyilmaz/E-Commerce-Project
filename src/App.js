@@ -62,7 +62,7 @@ function App() {
         <Route path="/pricing">
           <Pricing data={data} />
         </Route>
-        <Route path="/shopping/:category/:productID">
+        <Route path="/shopping/:productID">
           <Product data={data} />
         </Route>
         <Route path="/shopping/:category">
