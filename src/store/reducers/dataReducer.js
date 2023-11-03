@@ -460,7 +460,7 @@ export default function dataReducer() {
           button: "Select Options",
         },
         nav: ["Description", "Additional Information", "Reviews"],
-        description: {
+        desc: {
           img: "/img/product/desc.png",
           title1: "the quick fox jumps over",
           p: [
