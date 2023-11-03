@@ -1,11 +1,29 @@
 import { useHistory } from "react-router-dom";
-import ProductCard from "./ProductCard";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { setProductList } from "../store/actions/productActions";
+import Products from "./Products";
 
 function ProductCards({ data }) {
-  const { productList } = useSelector((store) => store.product.products);
-  const respProducts = productList.slice(0, 8);
+  const products = useSelector((store) => store.product.products);
+  const slicedProducts = {
+    ...products,
+    productList: products.productList
+      .sort((a, b) => b.sell_count - a.sell_count)
+      .slice(0, 8),
+  };
   const history = useHistory();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(
+      setProductList({
+        category: "",
+        filter: "",
+        sort: "",
+      })
+    );
+  }, []);
 
   return (
     <div className="ProductCards w-[80%] mx-auto py-[5rem] flex flex-col items-center sm:text-center">
@@ -14,16 +32,9 @@ function ProductCards({ data }) {
         <h3 className="text-2xl font-bold">{data.title2}</h3>
         <p className="text-sm text-accent">{data.description}</p>
       </div>
-      <div className="flex flex-wrap justify-center gap-8 p-6 sm:hidden">
-        {respProducts.map((card, index) => {
-          return <ProductCard data={card} key={index} />;
-        })}
-      </div>
-      <div className="desktop:hidden flex flex-col justify-center gap-8 p-6">
-        {respProducts.map((card, index) => {
-          return <ProductCard data={card} key={index} />;
-        })}
-      </div>
+
+      <Products data={slicedProducts} />
+
       <button
         className="mt-8 border rounded border-secondary text-secondary font-bold px-10 py-4"
         onClick={() => history.push("/shopping")}
