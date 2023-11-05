@@ -1,15 +1,23 @@
 import React from "react";
 import { useLocation, useHistory, useParams } from "react-router-dom";
 
+function paramsToObject(entries) {
+  const result = {};
+  for (const [key, value] of entries) {
+    result[key] = value;
+  }
+  return result;
+}
+
 function useQueryParams() {
   const { search, pathname } = useLocation();
   const history = useHistory();
-  const { category } = useParams();
   const searchParams = new URLSearchParams(search);
-  if (category) {
-    searchParams.append("category", category);
-  }
-  const queryParams = React.useMemo(() => searchParams, [search, category]);
+
+  const queryParams = React.useMemo(
+    () => paramsToObject(searchParams),
+    [search]
+  );
 
   const createQueryString = (queryObject = {}) => {
     let queryString = Object.keys(queryObject)
