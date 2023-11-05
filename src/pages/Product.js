@@ -44,10 +44,6 @@ function Product({ data }) {
   if (fetchState === fetchStates.FETCH_FAILED) {
     toast.error("Fetch failed. Try again");
     return <div className="Product"></div>;
-  } else if (!productData) {
-    toast.error("Product not found.");
-    history.push("/shopping");
-    return <div className="Product"></div>;
   } else if (fetchState === fetchStates.FETCHED) {
     return (
       <div className="Product">
@@ -257,12 +253,16 @@ function Product({ data }) {
         <Footer data={data} inner={true} />
       </div>
     );
-  } else {
+  } else if (fetchState === fetchStates.FETCHING) {
     return (
       <div className="Product py-48 flex justify-center">
         <Spinner />
       </div>
     );
+  } else {
+    toast.error("Product not found.");
+    history.push("/shopping");
+    return <div className="Product"></div>;
   }
 }
 
