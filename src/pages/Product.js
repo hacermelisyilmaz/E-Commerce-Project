@@ -8,18 +8,17 @@ import {
   faHeart,
   faStar,
 } from "@fortawesome/free-solid-svg-icons";
-import Header from "../components/layout/Header";
-import { Link } from "react-router-dom";
-import ProductCard from "../components/ProductCard";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams, useHistory, Link } from "react-router-dom";
+import { useEffect } from "react";
+import { toast } from "react-toastify";
+
+import fetchStates from "../store/fetchStates";
+import { setProductList } from "../store/actions/productActions";
 import Clients from "../components/layout/Clients";
 import Footer from "../components/layout/Footer";
-import { useDispatch, useSelector } from "react-redux";
-import { useParams, useHistory } from "react-router-dom";
-import { useEffect } from "react";
-import { setProductList } from "../store/actions/productActions";
-import { Spinner } from "flowbite-react";
-import fetchStates from "../store/fetchStates";
-import { toast } from "react-toastify";
+import Header from "../components/layout/Header";
+import Spinner from "../components/Spinner";
 
 function Product({ data }) {
   const { nav, bestseller, details, desc } = data.product;
