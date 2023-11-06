@@ -11,38 +11,78 @@ import { setProductList } from "../store/actions/productActions";
 import useQueryParams from "../hooks/useQueryParams";
 import Products from "./Products";
 import { useParams } from "react-router-dom";
+import fetchStates from "../store/fetchStates";
+import Spinner from "../components/Spinner";
+import ProductCard from "./ProductCard";
+import { toast } from "react-toastify";
 
 function Shop({ data }) {
+  const infScrollingParams = {
+    limit: 36,
+    offset: 36,
+  };
+
   const products = useSelector((store) => store.product.products);
   const categories = useSelector(
     (store) => store.product.categories.categoryList
   );
-  const { totalProductCount } = products;
+  const { totalProductCount, fetchState, productList } = products;
 
   const dispatch = useDispatch();
-
   const { category } = useParams();
-
+  const [hasMore, setHasMore] = useState(true);
+  const [loadMore, setLoadMore] = useState(true);
   const [filterParams, setFilterParams] = useState({
     filter: "",
     sort: "",
   });
+  const [concProducts, setConcProducts] = useState([]);
   const [queryParams, setQueryParams] = useQueryParams();
-
-  const clickHandler = (e) => {
-    e.target.classList.add("bg-secondary");
-    e.target.classList.add("text-white");
-  };
 
   const submitHandler = (e) => {
     e.preventDefault();
     setQueryParams(filterParams);
   };
 
+  const nextInfScroll = () => {
+    dispatch(
+      setProductList({
+        ...queryParams,
+        limit: infScrollingParams.limit,
+        offset: infScrollingParams.offset,
+      })
+    );
+    setLoadMore(!loadMore);
+    if (
+      totalProductCount &&
+      productList.length + infScrollingParams.offset > totalProductCount
+    ) {
+      setHasMore(false);
+    }
+  };
+
   useEffect(() => {
-    const categoryId = categories.find((c) => c.code == category)?.id;
-    dispatch(setProductList({ ...queryParams, category: categoryId }));
+    const categoryId = categories.find(
+      (c) => c.code == `${category?.slice(0, 1)}:${category?.slice(2)}`
+    )?.id;
+    dispatch(
+      setProductList({
+        ...queryParams,
+        ...infScrollingParams,
+        category: categoryId,
+      })
+    );
+    if (fetchState === fetchStates.FETCH_FAILED)
+      toast.error("Products failed to load. Please try again later.");
   }, [queryParams, category]);
+
+  useEffect(() => {
+    setConcProducts(productList);
+  }, [productList]);
+
+  useEffect(() => {
+    setConcProducts(concProducts.concat(productList));
+  }, [loadMore]);
 
   return (
     <div className="Shop">
@@ -50,7 +90,13 @@ function Shop({ data }) {
         className="w-3/4 mx-auto py-6 flex justify-between items-center sm:flex-col sm:items-center sm:gap-6"
         onSubmit={submitHandler}
       >
-        <p>{data.showing + totalProductCount + data.results}</p>
+        <p>
+          {"Showing " +
+            concProducts.length +
+            " of all " +
+            totalProductCount +
+            " results"}
+        </p>
         <div className="flex gap-2 items-center">
           <p>{data.views}</p>
           <div className="border rounded-md p-2">
@@ -74,11 +120,12 @@ function Shop({ data }) {
             id="sort"
             name="sort"
             className="bg-info border border-solid border-neutral rounded-[5px] py-3 pl-4 pr-7"
-            defaultValue={data.fopt1}
+            defaultValue=""
             onChange={(e) => {
               setFilterParams({ ...filterParams, sort: e.target.value });
             }}
           >
+            <option value="">Sort by</option>
             <option value="price:asc">{data.p_asc}</option>
             <option value="price:desc">{data.p_desc}</option>
             <option value="rating:asc">{data.r_asc}</option>
@@ -93,40 +140,26 @@ function Shop({ data }) {
         </div>
       </form>
 
-      <Products data={products} />
-
-      <div className="mt-8 flex justify-center font-bold text-secondary bg-white w-fit mx-auto border border-solid border-neutral rounded-lg">
-        <button
-          className="text-base py-6 px-6 border border-solid border-neutral"
-          onClick={clickHandler}
+      {fetchState === fetchStates.FETCHED && (
+        <InfiniteScroll
+          dataLength={productList.length}
+          next={nextInfScroll}
+          hasMore={hasMore}
+          loader={<Spinner />}
+          endMessage={
+            <p style={{ textAlign: "center" }}>
+              <b>Yay! You have seen it all</b>
+            </p>
+          }
         >
-          {data.pagebuttons.first}
-        </button>
-        <button
-          className="text-base py-6 px-5 border border-solid border-neutral"
-          onClick={clickHandler}
-        >
-          1
-        </button>
-        <button
-          className="text-base py-6 px-5 border border-solid border-neutral"
-          onClick={clickHandler}
-        >
-          2
-        </button>
-        <button
-          className="text-base py-6 px-5 border border-solid border-neutral"
-          onClick={clickHandler}
-        >
-          3
-        </button>
-        <button
-          className="text-base py-6 px-6 border border-solid border-neutral"
-          onClick={clickHandler}
-        >
-          {data.pagebuttons.next}
-        </button>
-      </div>
+          <div className="Products flex flex-wrap justify-center gap-7 w-3/4 mx-auto sm:flex-col sm:items-center sm:gap-4">
+            {concProducts.map((card, index) => {
+              return <ProductCard data={card} key={index} />;
+            })}
+          </div>
+        </InfiniteScroll>
+      )}
+      {fetchState === fetchStates.FETCHING && <Spinner />}
     </div>
   );
 }
