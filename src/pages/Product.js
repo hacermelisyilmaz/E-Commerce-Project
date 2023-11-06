@@ -1,13 +1,3 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faAngleRight,
-  faCartShopping,
-  faChevronLeft,
-  faChevronRight,
-  faEye,
-  faHeart,
-  faStar,
-} from "@fortawesome/free-solid-svg-icons";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, useHistory, Link } from "react-router-dom";
 import { useEffect } from "react";
@@ -54,10 +44,7 @@ function Product({ data }) {
               <Link to="/" className="font-bold">
                 {details.history.prev}
               </Link>
-              <FontAwesomeIcon
-                icon={faAngleRight}
-                className="text-neutral text-base"
-              />
+              <i class="fa-solid fa-angle-right selection:text-neutral text-base"></i>
               <Link to="/team" className="text-neutral">
                 {details.history.current}
               </Link>
@@ -80,21 +67,19 @@ function Product({ data }) {
                           href="#product2"
                           className="btn btn-circle bg-transparent"
                         >
-                          <FontAwesomeIcon
-                            icon={faChevronLeft}
+                          <i
+                            class="fa-solid fa-chevron-left text-5xl"
                             style={{ color: "#ffffff" }}
-                            className="text-5xl"
-                          />
+                          ></i>
                         </a>
                         <a
                           href="#product2"
                           className="btn btn-circle bg-transparent"
                         >
-                          <FontAwesomeIcon
-                            icon={faChevronRight}
+                          <i
+                            class="fa-solid fa-chevron-right marker:text-5xl"
                             style={{ color: "#ffffff" }}
-                            className="text-5xl"
-                          />
+                          ></i>
                         </a>
                       </div>
                     </div>
@@ -124,13 +109,13 @@ function Product({ data }) {
                 <div className="flex gap-1">
                   {ratingArr.map((star, index) => {
                     return (
-                      <FontAwesomeIcon
+                      <i
                         key={index}
-                        icon={faStar}
+                        class="fa-solid fa-star"
                         style={
                           star ? { color: "#F3CD03" } : { color: "#f3cf033d" }
                         }
-                      />
+                      ></i>
                     );
                   })}
                 </div>
@@ -151,18 +136,9 @@ function Product({ data }) {
                 <button className="text-sm leading-6 text-white font-bold border-0 border-solid rounded py-[10px] px-5 bg-secondary w-fit">
                   {details.button}
                 </button>
-                <FontAwesomeIcon
-                  icon={faHeart}
-                  className="border border-solid border-neutral rounded-[45px] w-5 h-5 p-3"
-                />
-                <FontAwesomeIcon
-                  icon={faCartShopping}
-                  className="border border-solid border-neutral rounded-[45px] w-5 h-5 p-3"
-                />
-                <FontAwesomeIcon
-                  icon={faEye}
-                  className="border border-solid border-neutral rounded-[45px] w-5 h-5 p-3"
-                />
+                <i class="fa-regular fa-heart border border-solid border-neutral rounded-[45px] w-5 h-5 p-3"></i>
+                <i class="fa-solid fa-cart-shopping border border-solid border-neutral rounded-[45px] w-5 h-5 p-3"></i>
+                <i class="fa-regular fa-eye border border-solid border-neutral rounded-[45px] w-5 h-5 p-3"></i>
               </div>
             </div>
           </div>
@@ -205,10 +181,7 @@ function Product({ data }) {
                         key={index}
                         className="flex text-sm text-accent gap-5"
                       >
-                        <FontAwesomeIcon
-                          icon={faAngleRight}
-                          className="text-base"
-                        />
+                        <i class="fa-solid fa-angle-right text-base"></i>
                         <p>{bullet}</p>
                       </div>
                     );
@@ -224,10 +197,7 @@ function Product({ data }) {
                         key={index}
                         className="flex text-sm text-accent gap-5"
                       >
-                        <FontAwesomeIcon
-                          icon={faAngleRight}
-                          className="text-base"
-                        />
+                        <i class="fa-solid fa-angle-right text-base"></i>
                         <p>{bullet}</p>
                       </div>
                     );

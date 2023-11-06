@@ -1,6 +1,3 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCheck } from "@fortawesome/free-solid-svg-icons";
-
 function PricingPlan({ data, index }) {
   const { type, description, price, features, button } = data;
   return (
@@ -20,15 +17,9 @@ function PricingPlan({ data, index }) {
           return (
             <div key={index} className="flex items-center gap-2">
               {feature.included ? (
-                <FontAwesomeIcon
-                  icon={faCheck}
-                  className="bg-success-content text-sm text-white border border-solid rounded-[200px] border-transparent py-2 px-2"
-                />
+                <i class="fa-solid fa-check bg-success-content text-sm text-white border border-solid rounded-[200px] border-transparent p-2"></i>
               ) : (
-                <FontAwesomeIcon
-                  icon={faCheck}
-                  className="bg-neutral text-sm text-white border border-solid rounded-[200px] border-transparent py-2 px-2"
-                />
+                <i class="fa-solid fa-check bg-neutral text-sm text-white border border-solid rounded-[200px] border-transparent p-2"></i>
               )}
               <span className="text-sm">{feature.ft}</span>
             </div>

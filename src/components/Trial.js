@@ -1,11 +1,3 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faInstagram,
-  faLinkedin,
-  faSquareFacebook,
-  faTwitter,
-} from "@fortawesome/free-brands-svg-icons";
-
 function Trial({ data }) {
   const { title, description, button } = data;
   return (
@@ -18,10 +10,13 @@ function Trial({ data }) {
         {button}
       </button>
       <div className="text-3xl flex gap-8">
-        <FontAwesomeIcon icon={faTwitter} style={{ color: "#55acee" }} />
-        <FontAwesomeIcon icon={faSquareFacebook} style={{ color: "#395185" }} />
-        <FontAwesomeIcon icon={faInstagram} style={{ color: "#000000" }} />
-        <FontAwesomeIcon icon={faLinkedin} style={{ color: "#0a66c0" }} />
+        <i class="fa-brands fa-twitter" style={{ color: "#55acee" }}></i>
+        <i
+          class="fa-brands fa-square-facebook"
+          style={{ color: "#395185" }}
+        ></i>
+        <i class="fa-brands fa-instagram" style={{ color: "#000000" }}></i>
+        <i class="fa-brands fa-linkedin" style={{ color: "#0a66c0" }}></i>
       </div>
     </div>
   );

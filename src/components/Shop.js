@@ -1,15 +1,9 @@
-import {
-  faListCheck,
-  faTableCellsLarge,
-} from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 
 import { setProductList } from "../store/actions/productActions";
 import useQueryParams from "../hooks/useQueryParams";
-import Products from "./Products";
 import { useParams } from "react-router-dom";
 import fetchStates from "../store/fetchStates";
 import Spinner from "../components/Spinner";
@@ -100,10 +94,10 @@ function Shop({ data }) {
         <div className="flex gap-2 items-center">
           <p>{data.views}</p>
           <div className="border rounded-md p-2">
-            <FontAwesomeIcon icon={faTableCellsLarge} />
+            <i class="fa-solid fa-table-cells-large"></i>
           </div>
           <div className="border border-info rounded-md p-2">
-            <FontAwesomeIcon icon={faListCheck} />
+            <i class="fa-solid fa-list-check"></i>
           </div>
         </div>
         <input

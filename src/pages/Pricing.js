@@ -1,8 +1,3 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faAngleRight,
-  faChevronRight,
-} from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 
 import PricingPlan from "../components/PricingPlan";
@@ -27,10 +22,8 @@ function Pricing({ data }) {
         </h1>
         <nav className="text-sm flex items-center gap-4">
           <Link to="/">{pricing.history.prev}</Link>
-          <FontAwesomeIcon
-            icon={faAngleRight}
-            className="text-neutral text-base"
-          />
+          <i class="fa-solid fa-angle-right text-neutral text-base"></i>
+
           <Link to="/team" className="text-accent">
             {pricing.history.current}
           </Link>
@@ -85,10 +78,7 @@ function Pricing({ data }) {
                 className="max-w-[45%] p-6 flex gap-5 sm:max-w-full"
                 key={index}
               >
-                <FontAwesomeIcon
-                  icon={faChevronRight}
-                  className="text-secondary text-base sm:hidden"
-                />
+                <i class="fa-solid fa-chevron-right text-secondary text-base sm:hidden"></i>{" "}
                 <div>
                   <h5 className="font-bold text-base">{qa.q}</h5>
                   <p className="text-sm text-accent sm:py-4">{qa.a}</p>

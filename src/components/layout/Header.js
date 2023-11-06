@@ -1,20 +1,3 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faAngleDown,
-  faBars,
-  faCartShopping,
-  faEnvelope,
-  faHeart,
-  faMagnifyingGlass,
-  faPhone,
-  faUser,
-} from "@fortawesome/free-solid-svg-icons";
-import {
-  faFacebook,
-  faInstagram,
-  faTwitter,
-  faYoutube,
-} from "@fortawesome/free-brands-svg-icons";
 import MD5 from "crypto-js/md5";
 import { Link, useLocation, useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -40,11 +23,11 @@ function Header({ data }) {
       <div className="header-info bg-primary text-white font-bold flex justify-between items-center py-4 px-6 sm:hidden">
         <div className="contact flex gap-[1.8rem]">
           <div className="phone flex items-center gap-[0.2rem]">
-            <FontAwesomeIcon icon={faPhone} />
+            <i class="fa-solid fa-phone"></i>
             <p>{infoData.phone}</p>
           </div>
           <div className="email flex items-center gap-[0.2rem]">
-            <FontAwesomeIcon icon={faEnvelope} />
+            <i class="fa-solid fa-envelope"></i>
             <p>{infoData.email}</p>
           </div>
         </div>
@@ -53,10 +36,10 @@ function Header({ data }) {
 
         <div className="follow-us flex gap-4">
           <p>{infoData.socialmedia}</p>
-          <FontAwesomeIcon icon={faInstagram} />
-          <FontAwesomeIcon icon={faYoutube} />
-          <FontAwesomeIcon icon={faFacebook} />
-          <FontAwesomeIcon icon={faTwitter} />
+          <i class="fa-brands fa-instagram"></i>
+          <i class="fa-brands fa-youtube"></i>
+          <i class="fa-brands fa-facebook"></i>
+          <i class="fa-brands fa-twitter"></i>
         </div>
       </div>
       <div className="header-nav flex justify-between items-center py-4 px-6 sm:flex-col">
@@ -72,16 +55,16 @@ function Header({ data }) {
           <div className="hidden sm:flex sm:items-center sm:gap-6">
             {location.pathname === "/shopping" || (
               <Link to="/">
-                <FontAwesomeIcon icon={faMagnifyingGlass} />
+                <i class="fa-solid fa-magnifying-glass"></i>
               </Link>
             )}
             {location.pathname === "/shopping" || (
               <Link to="/">
-                <FontAwesomeIcon icon={faCartShopping} />
+                <i class="fa-solid fa-cart-shopping"></i>
               </Link>
             )}
             <Link to="/">
-              <FontAwesomeIcon icon={faBars} />
+              <i class="fa-solid fa-bars"></i>
             </Link>
           </div>
         </div>
@@ -95,7 +78,7 @@ function Header({ data }) {
                   to="/shopping"
                 >
                   {navData.navlinks.shop}
-                  <FontAwesomeIcon icon={faAngleDown} />
+                  <i class="fa-solid fa-angle-down"></i>
                 </Link>
               </label>
               <div
@@ -153,7 +136,7 @@ function Header({ data }) {
               </div>
             ) : (
               <div className="flex items-center gap-3">
-                <FontAwesomeIcon icon={faUser} />
+                <i class="fa-solid fa-user"></i>
                 <span
                   onClick={() => {
                     history.push("/login");
@@ -173,13 +156,13 @@ function Header({ data }) {
             )}
 
             <Link to="/">
-              <FontAwesomeIcon icon={faMagnifyingGlass} />
+              <i class="fa-solid fa-magnifying-glass"></i>
             </Link>
             <Link to="/">
-              <FontAwesomeIcon icon={faCartShopping} />
+              <i class="fa-solid fa-cart-shopping"></i>
             </Link>
             <Link to="/">
-              <FontAwesomeIcon icon={faHeart} />
+              <i class="fa-regular fa-heart"></i>
             </Link>
           </div>
         </div>

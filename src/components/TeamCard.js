@@ -1,10 +1,3 @@
-import {
-  faFacebook,
-  faInstagram,
-  faTwitter,
-} from "@fortawesome/free-brands-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
 function TeamCard({ person }) {
   return (
     <div className="TeamCard">
@@ -13,9 +6,9 @@ function TeamCard({ person }) {
         <h5>{person.name}</h5>
         <p className="text-sm text-accent">{person.department}</p>
         <div className="text-2xl text-secondary flex gap-5">
-          <FontAwesomeIcon icon={faFacebook} />
-          <FontAwesomeIcon icon={faInstagram} />
-          <FontAwesomeIcon icon={faTwitter} />
+          <i class="fa-brands fa-facebook"></i>
+          <i class="fa-brands fa-instagram"></i>
+          <i class="fa-brands fa-twitter"></i>
         </div>
       </div>
     </div>

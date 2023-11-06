@@ -1,6 +1,4 @@
 import { Link } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
 
 import Header from "../components/layout/Header.js";
 import TeamCard from "../components/TeamCard.js";
@@ -23,10 +21,7 @@ function Team({ data }) {
           </h1>
           <nav className="text-sm flex items-center gap-4">
             <Link to="/">{section.history.prev}</Link>
-            <FontAwesomeIcon
-              icon={faAngleRight}
-              className="text-neutral text-base"
-            />
+            <i class="fa-solid fa-angle-right text-neutral text-base"></i>
             <Link to="/team" className="text-accent">
               {section.history.current}
             </Link>
