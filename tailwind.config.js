@@ -4,8 +4,8 @@ module.exports = {
   theme: {
     extend: {
       screens: {
-        sm: { max: "800px" },
-        desktop: { min: "800px" },
+        sm: { max: "500px" },
+        desktop: { min: "500px" },
       },
     },
   },
