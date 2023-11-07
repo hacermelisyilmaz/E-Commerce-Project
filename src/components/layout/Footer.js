@@ -8,9 +8,9 @@ function Footer({ data, inner }) {
         <div className="w-[70%] m-auto py-10 flex justify-between sm:flex-col sm:gap-4">
           <h1 className="text-2xl font-bold">{data.brand}</h1>
           <div className="text-secondary flex gap-5 sm:text-2xl">
-            <i class="fa-brands fa-facebook"></i>
-            <i class="fa-brands fa-instagram"></i>
-            <i class="fa-brands fa-twitter"></i>{" "}
+            <i className="fa-brands fa-facebook"></i>
+            <i className="fa-brands fa-instagram"></i>
+            <i className="fa-brands fa-twitter"></i>{" "}
           </div>
         </div>
         <div className="w-[70%] m-auto">{inner && <hr />}</div>

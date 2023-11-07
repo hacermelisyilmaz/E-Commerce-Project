@@ -10,13 +10,13 @@ function Trial({ data }) {
         {button}
       </button>
       <div className="text-3xl flex gap-8">
-        <i class="fa-brands fa-twitter" style={{ color: "#55acee" }}></i>
+        <i className="fa-brands fa-twitter" style={{ color: "#55acee" }}></i>
         <i
-          class="fa-brands fa-square-facebook"
+          className="fa-brands fa-square-facebook"
           style={{ color: "#395185" }}
         ></i>
-        <i class="fa-brands fa-instagram" style={{ color: "#000000" }}></i>
-        <i class="fa-brands fa-linkedin" style={{ color: "#0a66c0" }}></i>
+        <i className="fa-brands fa-instagram" style={{ color: "#000000" }}></i>
+        <i className="fa-brands fa-linkedin" style={{ color: "#0a66c0" }}></i>
       </div>
     </div>
   );

@@ -14,13 +14,13 @@ function Features({ data }) {
               key={index}
             >
               {index === 0 && (
-                <i class="fa-solid fa-book-open-reader text-7xl text-secondary"></i>
+                <i className="fa-solid fa-book-open-reader text-7xl text-secondary"></i>
               )}
               {index === 1 && (
-                <i class="fa-solid fa-book-open text-7xl text-secondary"></i>
+                <i className="fa-solid fa-book-open text-7xl text-secondary"></i>
               )}
               {index === 2 && (
-                <i class="fa-solid fa-arrow-trend-up text-7xl text-secondary"></i>
+                <i className="fa-solid fa-arrow-trend-up text-7xl text-secondary"></i>
               )}
               <h2 className="text-2xl font-bold">{card.title}</h2>
               <p className="text-sm text-center">{card.description}</p>

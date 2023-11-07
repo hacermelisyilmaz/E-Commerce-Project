@@ -17,9 +17,9 @@ function PricingPlan({ data, index }) {
           return (
             <div key={index} className="flex items-center gap-2">
               {feature.included ? (
-                <i class="fa-solid fa-check bg-success-content text-sm text-white border border-solid rounded-[200px] border-transparent p-2"></i>
+                <i className="fa-solid fa-check bg-success-content text-sm text-white border border-solid rounded-[200px] border-transparent p-2"></i>
               ) : (
-                <i class="fa-solid fa-check bg-neutral text-sm text-white border border-solid rounded-[200px] border-transparent p-2"></i>
+                <i className="fa-solid fa-check bg-neutral text-sm text-white border border-solid rounded-[200px] border-transparent p-2"></i>
               )}
               <span className="text-sm">{feature.ft}</span>
             </div>

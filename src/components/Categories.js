@@ -13,7 +13,7 @@ function Categories({ data }) {
         <h2 className="text-2xl font-bold">{data.title}</h2>
         <div className="flex gap-4 font-bold py-2">
           <p>{data.prev}</p>
-          <i class="fa-solid fa-angle-right first-letter:text-neutral"></i>
+          <i className="fa-solid fa-angle-right first-letter:text-neutral"></i>
           <p className="text-neutral">{data.title}</p>
         </div>
       </div>

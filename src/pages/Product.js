@@ -44,7 +44,7 @@ function Product({ data }) {
               <Link to="/" className="font-bold">
                 {details.history.prev}
               </Link>
-              <i class="fa-solid fa-angle-right selection:text-neutral text-base"></i>
+              <i className="fa-solid fa-angle-right selection:text-neutral text-base"></i>
               <Link to="/team" className="text-neutral">
                 {details.history.current}
               </Link>
@@ -68,7 +68,7 @@ function Product({ data }) {
                           className="btn btn-circle bg-transparent"
                         >
                           <i
-                            class="fa-solid fa-chevron-left text-5xl"
+                            className="fa-solid fa-chevron-left text-5xl"
                             style={{ color: "#ffffff" }}
                           ></i>
                         </a>
@@ -77,7 +77,7 @@ function Product({ data }) {
                           className="btn btn-circle bg-transparent"
                         >
                           <i
-                            class="fa-solid fa-chevron-right marker:text-5xl"
+                            className="fa-solid fa-chevron-right marker:text-5xl"
                             style={{ color: "#ffffff" }}
                           ></i>
                         </a>
@@ -111,7 +111,7 @@ function Product({ data }) {
                     return (
                       <i
                         key={index}
-                        class="fa-solid fa-star"
+                        className="fa-solid fa-star"
                         style={
                           star ? { color: "#F3CD03" } : { color: "#f3cf033d" }
                         }
@@ -136,9 +136,9 @@ function Product({ data }) {
                 <button className="text-sm leading-6 text-white font-bold border-0 border-solid rounded py-[10px] px-5 bg-secondary w-fit">
                   {details.button}
                 </button>
-                <i class="fa-regular fa-heart border border-solid border-neutral rounded-[45px] w-5 h-5 p-3"></i>
-                <i class="fa-solid fa-cart-shopping border border-solid border-neutral rounded-[45px] w-5 h-5 p-3"></i>
-                <i class="fa-regular fa-eye border border-solid border-neutral rounded-[45px] w-5 h-5 p-3"></i>
+                <i className="fa-regular fa-heart border border-solid border-neutral rounded-[45px] w-5 h-5 p-3"></i>
+                <i className="fa-solid fa-cart-shopping border border-solid border-neutral rounded-[45px] w-5 h-5 p-3"></i>
+                <i className="fa-regular fa-eye border border-solid border-neutral rounded-[45px] w-5 h-5 p-3"></i>
               </div>
             </div>
           </div>
@@ -181,7 +181,7 @@ function Product({ data }) {
                         key={index}
                         className="flex text-sm text-accent gap-5"
                       >
-                        <i class="fa-solid fa-angle-right text-base"></i>
+                        <i className="fa-solid fa-angle-right text-base"></i>
                         <p>{bullet}</p>
                       </div>
                     );
@@ -197,7 +197,7 @@ function Product({ data }) {
                         key={index}
                         className="flex text-sm text-accent gap-5"
                       >
-                        <i class="fa-solid fa-angle-right text-base"></i>
+                        <i className="fa-solid fa-angle-right text-base"></i>
                         <p>{bullet}</p>
                       </div>
                     );

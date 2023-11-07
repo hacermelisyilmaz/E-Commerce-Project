@@ -22,10 +22,10 @@ function Contact({ data }) {
             <p>{section1.numbers.fax}</p>
           </div>
           <div className="flex gap-8 text-2xl p-2 sm:text-3xl">
-            <i class="fa-brands fa-twitter"></i>
-            <i class="fa-brands fa-square-facebook"></i>
-            <i class="fa-brands fa-instagram"></i>
-            <i class="fa-brands fa-linkedin"></i>
+            <i className="fa-brands fa-twitter"></i>
+            <i className="fa-brands fa-square-facebook"></i>
+            <i className="fa-brands fa-instagram"></i>
+            <i className="fa-brands fa-linkedin"></i>
           </div>
         </div>
         <img
@@ -48,9 +48,11 @@ function Contact({ data }) {
               >
                 <div className="py-20 px-10 flex flex-col items-center gap-4 font-bold">
                   <div className="text-secondary text-7xl">
-                    {index === 0 && <i class="fa-solid fa-phone"></i>}
-                    {index === 1 && <i class="fa-solid fa-location-dot"></i>}
-                    {index === 2 && <i class="fa-solid fa-envelope"></i>}
+                    {index === 0 && <i className="fa-solid fa-phone"></i>}
+                    {index === 1 && (
+                      <i className="fa-solid fa-location-dot"></i>
+                    )}
+                    {index === 2 && <i className="fa-solid fa-envelope"></i>}
                   </div>
                   <div className="text-sm text-center">
                     <p>{card.line1}</p>
@@ -68,7 +70,7 @@ function Contact({ data }) {
       </div>
 
       <div className="pb-20 font-bold flex flex-col items-center gap-4 sm:gap-7">
-        <i class="fa-solid fa-arrow-turn-down text-[5rem] text-secondary"></i>
+        <i className="fa-solid fa-arrow-turn-down text-[5rem] text-secondary"></i>
         <h6 className="text-base">{section3.subtitle}</h6>
         <h2 className="text-[3.6rem] leading-[5rem]">{section3.title}</h2>
         <button className="text-sm text-white border-0 border-solid rounded py-4 px-10 bg-secondary w-fit">

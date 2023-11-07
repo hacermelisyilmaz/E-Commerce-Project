@@ -29,10 +29,10 @@ function BannerSlide({ data }) {
           </div>
           <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
             <a href="#slide2" className="btn btn-circle bg-transparent">
-              <i class="fa-solid fa-chevron-left text-5xl text-white"></i>
+              <i className="fa-solid fa-chevron-left text-5xl text-white"></i>
             </a>
             <a href="#slide2" className="btn btn-circle bg-transparent">
-              <i class="fa-solid fa-chevron-right text-5xl text-white"></i>
+              <i className="fa-solid fa-chevron-right text-5xl text-white"></i>
             </a>
           </div>
         </div>
@@ -57,10 +57,10 @@ function BannerSlide({ data }) {
             </div>
             <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
               <a href="#slide1" className="btn btn-circle bg-transparent">
-                <i class="fa-solid fa-chevron-left text-5xl text-white"></i>
+                <i className="fa-solid fa-chevron-left text-5xl text-white"></i>
               </a>
               <a href="#slide1" className="btn btn-circle bg-transparent">
-                <i class="fa-solid fa-chevron-right text-5xl text-white"></i>
+                <i className="fa-solid fa-chevron-right text-5xl text-white"></i>
               </a>
             </div>
           </div>

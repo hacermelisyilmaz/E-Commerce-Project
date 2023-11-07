@@ -6,9 +6,9 @@ function TeamCard({ person }) {
         <h5>{person.name}</h5>
         <p className="text-sm text-accent">{person.department}</p>
         <div className="text-2xl text-secondary flex gap-5">
-          <i class="fa-brands fa-facebook"></i>
-          <i class="fa-brands fa-instagram"></i>
-          <i class="fa-brands fa-twitter"></i>
+          <i className="fa-brands fa-facebook"></i>
+          <i className="fa-brands fa-instagram"></i>
+          <i className="fa-brands fa-twitter"></i>
         </div>
       </div>
     </div>

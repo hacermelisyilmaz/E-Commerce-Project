@@ -23,11 +23,11 @@ function Header({ data }) {
       <div className="header-info bg-primary text-white font-bold flex justify-between items-center py-4 px-6 sm:hidden">
         <div className="contact flex gap-[1.8rem]">
           <div className="phone flex items-center gap-[0.2rem]">
-            <i class="fa-solid fa-phone"></i>
+            <i className="fa-solid fa-phone"></i>
             <p>{infoData.phone}</p>
           </div>
           <div className="email flex items-center gap-[0.2rem]">
-            <i class="fa-solid fa-envelope"></i>
+            <i className="fa-solid fa-envelope"></i>
             <p>{infoData.email}</p>
           </div>
         </div>
@@ -36,10 +36,10 @@ function Header({ data }) {
 
         <div className="follow-us flex gap-4">
           <p>{infoData.socialmedia}</p>
-          <i class="fa-brands fa-instagram"></i>
-          <i class="fa-brands fa-youtube"></i>
-          <i class="fa-brands fa-facebook"></i>
-          <i class="fa-brands fa-twitter"></i>
+          <i className="fa-brands fa-instagram"></i>
+          <i className="fa-brands fa-youtube"></i>
+          <i className="fa-brands fa-facebook"></i>
+          <i className="fa-brands fa-twitter"></i>
         </div>
       </div>
       <div className="header-nav flex justify-between items-center py-4 px-6 sm:flex-col">
@@ -55,16 +55,16 @@ function Header({ data }) {
           <div className="hidden sm:flex sm:items-center sm:gap-6">
             {location.pathname === "/shopping" || (
               <Link to="/">
-                <i class="fa-solid fa-magnifying-glass"></i>
+                <i className="fa-solid fa-magnifying-glass"></i>
               </Link>
             )}
             {location.pathname === "/shopping" || (
               <Link to="/">
-                <i class="fa-solid fa-cart-shopping"></i>
+                <i className="fa-solid fa-cart-shopping"></i>
               </Link>
             )}
             <Link to="/">
-              <i class="fa-solid fa-bars"></i>
+              <i className="fa-solid fa-bars"></i>
             </Link>
           </div>
         </div>
@@ -78,7 +78,7 @@ function Header({ data }) {
                   to="/shopping"
                 >
                   {navData.navlinks.shop}
-                  <i class="fa-solid fa-angle-down"></i>
+                  <i className="fa-solid fa-angle-down"></i>
                 </Link>
               </label>
               <div
@@ -136,7 +136,7 @@ function Header({ data }) {
               </div>
             ) : (
               <div className="flex items-center gap-3">
-                <i class="fa-solid fa-user"></i>
+                <i className="fa-solid fa-user"></i>
                 <span
                   onClick={() => {
                     history.push("/login");
@@ -156,13 +156,13 @@ function Header({ data }) {
             )}
 
             <Link to="/">
-              <i class="fa-solid fa-magnifying-glass"></i>
+              <i className="fa-solid fa-magnifying-glass"></i>
             </Link>
             <Link to="/">
-              <i class="fa-solid fa-cart-shopping"></i>
+              <i className="fa-solid fa-cart-shopping"></i>
             </Link>
             <Link to="/">
-              <i class="fa-regular fa-heart"></i>
+              <i className="fa-regular fa-heart"></i>
             </Link>
           </div>
         </div>
