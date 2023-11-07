@@ -8,7 +8,7 @@ function ProductCard({ data }) {
       onClick={() => history.push(`/shopping/${data.id}`)}
     >
       <img
-        src={data.images.length ? data.images[0] : ""}
+        src={data.images.length ? data.images[0].url : ""}
         className="w-full h-[18.75rem] object-cover sm:w-full sm:h-[26.7rem]"
       />
       <div className="font-bold flex flex-col items-center gap-3 pt-6 pb-9 text-center">
