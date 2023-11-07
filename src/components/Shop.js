@@ -46,7 +46,7 @@ function Shop({ data }) {
         offset: infScrollingParams.offset,
       })
     );
-    setLoadMore(!loadMore);
+    setLoadMore(true);
     if (
       totalProductCount &&
       productList.length + infScrollingParams.offset > totalProductCount
@@ -56,6 +56,7 @@ function Shop({ data }) {
   };
 
   useEffect(() => {
+    setLoadMore(false);
     const categoryId = categories.find(
       (c) => c.code == `${category?.slice(0, 1)}:${category?.slice(2)}`
     )?.id;
@@ -71,12 +72,9 @@ function Shop({ data }) {
   }, [queryParams, category]);
 
   useEffect(() => {
-    setConcProducts(productList);
+    if (loadMore) setConcProducts(concProducts.concat(productList));
+    else setConcProducts(productList);
   }, [productList]);
-
-  useEffect(() => {
-    setConcProducts(concProducts.concat(productList));
-  }, [loadMore]);
 
   return (
     <div className="Shop">
@@ -94,10 +92,10 @@ function Shop({ data }) {
         <div className="flex gap-2 items-center">
           <p>{data.views}</p>
           <div className="border rounded-md p-2">
-            <i class="fa-solid fa-table-cells-large"></i>
+            <i className="fa-solid fa-table-cells-large"></i>
           </div>
           <div className="border border-info rounded-md p-2">
-            <i class="fa-solid fa-list-check"></i>
+            <i className="fa-solid fa-list-check"></i>
           </div>
         </div>
         <input
@@ -142,9 +140,10 @@ function Shop({ data }) {
           loader={<Spinner />}
           endMessage={
             <p style={{ textAlign: "center" }}>
-              <b>Yay! You have seen it all</b>
+              <b>You have seen it all</b>
             </p>
           }
+          className="infiniteScroll"
         >
           <div className="Products flex flex-wrap justify-center gap-7 w-3/4 mx-auto sm:flex-col sm:items-center sm:gap-4">
             {concProducts.map((card, index) => {
