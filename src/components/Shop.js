@@ -39,14 +39,13 @@ function Shop({ data }) {
   };
 
   const nextInfScroll = () => {
+    setLoadMore(true);
     dispatch(
       setProductList({
         ...queryParams,
-        limit: infScrollingParams.limit,
-        offset: infScrollingParams.offset,
+        ...infScrollingParams,
       })
     );
-    setLoadMore(true);
     if (
       totalProductCount &&
       productList.length + infScrollingParams.offset > totalProductCount
@@ -67,14 +66,17 @@ function Shop({ data }) {
         category: categoryId,
       })
     );
-    if (fetchState === fetchStates.FETCH_FAILED)
-      toast.error("Products failed to load. Please try again later.");
   }, [queryParams, category]);
 
   useEffect(() => {
     if (loadMore) setConcProducts(concProducts.concat(productList));
     else setConcProducts(productList);
   }, [productList]);
+
+  useEffect(() => {
+    if (fetchState === fetchStates.FETCH_FAILED)
+      toast.error("Products failed to load. Please try again later.");
+  }, [fetchState]);
 
   return (
     <div className="Shop">
