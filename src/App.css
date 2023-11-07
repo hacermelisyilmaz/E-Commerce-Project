@@ -42,3 +42,12 @@
 .CategoryCard:hover .CategoryCardFilter {
   display: none;
 }
+
+.infiniteScroll::-webkit-scrollbar {
+  display: none;
+}
+
+.infiniteScroll {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
