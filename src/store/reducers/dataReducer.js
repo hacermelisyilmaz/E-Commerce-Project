@@ -53,20 +53,6 @@ export default function dataReducer() {
         prev: "Home",
       },
 
-      clients: {
-        title: "Big Companies Are Here",
-        description:
-          "Problems trying to resolve the conflict between the two major realms of Classical physics: Newtonian mechanics",
-        logos: [
-          "/img/brands/fa-brands-1.png",
-          "/img/brands/fa-brands-2.png",
-          "/img/brands/fa-brands-3.png",
-          "/img/brands/fa-brands-4.png",
-          "/img/brands/fa-brands-5.png",
-          "/img/brands/fa-brands-6.png",
-        ],
-      },
-
       contact: {
         section1: {
           subtitle: "CONTACT US",
