@@ -1,7 +1,6 @@
 import {
-  SET_ACTIVE_PAGE,
+  ADD_PRODUCTS,
   SET_CATEGORIES,
-  SET_PAGE_COUNT,
   SET_PRODUCT_LIST,
 } from "../actions/productActions.js";
 import fetchStates from "../fetchStates.js";
@@ -31,20 +30,17 @@ const productReducer = (state = initialState, action) => {
         ...state,
         products: action.payload,
       };
-    case SET_PAGE_COUNT:
+    case ADD_PRODUCTS:
       return {
         ...state,
-        pages: {
-          ...state.pages,
-          pageCount: action.payload,
-        },
-      };
-    case SET_ACTIVE_PAGE:
-      return {
-        ...state,
-        pages: {
-          ...state.pages,
-          activePage: action.payload,
+        products: {
+          productList: [
+            ...state.products.productList,
+            ...action.payload.productList,
+          ],
+          totalProductCount: action.payload.totalProductCount,
+          fetchState: action.payload.fetchState,
+          error: action.payload.error,
         },
       };
     case SET_CATEGORIES:
