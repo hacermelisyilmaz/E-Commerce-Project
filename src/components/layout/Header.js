@@ -12,7 +12,7 @@ function Header({ data }) {
   const categories = useSelector(
     (store) => store.product.categories.categoryList
   );
-  const location = useLocation();
+  const { pathname, search } = useLocation();
   const history = useHistory();
 
   const womanCat = categories.filter((cat) => cat.gender === "k");
@@ -53,12 +53,12 @@ function Header({ data }) {
             {data.brand}
           </h1>
           <div className="hidden sm:flex sm:items-center sm:gap-6">
-            {location.pathname === "/shopping" || (
+            {pathname === "/shopping" || (
               <Link to="/">
                 <i className="fa-solid fa-magnifying-glass"></i>
               </Link>
             )}
-            {location.pathname === "/shopping" || (
+            {pathname === "/shopping" || (
               <Link to="/">
                 <i className="fa-solid fa-cart-shopping"></i>
               </Link>
@@ -90,7 +90,12 @@ function Header({ data }) {
                   {womanCat.map((cat, index) => {
                     return (
                       <li key={index}>
-                        <Link to={`/shopping/${cat.code.slice(2)}`}>
+                        <Link
+                          to={`/shopping/${cat.code.slice(
+                            0,
+                            1
+                          )}-${cat.code.slice(2)}${search}`}
+                        >
                           {cat.title}
                         </Link>
                       </li>
@@ -119,7 +124,7 @@ function Header({ data }) {
           </nav>
           <div
             className={
-              location.pathname === "/shopping"
+              pathname === "/shopping"
                 ? "nav-right-side text-secondary flex gap-[1rem] items-center sm:flex-col sm:text-3xl sm:items-center sm:gap-[1.3rem]"
                 : "nav-right-side text-secondary flex gap-[1rem] items-center sm:hidden"
             }
