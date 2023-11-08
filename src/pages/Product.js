@@ -93,7 +93,7 @@ function Product({ data }) {
                       key={index}
                       className="w-24 h-20"
                     >
-                      <img src={img} className="w-full" />
+                      <img src={img.url} className="w-full" />
                     </a>
                   );
                 })}
