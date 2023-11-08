@@ -2,8 +2,7 @@ import axiosInstance from "../../api/axiosInstance";
 import fetchStates from "../fetchStates";
 
 export const SET_PRODUCT_LIST = "SET_PRODUCT_LIST";
-export const SET_PAGE_COUNT = "SET_PAGE_COUNT";
-export const SET_ACTIVE_PAGE = "SET_ACTIVE_PAGE";
+export const ADD_PRODUCTS = "ADD_PRODUCTS";
 export const SET_CATEGORIES = "SET_CATEGORIES";
 
 export const setProductList = (params) => {
@@ -45,17 +44,42 @@ export const setProductList = (params) => {
   };
 };
 
-export const setPageCount = (count) => {
-  return {
-    type: SET_PAGE_COUNT,
-    payload: count,
-  };
-};
+export const addProducts = (params) => {
+  return (dispatch) => {
+    dispatch({
+      type: ADD_PRODUCTS,
+      payload: {
+        productList: [],
+        totalProductCount: 0,
+        fetchState: fetchStates.FETCHING,
+        error: "",
+      },
+    });
 
-export const setActivePage = (page) => {
-  return {
-    type: SET_ACTIVE_PAGE,
-    payload: page,
+    axiosInstance
+      .get("/products", { params })
+      .then((response) => {
+        dispatch({
+          type: ADD_PRODUCTS,
+          payload: {
+            productList: response.data.products,
+            totalProductCount: response.data.total,
+            fetchState: fetchStates.FETCHED,
+            error: "",
+          },
+        });
+      })
+      .catch((error) => {
+        dispatch({
+          type: ADD_PRODUCTS,
+          payload: {
+            productList: [],
+            totalProductCount: 0,
+            fetchState: fetchStates.FETCH_FAILED,
+            error: error.message,
+          },
+        });
+      });
   };
 };
 
