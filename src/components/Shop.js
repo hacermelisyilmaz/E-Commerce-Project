@@ -1,21 +1,16 @@
-import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
+import { useParams, Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-toastify";
 import InfiniteScroll from "react-infinite-scroll-component";
 
-import { setProductList } from "../store/actions/productActions";
-import useQueryParams from "../hooks/useQueryParams";
-import { useParams } from "react-router-dom";
+import { addProducts, setProductList } from "../store/actions/productActions";
 import fetchStates from "../store/fetchStates";
+import useQueryParams from "../hooks/useQueryParams";
 import Spinner from "../components/Spinner";
 import ProductCard from "./ProductCard";
-import { toast } from "react-toastify";
 
 function Shop({ data }) {
-  const infScrollingParams = {
-    limit: 36,
-    offset: 36,
-  };
-
   const products = useSelector((store) => store.product.products);
   const categories = useSelector(
     (store) => store.product.categories.categoryList
@@ -25,13 +20,17 @@ function Shop({ data }) {
   const dispatch = useDispatch();
   const { category } = useParams();
   const [hasMore, setHasMore] = useState(true);
-  const [loadMore, setLoadMore] = useState(true);
+  const [offset, setOffset] = useState(0);
   const [filterParams, setFilterParams] = useState({
     filter: "",
     sort: "",
   });
-  const [concProducts, setConcProducts] = useState([]);
   const [queryParams, setQueryParams] = useQueryParams();
+
+  const infScrollingParams = {
+    limit: 36,
+    offset: offset,
+  };
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -39,44 +38,45 @@ function Shop({ data }) {
   };
 
   const nextInfScroll = () => {
-    setLoadMore(true);
+    const categoryId = categories.find(
+      (c) => c.code == `${category?.slice(0, 1)}:${category?.slice(2)}`
+    )?.id;
     dispatch(
-      setProductList({
+      addProducts({
         ...queryParams,
         ...infScrollingParams,
+        category: categoryId,
       })
     );
-    if (
-      totalProductCount &&
-      productList.length + infScrollingParams.offset > totalProductCount
-    ) {
-      setHasMore(false);
-    }
+    setOffset(offset + 36);
   };
 
   useEffect(() => {
-    setLoadMore(false);
     const categoryId = categories.find(
       (c) => c.code == `${category?.slice(0, 1)}:${category?.slice(2)}`
     )?.id;
     dispatch(
       setProductList({
         ...queryParams,
-        ...infScrollingParams,
+        limit: infScrollingParams.limit,
+        offset: 0,
         category: categoryId,
       })
     );
+    setHasMore(true);
+    setOffset(36);
   }, [queryParams, category]);
-
-  useEffect(() => {
-    if (loadMore) setConcProducts(concProducts.concat(productList));
-    else setConcProducts(productList);
-  }, [productList]);
 
   useEffect(() => {
     if (fetchState === fetchStates.FETCH_FAILED)
       toast.error("Products failed to load. Please try again later.");
   }, [fetchState]);
+
+  useEffect(() => {
+    if (totalProductCount && productList.length === totalProductCount) {
+      setHasMore(false);
+    }
+  }, [productList]);
 
   return (
     <div className="Shop">
@@ -86,7 +86,7 @@ function Shop({ data }) {
       >
         <p>
           {"Showing " +
-            concProducts.length +
+            productList.length +
             " of all " +
             totalProductCount +
             " results"}
@@ -139,6 +139,7 @@ function Shop({ data }) {
           dataLength={productList.length}
           next={nextInfScroll}
           hasMore={hasMore}
+          scrollThreshold="449px"
           loader={<Spinner />}
           endMessage={
             <p style={{ textAlign: "center" }}>
@@ -148,8 +149,21 @@ function Shop({ data }) {
           className="infiniteScroll"
         >
           <div className="Products flex flex-wrap justify-center gap-7 w-3/4 mx-auto sm:flex-col sm:items-center sm:gap-4">
-            {concProducts.map((card, index) => {
-              return <ProductCard data={card} key={index} />;
+            {productList.map((product, index) => {
+              const catCode = categories.find(
+                (c) => c.id == product["category_id"]
+              )?.code;
+              const nameSlug = product.name.toLowerCase().replace(" ", "-");
+              return (
+                <Link
+                  to={`/shopping/${catCode?.slice(0, 1)}-${catCode?.slice(
+                    2
+                  )}/${nameSlug}/${product.id}`}
+                  key={index}
+                >
+                  <ProductCard data={product} />
+                </Link>
+              );
             })}
           </div>
         </InfiniteScroll>
