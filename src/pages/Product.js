@@ -11,7 +11,6 @@ import Header from "../components/layout/Header";
 import Spinner from "../components/Spinner";
 
 function Product({ data }) {
-  const { nav, bestseller, details, desc } = data.product;
   const { productID } = useParams();
   const dispatch = useDispatch();
   const history = useHistory();
@@ -42,11 +41,11 @@ function Product({ data }) {
           <div className="py-6">
             <nav className="py-2 text-sm flex items-center gap-4 sm:justify-center">
               <Link to="/" className="font-bold">
-                {details.history.prev}
+                Home
               </Link>
               <i className="fa-solid fa-angle-right selection:text-neutral text-base"></i>
               <Link to="/team" className="text-neutral">
-                {details.history.current}
+                Shop
               </Link>
             </nav>
           </div>
@@ -61,7 +60,7 @@ function Product({ data }) {
                       key={index}
                       className="carousel-item relative w-full"
                     >
-                      <img src={img} className="w-full" />
+                      <img src={img.url} className="w-full" />
                       <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
                         <a
                           href="#product2"
@@ -127,14 +126,14 @@ function Product({ data }) {
                 {productData?.price} ₺
               </h4>
               <div className="mt-1 text-sm leading-6 font-bold text-accent">
-                <span>{details.availability.status}</span>
+                <span>In Stock</span>
               </div>
               <p className="mt-8 text-sm">{productData?.description}</p>
               <hr className="my-7" />
               <img src="/img/posts/product-colors.png" />
               <div className="mt-16 flex items-center gap-2">
                 <button className="text-sm leading-6 text-white font-bold border-0 border-solid rounded py-[10px] px-5 bg-secondary w-fit">
-                  {details.button}
+                  Select Options
                 </button>
                 <i className="fa-regular fa-heart border border-solid border-neutral rounded-[45px] w-5 h-5 p-3"></i>
                 <i className="fa-solid fa-cart-shopping border border-solid border-neutral rounded-[45px] w-5 h-5 p-3"></i>
@@ -147,61 +146,75 @@ function Product({ data }) {
         <div className="px-44 sm:px-8">
           <div className="py-3 flex justify-center font-bold text-accent">
             <Link to="#" className="p-6">
-              {nav[0]}
+              Description
             </Link>
             <Link to="#" className="p-6">
-              {nav[1]}
+              Additional Information
             </Link>
             <Link to="#" className="p-6">
-              {nav[2]}
+              Reviews
             </Link>
           </div>
           <hr className="pb-4" />
           <div className="pt-6 flex justify-between sm:flex-col">
-            <img src={desc.img} className="object-contain" />
+            <img src="/img/product/desc.png" className="object-contain" />
             <div className="flex flex-col gap-7 mx-7 w-1/3 sm:w-full sm:mx-0 sm:my-6">
-              <h5 className="text-2xl font-bold">{desc.title1}</h5>
+              <h5 className="text-2xl font-bold">"the quick fox jumps over"</h5>
               <div className="text-sm text-accent flex flex-col gap-5">
-                {desc.p.map((bullet, index) => {
-                  return (
-                    <div key={index}>
-                      <p>{bullet}</p>
-                    </div>
-                  );
-                })}
+                <p>
+                  Met minim Mollie non desert Alamo est sit cliquey dolor do met
+                  sent. RELIT official consequent door ENIM RELIT Mollie.
+                  Excitation venial consequent sent nostrum met.
+                </p>
+                <p>
+                  Met minim Mollie non desert Alamo est sit cliquey dolor do met
+                  sent. RELIT official consequent door ENIM RELIT Mollie.
+                  Excitation venial consequent sent nostrum met.
+                </p>
+                <p>
+                  Met minim Mollie non desert Alamo est sit cliquey dolor do met
+                  sent. RELIT official consequent door ENIM RELIT Mollie.
+                  Excitation venial consequent sent nostrum met.
+                </p>
               </div>
             </div>
             <div className="font-bold">
               <div className="flex flex-col gap-7">
-                <h5 className="text-2xl">{desc.title2}</h5>
+                <h5 className="text-2xl">the quick fox jumps over</h5>
                 <div className="flex flex-col gap-2">
-                  {desc.b1.map((bullet, index) => {
-                    return (
-                      <div
-                        key={index}
-                        className="flex text-sm text-accent gap-5"
-                      >
-                        <i className="fa-solid fa-angle-right text-base"></i>
-                        <p>{bullet}</p>
-                      </div>
-                    );
-                  })}
+                  <div className="flex text-sm text-accent gap-5">
+                    <i className="fa-solid fa-angle-right text-base"></i>
+                    <p>the quick fox jumps over the lazy dog</p>
+                  </div>
+                  <div className="flex text-sm text-accent gap-5">
+                    <i className="fa-solid fa-angle-right text-base"></i>
+                    <p>the quick fox jumps over the lazy dog</p>
+                  </div>
+                  <div className="flex text-sm text-accent gap-5">
+                    <i className="fa-solid fa-angle-right text-base"></i>
+                    <p>the quick fox jumps over the lazy dog</p>
+                  </div>
+                  <div className="flex text-sm text-accent gap-5">
+                    <i className="fa-solid fa-angle-right text-base"></i>
+                    <p>the quick fox jumps over the lazy dog</p>
+                  </div>
                 </div>
               </div>
               <div className="flex flex-col gap-7 pt-6">
-                <h5 className="text-2xl">{desc.title3}</h5>
+                <h5 className="text-2xl">the quick fox jumps over</h5>
                 <div className="flex flex-col gap-2">
-                  {desc.b2.map((bullet, index) => {
-                    return (
-                      <div
-                        key={index}
-                        className="flex text-sm text-accent gap-5"
-                      >
-                        <i className="fa-solid fa-angle-right text-base"></i>
-                        <p>{bullet}</p>
-                      </div>
-                    );
-                  })}
+                  <div className="flex text-sm text-accent gap-5">
+                    <i className="fa-solid fa-angle-right text-base"></i>
+                    <p>the quick fox jumps over the lazy dog</p>
+                  </div>
+                  <div className="flex text-sm text-accent gap-5">
+                    <i className="fa-solid fa-angle-right text-base"></i>
+                    <p>the quick fox jumps over the lazy dog</p>
+                  </div>
+                  <div className="flex text-sm text-accent gap-5">
+                    <i className="fa-solid fa-angle-right text-base"></i>
+                    <p>the quick fox jumps over the lazy dog</p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -209,7 +222,7 @@ function Product({ data }) {
         </div>
 
         <div className="bg-info py-12 px-44 flex flex-col gap-6 sm:px-10 sm:items-center">
-          <h3 className="text-2xl font-bold">{bestseller.title}</h3>
+          <h3 className="text-2xl font-bold">BESTSELLER PRODUCTS</h3>
           <hr />
           {/*  <div className="flex flex-wrap justify-between">
           {bestseller.products.map((product, index) => {
