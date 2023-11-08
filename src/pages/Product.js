@@ -231,7 +231,7 @@ function Product({ data }) {
         </div> */}
         </div>
 
-        <Clients data={data.clients} bg={true} />
+        <Clients bg={true} />
         <Footer data={data} inner={true} />
       </div>
     );

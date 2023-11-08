@@ -81,10 +81,11 @@ function About({ data }) {
       <div className="bg-info p-20 sm:px-12 sm:text-center">
         <div className="flex flex-col items-center gap-7">
           <h2 className="font-bold text-[2.5rem] leading-[3rem] sm:px-4">
-            {clients.title}
+            Big Companies Are Here
           </h2>
           <p className="text-sm text-accent text-center w-1/3 sm:w-full">
-            {clients.description}
+            Problems trying to resolve the conflict between the two major realms
+            of Classical physics: Newtonian mechanics
           </p>
         </div>
         <Clients data={clients} />
