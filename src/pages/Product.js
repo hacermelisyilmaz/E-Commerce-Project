@@ -135,9 +135,15 @@ function Product({ data }) {
                 <button className="text-sm leading-6 text-white font-bold border-0 border-solid rounded py-[10px] px-5 bg-secondary w-fit">
                   Select Options
                 </button>
-                <i className="fa-regular fa-heart border border-solid border-neutral rounded-[45px] w-5 h-5 p-3"></i>
-                <i className="fa-solid fa-cart-shopping border border-solid border-neutral rounded-[45px] w-5 h-5 p-3"></i>
-                <i className="fa-regular fa-eye border border-solid border-neutral rounded-[45px] w-5 h-5 p-3"></i>
+                <div className="border border-solid border-neutral rounded-[45px] p-3">
+                  <i className="fa-regular fa-heart"></i>
+                </div>
+                <div className="border border-solid border-neutral rounded-[45px] p-3">
+                  <i className="fa-solid fa-cart-shopping"></i>
+                </div>
+                <div className="border border-solid border-neutral rounded-[45px] p-3">
+                  <i className="fa-regular fa-eye"></i>
+                </div>
               </div>
             </div>
           </div>
