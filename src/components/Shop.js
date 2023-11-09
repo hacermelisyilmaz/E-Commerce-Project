@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, useHistory, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import InfiniteScroll from "react-infinite-scroll-component";
@@ -19,6 +19,8 @@ function Shop({ data }) {
 
   const dispatch = useDispatch();
   const { sex, category } = useParams();
+  const history = useHistory();
+  const { search, pathname } = useLocation();
   const [hasMore, setHasMore] = useState(true);
   const [offset, setOffset] = useState(0);
   const [filterParams, setFilterParams] = useState({
@@ -151,14 +153,22 @@ function Shop({ data }) {
               )?.code;
               const nameSlug = product.name.toLowerCase().replace(" ", "-");
               return (
-                <Link
-                  to={`/shopping/${catCode?.slice(0, 1)}/${catCode?.slice(2)}/${
-                    product.id
-                  }/${nameSlug}`}
+                <div
                   key={index}
+                  onClick={() => {
+                    history.push(
+                      `/shopping/${catCode?.slice(0, 1)}/${catCode?.slice(2)}/${
+                        product.id
+                      }/${nameSlug}`,
+                      {
+                        pathname: pathname,
+                        search: search,
+                      }
+                    );
+                  }}
                 >
                   <ProductCard data={product} />
-                </Link>
+                </div>
               );
             })}
           </div>

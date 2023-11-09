@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useParams, useHistory, Link } from "react-router-dom";
+import { useParams, useHistory, useLocation, Link } from "react-router-dom";
 import { useEffect } from "react";
 import { toast } from "react-toastify";
 
@@ -9,16 +9,17 @@ import Clients from "../components/layout/Clients";
 import Footer from "../components/layout/Footer";
 import Header from "../components/layout/Header";
 import Spinner from "../components/Spinner";
+import ProductCard from "../components/ProductCard";
 
 function Product({ data }) {
   const { productID } = useParams();
   const dispatch = useDispatch();
   const history = useHistory();
-  const { productList, fetchState } = useSelector(
+  const { state } = useLocation();
+  const { productList, fetchState, totalProductCount } = useSelector(
     (store) => store.product.products
   );
   const [productData] = productList.filter((p) => p.id == productID);
-  console.log(productData);
   const ratingArr = [];
   for (let i = 0; i < 5; i++) {
     if (i < parseInt(Math.round(productData?.rating))) ratingArr.push(1);
@@ -26,8 +27,15 @@ function Product({ data }) {
   }
 
   useEffect(() => {
-    dispatch(setProductList({}));
-  }, []);
+    const params = {
+      category: "",
+      filter: "",
+      sort: "rating:desc",
+      limit: totalProductCount,
+      offset: 0,
+    };
+    dispatch(setProductList(params));
+  }, [productID]);
 
   if (fetchState === fetchStates.FETCH_FAILED) {
     toast.error("Fetch failed. Try again");
@@ -37,22 +45,24 @@ function Product({ data }) {
       <div className="Product">
         <Header data={data} />
 
-        <div className="bg-info px-44 sm:px-8">
+        <div className="bg-info px-44 pb-12 sm:px-8">
           <div className="py-6">
             <nav className="py-2 text-sm flex items-center gap-4 sm:justify-center">
-              <Link to="/" className="font-bold">
-                Home
-              </Link>
-              <i className="fa-solid fa-angle-right selection:text-neutral text-base"></i>
-              <Link to="/team" className="text-neutral">
-                Shop
-              </Link>
+              <i className="fa-solid fa-angle-left selection:text-neutral text-base"></i>
+              <a
+                className="font-bold"
+                onClick={() => {
+                  history.push(`${state.pathname}/${state.search}`);
+                }}
+              >
+                Back
+              </a>
             </nav>
           </div>
 
-          <div className="flex justify-between gap-7 sm:flex-col">
-            <div>
-              <div className="carousel w-full">
+          <div className="flex justify-between gap-7 h-[32rem] sm:flex-col">
+            <div className="w-2/3 h-full sm:w-full">
+              <div className="carousel w-full h-[80%]">
                 {productData?.images.map((img, index) => {
                   return (
                     <div
@@ -60,7 +70,7 @@ function Product({ data }) {
                       key={index}
                       className="carousel-item relative w-full"
                     >
-                      <img src={img.url} className="w-full" />
+                      <img src={img.url} className="w-full object-cover" />
                       <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
                         <a
                           href="#product2"
@@ -68,7 +78,7 @@ function Product({ data }) {
                         >
                           <i
                             className="fa-solid fa-chevron-left text-5xl"
-                            style={{ color: "#ffffff" }}
+                            style={{ color: "#BDBDBD" }}
                           ></i>
                         </a>
                         <a
@@ -76,8 +86,8 @@ function Product({ data }) {
                           className="btn btn-circle bg-transparent"
                         >
                           <i
-                            className="fa-solid fa-chevron-right marker:text-5xl"
-                            style={{ color: "#ffffff" }}
+                            className="fa-solid fa-chevron-right text-5xl"
+                            style={{ color: "#BDBDBD" }}
                           ></i>
                         </a>
                       </div>
@@ -91,9 +101,9 @@ function Product({ data }) {
                     <a
                       href={`#product${index + 1}`}
                       key={index}
-                      className="w-24 h-20"
+                      className="w-24 h-20 overflow-hidden"
                     >
-                      <img src={img.url} className="w-full" />
+                      <img src={img.url} className="w-full object-cover" />
                     </a>
                   );
                 })}
@@ -119,7 +129,7 @@ function Product({ data }) {
                   })}
                 </div>
                 <p className="text-sm text-accent font-bold">
-                  {productData?.rating}
+                  {productData?.rating} / 5.00
                 </p>
               </div>
               <h4 className="mt-5 text-2xl font-bold">
@@ -230,11 +240,11 @@ function Product({ data }) {
         <div className="bg-info py-12 px-44 flex flex-col gap-6 sm:px-10 sm:items-center">
           <h3 className="text-2xl font-bold">BESTSELLER PRODUCTS</h3>
           <hr />
-          {/*  <div className="flex flex-wrap justify-between">
-          {bestseller.products.map((product, index) => {
-            return <ProductCard key={index} data={product} />;
-          })}
-        </div> */}
+          <div className="flex flex-wrap justify-between">
+            {productList.slice(0, 8).map((product, index) => {
+              return <ProductCard key={index} data={product} />;
+            })}
+          </div>
         </div>
 
         <Clients bg={true} />
@@ -249,7 +259,7 @@ function Product({ data }) {
     );
   } else {
     toast.error("Product not found.");
-    history.push("/shopping");
+    history.goBack();
     return <div className="Product"></div>;
   }
 }
