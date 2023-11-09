@@ -42,7 +42,7 @@ function Product({ data }) {
     return <div className="Product"></div>;
   } else if (fetchState === fetchStates.FETCHED) {
     return (
-      <div className="Product">
+      <div className="Product sm:flex sm:flex-col">
         <Header data={data} />
 
         <div className="bg-info px-44 pb-12 sm:px-8">
@@ -60,7 +60,7 @@ function Product({ data }) {
             </nav>
           </div>
 
-          <div className="flex justify-between gap-7 h-[32rem] sm:flex-col">
+          <div className="flex justify-between gap-7 h-[32rem] sm:h-auto sm:flex-col">
             <div className="w-2/3 h-full sm:w-full">
               <div className="carousel w-full h-[80%]">
                 {productData?.images.map((img, index) => {
@@ -240,7 +240,7 @@ function Product({ data }) {
         <div className="bg-info py-12 px-44 flex flex-col gap-6 sm:px-10 sm:items-center">
           <h3 className="text-2xl font-bold">BESTSELLER PRODUCTS</h3>
           <hr />
-          <div className="flex flex-wrap justify-between">
+          <div className="flex flex-wrap justify-between sm:justify-center">
             {productList.slice(0, 8).map((product, index) => {
               return <ProductCard key={index} data={product} />;
             })}
