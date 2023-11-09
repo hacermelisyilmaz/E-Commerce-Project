@@ -152,7 +152,9 @@ function Shop({ data }) {
               const nameSlug = product.name.toLowerCase().replace(" ", "-");
               return (
                 <Link
-                  to={`/shopping/${sex}/${category}/${product.id}/${nameSlug}`}
+                  to={`/shopping/${catCode?.slice(0, 1)}/${catCode?.slice(2)}/${
+                    product.id
+                  }/${nameSlug}`}
                   key={index}
                 >
                   <ProductCard data={product} />
