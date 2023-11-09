@@ -18,7 +18,7 @@ function Shop({ data }) {
   const { totalProductCount, fetchState, productList } = products;
 
   const dispatch = useDispatch();
-  const { category } = useParams();
+  const { sex, category } = useParams();
   const [hasMore, setHasMore] = useState(true);
   const [offset, setOffset] = useState(0);
   const [filterParams, setFilterParams] = useState({
@@ -32,15 +32,14 @@ function Shop({ data }) {
     offset: offset,
   };
 
+  const categoryId = categories.find((c) => c.code == `${sex}:${category}`)?.id;
+
   const submitHandler = (e) => {
     e.preventDefault();
     setQueryParams(filterParams);
   };
 
   const nextInfScroll = () => {
-    const categoryId = categories.find(
-      (c) => c.code == `${category?.slice(0, 1)}:${category?.slice(2)}`
-    )?.id;
     dispatch(
       addProducts({
         ...queryParams,
@@ -52,9 +51,6 @@ function Shop({ data }) {
   };
 
   useEffect(() => {
-    const categoryId = categories.find(
-      (c) => c.code == `${category?.slice(0, 1)}:${category?.slice(2)}`
-    )?.id;
     dispatch(
       setProductList({
         ...queryParams,
@@ -156,9 +152,7 @@ function Shop({ data }) {
               const nameSlug = product.name.toLowerCase().replace(" ", "-");
               return (
                 <Link
-                  to={`/shopping/${catCode?.slice(0, 1)}-${catCode?.slice(2)}/${
-                    product.id
-                  }/${nameSlug}`}
+                  to={`/shopping/${sex}/${category}/${product.id}/${nameSlug}`}
                   key={index}
                 >
                   <ProductCard data={product} />

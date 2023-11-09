@@ -23,7 +23,7 @@ function Categories({ data }) {
             <Link
               className="CategoryCard relative max-h-56 max-w-[18%] overflow-hidden sm:max-w-full sm:max-h-full sm:aspect-square"
               key={cat.id}
-              to={`/shopping/${cat.code.slice(0, 1)}-${cat.code.slice(
+              to={`/shopping/${cat.code.slice(0, 1)}/${cat.code.slice(
                 2
               )}${search}`}
             >
