@@ -3,51 +3,6 @@ export default function dataReducer() {
     en: {
       brand: "Bandage",
 
-      about: {
-        banner: {
-          subtitle: "ABOUT COMPANY",
-          title: "ABOUT US",
-          description:
-            "We know how large objects will act, but things on a small scale",
-          button: "Get Quote Now",
-          img: "/img/about/banner.png",
-        },
-        section2: {
-          subtitle: "Problems trying",
-          title:
-            "Met minim Mollie non desert Alamo est sit cliquey dolor do met sent.",
-          description:
-            "Problems trying to resolve the conflict between the two major realms of Classical physics: Newtonian mechanics",
-        },
-        statistics: [
-          {
-            metric: "15K",
-            title: "Happy Customers",
-          },
-          {
-            metric: "150K",
-            title: "Monthly Visitors",
-          },
-          {
-            metric: "15",
-            title: "Countries  Worldwide",
-          },
-          {
-            metric: "100+",
-            title: "Top Partners",
-          },
-        ],
-        video: "/img/about/videocard.png",
-        work: {
-          subtitle: "WORK WITH US",
-          title: "Now Let’s Grow Yours",
-          description:
-            "The gradual accumulation of information about atomic and small-scale behavior during the first quarter of the 20th",
-          button: "Button",
-          img: "/img/about/work.png",
-        },
-      },
-
       categories: {
         title: "Shop",
         prev: "Home",
@@ -235,24 +190,6 @@ export default function dataReducer() {
       },
 
       hero: {
-        carousel: [
-          {
-            img: "/img/carousel/first-3x.png",
-            subtitle: "SUMMER 2023",
-            title: "NEW COLLECTION",
-            description1: "We know how large objects will act,",
-            description2: "but things on a small scale.",
-            button: "SHOP NOW",
-          },
-          {
-            img: "/img/carousel/second-3x.png",
-            season: "SUMMER 2023",
-            header: "-30% DISCOUNT",
-            description1: "We know how large objects will act,",
-            description2: "but things on a small scale.",
-            button: "READ MORE",
-          },
-        ],
         header: {
           info: {
             phone: "(225) 555-0118",
