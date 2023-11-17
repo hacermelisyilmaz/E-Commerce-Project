@@ -151,7 +151,7 @@ function Shop({ data }) {
               const catCode = categories.find(
                 (c) => c.id == product["category_id"]
               )?.code;
-              const nameSlug = product.name.toLowerCase().replace(" ", "-");
+              const nameSlug = product.name.toLowerCase().replaceAll(" ", "-");
               return (
                 <div
                   key={index}
