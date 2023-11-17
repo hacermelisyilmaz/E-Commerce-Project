@@ -5,6 +5,11 @@ import { toast } from "react-toastify";
 
 import fetchStates from "../store/fetchStates";
 import { setProductList } from "../store/actions/productActions";
+import {
+  addToCart,
+  updateCartItemQuantity,
+} from "../store/actions/shoppingCartActions";
+
 import Clients from "../components/layout/Clients";
 import Footer from "../components/layout/Footer";
 import Header from "../components/layout/Header";
@@ -19,6 +24,7 @@ function Product({ data }) {
   const { productList, fetchState, totalProductCount } = useSelector(
     (store) => store.product.products
   );
+  const { cart } = useSelector((store) => store.shopping);
   const [productData] = productList.filter((p) => p.id == productID);
   const ratingArr = [];
   for (let i = 0; i < 5; i++) {
@@ -26,11 +32,25 @@ function Product({ data }) {
     else ratingArr.push(0);
   }
 
+  const addingToCartHandler = () => {
+    let isAvailable = false;
+    cart.map((item) => {
+      if (item.product.id == productID) isAvailable = true;
+      return item;
+    });
+    console.log(isAvailable);
+    isAvailable
+      ? dispatch(updateCartItemQuantity(productID, true))
+      : dispatch(addToCart(productData));
+
+    toast.success("You added the product to your basket.");
+  };
+
   useEffect(() => {
     const params = {
       category: "",
       filter: "",
-      sort: "rating:desc",
+      sort: "",
       limit: totalProductCount,
       offset: 0,
     };
@@ -142,8 +162,11 @@ function Product({ data }) {
               <hr className="my-7" />
               <img src="/img/posts/product-colors.png" />
               <div className="mt-16 flex items-center gap-2">
-                <button className="text-sm leading-6 text-white font-bold border-0 border-solid rounded py-[10px] px-5 bg-secondary w-fit">
-                  Select Options
+                <button
+                  className="text-sm leading-6 text-white font-bold border-0 border-solid rounded py-[10px] px-5 bg-secondary w-fit"
+                  onClick={addingToCartHandler}
+                >
+                  Add to Cart
                 </button>
                 <div className="border border-solid border-neutral rounded-[45px] p-3">
                   <i className="fa-regular fa-heart"></i>
