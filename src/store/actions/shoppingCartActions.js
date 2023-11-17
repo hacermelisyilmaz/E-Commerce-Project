@@ -15,9 +15,9 @@ export const removeFromCart = (productId) => ({
   payload: productId,
 });
 
-export const updateCartItemQuantity = (productId, newQuantity) => ({
+export const updateCartItemQuantity = (productId, isAdding) => ({
   type: UPDATE_CART_ITEM_QUANTITY,
-  payload: { productId, newQuantity },
+  payload: { productId, isAdding },
 });
 
 export const clearCart = () => ({

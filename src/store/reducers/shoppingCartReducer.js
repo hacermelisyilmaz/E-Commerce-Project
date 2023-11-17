@@ -18,19 +18,22 @@ const shoppingCartReducer = (state = initialState, action) => {
     case ADD_TO_CART:
       return {
         ...state,
-        cart: [...state.cart, action.payload],
+        cart: [...state.cart, { product: { ...action.payload }, count: 1 }],
       };
     case REMOVE_FROM_CART:
       return {
         ...state,
-        cart: state.cart.filter((item) => item.product.id !== action.payload),
+        cart: state.cart.filter(
+          (item) => parseInt(item.product.id) !== parseInt(action.payload)
+        ),
       };
     case UPDATE_CART_ITEM_QUANTITY:
+      const { productId, isAdding } = action.payload;
       return {
         ...state,
         cart: state.cart.map((item) =>
-          item.product.id === action.payload.productId
-            ? { ...item, count: action.payload.newQuantity }
+          item.product.id == productId
+            ? { ...item, count: isAdding ? item.count + 1 : item.count - 1 }
             : item
         ),
       };
