@@ -12,10 +12,6 @@ const initialState = {
     fetchState: fetchStates.NOT_FETCHED,
     error: "",
   },
-  pages: {
-    pageCount: 0,
-    activePage: 1,
-  },
   categories: {
     categoryList: [],
     fetchState: fetchStates.NOT_FETCHED,
