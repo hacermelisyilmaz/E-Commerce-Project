@@ -3,6 +3,7 @@ import {
   CLEAR_CART,
   REMOVE_FROM_CART,
   SET_ADDRESS_INFO,
+  SET_CHECK_STATUS,
   SET_PAYMENT_INFO,
   UPDATE_CART_ITEM_QUANTITY,
 } from "../actions/shoppingCartActions";
@@ -18,7 +19,10 @@ const shoppingCartReducer = (state = initialState, action) => {
     case ADD_TO_CART:
       return {
         ...state,
-        cart: [...state.cart, { product: { ...action.payload }, count: 1 }],
+        cart: [
+          ...state.cart,
+          { count: 1, checked: true, product: { ...action.payload } },
+        ],
       };
     case REMOVE_FROM_CART:
       return {
@@ -35,6 +39,14 @@ const shoppingCartReducer = (state = initialState, action) => {
           item.product.id == productId
             ? { ...item, count: isAdding ? item.count + 1 : item.count - 1 }
             : item
+        ),
+      };
+    case SET_CHECK_STATUS:
+      const { productID, isChecked } = action.payload;
+      return {
+        ...state,
+        cart: state.cart.map((item) =>
+          item.product.id == productID ? { ...item, checked: isChecked } : item
         ),
       };
     case CLEAR_CART:
