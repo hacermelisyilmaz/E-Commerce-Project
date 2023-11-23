@@ -3,12 +3,7 @@ import { Link, useLocation, useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { removeFromCart } from "../../store/actions/shoppingCartActions";
 
-function Header({ data }) {
-  const infoData = data.hero.header.info;
-  const navData = data.hero.header.nav;
-  const dropdownData = data.hero.header.shopdropdown;
-  const rightData = navData.rightside;
-
+function Header() {
   const user = useSelector((store) => store.user.user);
   const categories = useSelector(
     (store) => store.product.categories.categoryList
@@ -26,18 +21,20 @@ function Header({ data }) {
         <div className="contact flex gap-[1.8rem]">
           <div className="phone flex items-center gap-[0.2rem]">
             <i className="fa-solid fa-phone"></i>
-            <p>{infoData.phone}</p>
+            <p>(225) 555-0118</p>
           </div>
           <div className="email flex items-center gap-[0.2rem]">
             <i className="fa-solid fa-envelope"></i>
-            <p>{infoData.email}</p>
+            <p>michelle.rivera@example.com</p>
           </div>
         </div>
 
-        <p className="header-message">{infoData.message}</p>
+        <p className="header-message">
+          Follow Us and get a chance to win 80% off
+        </p>
 
         <div className="follow-us flex gap-4">
-          <p>{infoData.socialmedia}</p>
+          <p>Follow Us:</p>
           <i className="fa-brands fa-instagram"></i>
           <i className="fa-brands fa-youtube"></i>
           <i className="fa-brands fa-facebook"></i>
@@ -52,7 +49,7 @@ function Header({ data }) {
               history.push("/");
             }}
           >
-            {data.brand}
+            Bandage
           </h1>
           <div className="hidden sm:flex sm:items-center sm:gap-6">
             {pathname === "/shopping" || (
@@ -72,21 +69,21 @@ function Header({ data }) {
         </div>
         <div className="flex justify-between w-[85%] sm:pt-20 sm:justify-center sm:flex-col sm:gap-[1.3rem]">
           <nav className="text-accent flex items-center gap-[1.3rem] sm:flex-col sm:items-center sm:text-3xl">
-            <Link to="/">{navData.navlinks.home}</Link>
+            <Link to="/">Home</Link>
             <div className="dropdown dropdown-hover">
               <label tabIndex={0}>
                 <Link
                   className="flex items-center gap-1 sm:hidden"
                   to="/shopping"
                 >
-                  {navData.navlinks.shop}
+                  Shop
                   <i className="fa-solid fa-angle-down"></i>
                 </Link>
               </label>
               <div tabIndex={0} className="dropdown-content z-[1] menu">
                 <div className="p-4 shadow-xl bg-info rounded-box w-fit flex gap-4">
                   <ul>
-                    <li className="text-black">{dropdownData.header1}</li>
+                    <li className="text-black">Women</li>
                     {womanCat.map((cat, index) => {
                       return (
                         <li key={index}>
@@ -103,7 +100,7 @@ function Header({ data }) {
                     })}
                   </ul>
                   <ul>
-                    <li className="text-black">{dropdownData.header2}</li>
+                    <li className="text-black">Men</li>
                     {manCat.map((cat, index) => {
                       return (
                         <li key={index}>
@@ -118,10 +115,10 @@ function Header({ data }) {
               </div>
             </div>
 
-            <Link to="/about">{navData.navlinks.about}</Link>
-            <Link to="/pricing">{navData.navlinks.pricing}</Link>
-            <Link to="/contact">{navData.navlinks.contact}</Link>
-            <Link to="/team">{navData.navlinks.team}</Link>
+            <Link to="/about">About</Link>
+            <Link to="/pricing">Pricing</Link>
+            <Link to="/contact">Contact</Link>
+            <Link to="/team">Team</Link>
           </nav>
           <div
             className={
@@ -148,7 +145,7 @@ function Header({ data }) {
                     history.push("/login");
                   }}
                 >
-                  {rightData.login}
+                  Login
                 </span>
                 <span> / </span>
                 <span
@@ -156,7 +153,7 @@ function Header({ data }) {
                     history.push("/signup");
                   }}
                 >
-                  {rightData.registr}
+                  Register
                 </span>
               </div>
             )}
@@ -166,7 +163,7 @@ function Header({ data }) {
             </Link>
             <div className="dropdown dropdown-hover">
               <label tabIndex={0}>
-                <Link to="#">
+                <Link to="/cart">
                   <i className="fa-solid fa-cart-shopping"></i>
                 </Link>
               </label>
@@ -188,10 +185,10 @@ function Header({ data }) {
                       <li key={index}>
                         <div className="flex gap-4 justify-between">
                           <div className="flex gap-4 h-fit">
-                            <img
+                            {/*  <img
                               src={product.images[0].url}
                               className="h-16 object-cover"
-                            />
+                            /> */}
 
                             <div className="flex flex-col text-primary">
                               <h3>{product.name}</h3>
@@ -214,9 +211,11 @@ function Header({ data }) {
                   })}
                   {cart.length ? (
                     <div className="flex gap-2 justify-between">
-                      <button className="border border-secondary rounded-md py-2 px-4">
-                        Go to Basket
-                      </button>
+                      <Link to="/cart">
+                        <button className="border border-secondary rounded-md py-2 px-4">
+                          Go to Basket
+                        </button>
+                      </Link>
                       <button className="border border-secondary rounded-md py-2 px-4 bg-secondary text-white">
                         Confirm Order
                       </button>
