@@ -3,8 +3,6 @@ import { useParams, useHistory, useLocation, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
-import fetchStates from "../store/fetchStates";
-import { setProductList } from "../store/actions/productActions";
 import {
   addToCart,
   updateCartItemQuantity,
@@ -13,16 +11,10 @@ import {
 import Clients from "../components/layout/Clients";
 import Footer from "../components/layout/Footer";
 import Header from "../components/layout/Header";
-import Spinner from "../components/Spinner";
 import ProductCard from "../components/ProductCard";
 import axiosInstance from "../api/axiosInstance";
 
 function Product({ data }) {
-  const images = [
-    "public/img/product/bestseller/p1.png",
-    "public/img/product/bestseller/p2.png",
-  ];
-
   const { productID } = useParams();
   const dispatch = useDispatch();
   const history = useHistory();
@@ -91,54 +83,50 @@ function Product({ data }) {
           <div className="flex justify-between gap-7 h-[32rem] sm:h-auto sm:flex-col">
             <div className="w-2/3 h-full sm:w-full">
               <div className="carousel w-full h-[80%]">
-                {
-                  /* product?. */ images.map((img, index) => {
-                    return (
-                      <div
-                        id={`product${index + 1}`}
-                        key={index}
-                        className="carousel-item relative w-full"
-                      >
-                        <img src={img.url} className="w-full object-cover" />
-                        <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-                          <a
-                            href="#product2"
-                            className="btn btn-circle bg-transparent"
-                          >
-                            <i
-                              className="fa-solid fa-chevron-left text-5xl"
-                              style={{ color: "#BDBDBD" }}
-                            ></i>
-                          </a>
-                          <a
-                            href="#product2"
-                            className="btn btn-circle bg-transparent"
-                          >
-                            <i
-                              className="fa-solid fa-chevron-right text-5xl"
-                              style={{ color: "#BDBDBD" }}
-                            ></i>
-                          </a>
-                        </div>
+                {product?.images.map((img, index) => {
+                  return (
+                    <div
+                      id={`product${index + 1}`}
+                      key={index}
+                      className="carousel-item relative w-full"
+                    >
+                      <img src={img.url} className="w-full object-cover" />
+                      <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
+                        <a
+                          href="#product2"
+                          className="btn btn-circle bg-transparent"
+                        >
+                          <i
+                            className="fa-solid fa-chevron-left text-5xl"
+                            style={{ color: "#BDBDBD" }}
+                          ></i>
+                        </a>
+                        <a
+                          href="#product2"
+                          className="btn btn-circle bg-transparent"
+                        >
+                          <i
+                            className="fa-solid fa-chevron-right text-5xl"
+                            style={{ color: "#BDBDBD" }}
+                          ></i>
+                        </a>
                       </div>
-                    );
-                  })
-                }
+                    </div>
+                  );
+                })}
               </div>
               <div className="flex w-full py-5 gap-5">
-                {
-                  /* product?. */ images.map((img, index) => {
-                    return (
-                      <a
-                        href={`#product${index + 1}`}
-                        key={index}
-                        className="w-24 h-20 overflow-hidden"
-                      >
-                        <img src={img.url} className="w-full object-cover" />
-                      </a>
-                    );
-                  })
-                }
+                {product?.images.map((img, index) => {
+                  return (
+                    <a
+                      href={`#product${index + 1}`}
+                      key={index}
+                      className="w-24 h-20 overflow-hidden"
+                    >
+                      <img src={img.url} className="w-full object-cover" />
+                    </a>
+                  );
+                })}
               </div>
             </div>
 
