@@ -12,12 +12,13 @@ import Contact from "./pages/Contact";
 import Product from "./pages/Product";
 import SignUp from "./pages/SignUp";
 import LogIn from "./pages/LogIn";
+import Cart from "./pages/Cart";
 import useLocalStorage from "./hooks/useLocalStorage";
 import axiosWithAuth from "./api/axiosWithAuth";
 import { setUserSuccess } from "./store/actions/userActions";
+import { fetchCategories } from "./store/actions/productActions";
 
 import "./App.css";
-import { fetchCategories } from "./store/actions/productActions";
 
 function App() {
   const language = "en";
@@ -52,6 +53,9 @@ function App() {
         </Route>
         <Route path="/about">
           <About data={data} />
+        </Route>
+        <Route path="/cart">
+          <Cart data={data} />
         </Route>
         <Route path="/contact">
           <Contact data={data} />
