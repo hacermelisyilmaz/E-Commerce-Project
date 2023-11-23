@@ -29,6 +29,7 @@ function Cart() {
               <div key={index}>
                 <div className="h-fit flex gap-4 justify-between items-center px-[5%] py-4 border border-solid border-info rounded-lg shadow-md">
                   <input
+                    name={`${product.id}`}
                     type="checkbox"
                     defaultChecked={true}
                     onChange={(e) => {
