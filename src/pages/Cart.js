@@ -21,27 +21,26 @@ function Cart() {
           0
         )} Products)`}</h2>
 
-        <div>
+        <div className="flex flex-col gap-2">
           {cart.map((item, index) => {
             const { product, count } = item;
 
             return (
               <div key={index}>
-                <h3 className="text-neutral">
-                  Store ID:{" "}
-                  <span className="font-bold text-primary">
-                    {parseInt(product["store_id"])}
-                  </span>
-                </h3>
-
-                <div className="h-fit flex gap-4 justify-between">
-                  <input type="checkbox" defaultValue={true} />
+                <div className="h-fit flex gap-4 justify-between items-center px-[5%] py-4 border border-solid border-info rounded-lg shadow-md">
+                  <input
+                    type="checkbox"
+                    defaultChecked={true}
+                    onChange={(e) => {
+                      //  if (e.target.value)
+                    }}
+                  />
                   <img
-                    src="/img/product/bestseller/p1.png"
+                    src={product.images[0].url}
                     className="h-16 object-cover"
                   />
 
-                  <h4>{product.name}</h4>
+                  <h4 className="w-[30%]">{product.name}</h4>
 
                   <div className="h-fit flex border border-solid rounded-md border-info">
                     <button
@@ -56,6 +55,7 @@ function Cart() {
                     <p className="p-3">{count}</p>
                     <button
                       className="bg-info p-3"
+                      disabled={parseInt(count) === 10}
                       onClick={() => {
                         dispatch(updateCartItemQuantity(product.id, true));
                       }}
@@ -64,7 +64,9 @@ function Cart() {
                     </button>
                   </div>
 
-                  <p className="text-success">{product.price * count} ₺</p>
+                  <p className="text-success text-center w-[20%]">
+                    {product.price * count} ₺
+                  </p>
                   <i
                     class="fa-solid fa-trash-can text-neutral"
                     onClick={() => {
@@ -72,7 +74,6 @@ function Cart() {
                     }}
                   ></i>
                 </div>
-                <hr />
               </div>
             );
           })}
