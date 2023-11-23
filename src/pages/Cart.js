@@ -1,7 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
 import Header from "../components/layout/Header";
 import {
+  clearCart,
   removeFromCart,
+  setCheckStatus,
   updateCartItemQuantity,
 } from "../store/actions/shoppingCartActions";
 
@@ -14,12 +16,23 @@ function Cart() {
       <Header />
 
       <div className="my-10 mx-8 flex flex-col gap-4">
-        <h2 className="text-primary text-lg font-bold">{`My Cart (${cart.reduce(
-          (sum, product) => {
-            return sum + product.count;
-          },
-          0
-        )} Products)`}</h2>
+        <div className="px-4 flex justify-between">
+          <h2 className="text-primary text-lg font-bold">{`My Cart (${cart.reduce(
+            (sum, product) => {
+              return product.checked ? sum + product.count : sum;
+            },
+            0
+          )} Products)`}</h2>
+          <button
+            className="text-lg font-bold flex gap-2 items-baseline border border-solid rounded-lg px-2 py-2"
+            onClick={() => {
+              dispatch(clearCart());
+            }}
+          >
+            <i class="fa-solid fa-trash-can text-error"></i>
+            <span>Clear Cart</span>
+          </button>
+        </div>
 
         <div className="flex flex-col gap-2">
           {cart.map((item, index) => {
@@ -33,7 +46,7 @@ function Cart() {
                     type="checkbox"
                     defaultChecked={true}
                     onChange={(e) => {
-                      //  if (e.target.value)
+                      dispatch(setCheckStatus(product.id, e.target.checked));
                     }}
                   />
                   <img
@@ -66,7 +79,7 @@ function Cart() {
                   </div>
 
                   <p className="text-success text-center w-[20%]">
-                    {product.price * count} ₺
+                    {(product.price * count).toFixed(2)} ₺
                   </p>
                   <i
                     class="fa-solid fa-trash-can text-neutral"
