@@ -1,7 +1,8 @@
 import MD5 from "crypto-js/md5";
 import { Link, useLocation, useHistory } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { removeFromCart } from "../../store/actions/shoppingCartActions";
+import { useEffect } from "react";
 
 function Header() {
   const user = useSelector((store) => store.user.user);
@@ -9,11 +10,17 @@ function Header() {
     (store) => store.product.categories.categoryList
   );
   const { cart } = useSelector((store) => store.shopping);
+
   const { pathname, search } = useLocation();
   const history = useHistory();
+  const dispatch = useDispatch();
 
   const womanCat = categories.filter((cat) => cat.gender === "k");
   const manCat = categories.filter((cat) => cat.gender === "e");
+
+  let cartProductCount = cart.reduce((sum, product) => {
+    return sum + product.count;
+  }, 0);
 
   return (
     <div className="Header font-bold">
@@ -162,10 +169,11 @@ function Header() {
               <i className="fa-solid fa-magnifying-glass"></i>
             </Link>
             <div className="dropdown dropdown-hover">
-              <label tabIndex={0}>
+              <label tabIndex={0} className="flex gap-1">
                 <Link to="/cart">
                   <i className="fa-solid fa-cart-shopping"></i>
                 </Link>
+                <span className="text-xs">{cartProductCount}</span>
               </label>
 
               <div
@@ -173,12 +181,7 @@ function Header() {
                 className="dropdown-content min-w-[20rem] z-[1] right-[1px] menu p-4 shadow-xl bg-info rounded-box"
               >
                 <ul className="w-fit">
-                  <h2 className="text-black">{`My Cart (${cart.reduce(
-                    (sum, product) => {
-                      return sum + product.count;
-                    },
-                    0
-                  )} Products)`}</h2>
+                  <h2 className="text-black">{`My Cart (${cartProductCount} Products)`}</h2>
                   {cart.map((item, index) => {
                     const { product, count } = item;
                     return (
@@ -198,12 +201,12 @@ function Header() {
                               </p>
                             </div>
                           </div>
-                          {/*  <i
+                          <i
                             class="fa-solid fa-trash-can text-error"
                             onClick={() => {
-                              removeFromCart(product.id);
+                              dispatch(removeFromCart(product.id));
                             }}
-                          ></i> */}
+                          ></i>
                         </div>
                         <hr />
                       </li>
