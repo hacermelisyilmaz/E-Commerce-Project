@@ -24,7 +24,7 @@ function Cart() {
             0
           )} Products)`}</h2>
           <button
-            className="text-lg font-bold flex gap-2 items-baseline border border-solid rounded-lg px-2 py-2"
+            className="text-lg font-bold flex gap-2 items-baseline border border-solid rounded-lg px-2 py-2 hover:shadow-lg"
             onClick={() => {
               dispatch(clearCart());
             }}
@@ -68,7 +68,7 @@ function Cart() {
                     </button>
                     <p className="p-3">{count}</p>
                     <button
-                      className="bg-info p-3"
+                      className="bg-info p-3 disabled:text-neutral"
                       disabled={parseInt(count) === 10}
                       onClick={() => {
                         dispatch(updateCartItemQuantity(product.id, true));
@@ -82,7 +82,7 @@ function Cart() {
                     {(product.price * count).toFixed(2)} ₺
                   </p>
                   <i
-                    class="fa-solid fa-trash-can text-neutral"
+                    class="fa-solid fa-trash-can text-neutral hover:text-error"
                     onClick={() => {
                       dispatch(removeFromCart(product.id));
                     }}
