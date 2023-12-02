@@ -2,7 +2,6 @@ import MD5 from "crypto-js/md5";
 import { Link, useLocation, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { removeFromCart } from "../../store/actions/shoppingCartActions";
-import { useEffect } from "react";
 
 function Header() {
   const user = useSelector((store) => store.user.user);
@@ -202,7 +201,7 @@ function Header() {
                             </div>
                           </div>
                           <i
-                            class="fa-solid fa-trash-can text-error"
+                            className="fa-solid fa-trash-can text-error"
                             onClick={() => {
                               dispatch(removeFromCart(product.id));
                             }}
