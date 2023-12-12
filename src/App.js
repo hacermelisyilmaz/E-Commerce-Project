@@ -19,6 +19,7 @@ import { setUserSuccess } from "./store/actions/userActions";
 import { fetchCategories } from "./store/actions/productActions";
 
 import "./App.css";
+import Order from "./pages/Order";
 
 function App() {
   const language = "en";
@@ -62,6 +63,9 @@ function App() {
         </Route>
         <Route path="/login">
           <LogIn data={data} />
+        </Route>
+        <Route path="/order">
+          <Order data={data} />
         </Route>
         <Route path="/pricing">
           <Pricing data={data} />
