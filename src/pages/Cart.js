@@ -1,4 +1,6 @@
+import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+
 import Header from "../components/layout/Header";
 import {
   clearCart,
@@ -8,6 +10,7 @@ import {
 } from "../store/actions/shoppingCartActions";
 
 function Cart() {
+  const history = useHistory();
   const dispatch = useDispatch();
   const { cart } = useSelector((store) => store.shopping);
 
@@ -103,7 +106,12 @@ function Cart() {
               })}
             </div>
             <div className="w-[30%] flex flex-col gap-4">
-              <button className="border border-solid border-secondary rounded-md py-3 w-full flex gap-2 justify-center font-bold bg-secondary text-white">
+              <button
+                className="border border-solid border-secondary rounded-md py-3 w-full flex gap-2 justify-center font-bold bg-secondary text-white"
+                onClick={(e) => {
+                  history.push("/order");
+                }}
+              >
                 <span>Create Order</span>
                 <i className="fa-solid fa-angle-right"></i>
               </button>
@@ -138,7 +146,12 @@ function Cart() {
                 <i className="fa-solid fa-plus text-secondary"></i>
                 <span>ENTER COUPON CODE</span>
               </button>
-              <button className="border border-solid border-secondary rounded-md py-3 w-full flex gap-2 justify-center font-bold bg-secondary text-white">
+              <button
+                className="border border-solid border-secondary rounded-md py-3 w-full flex gap-2 justify-center font-bold bg-secondary text-white"
+                onClick={(e) => {
+                  history.push("/order");
+                }}
+              >
                 <span>Create Order</span>
                 <i className="fa-solid fa-angle-right"></i>
               </button>
