@@ -39,7 +39,7 @@ function Cart() {
               dispatch(clearCart());
             }}
           >
-            <i class="fa-solid fa-trash-can text-error"></i>
+            <i className="fa-solid fa-trash-can text-error"></i>
             <span>Clear Cart</span>
           </button>
         </div>
@@ -95,7 +95,7 @@ function Cart() {
                         {(product.price * count).toFixed(2)} ₺
                       </p>
                       <i
-                        class="fa-solid fa-trash-can text-neutral hover:text-error"
+                        className="fa-solid fa-trash-can text-neutral hover:text-error"
                         onClick={() => {
                           dispatch(removeFromCart(product.id));
                         }}
