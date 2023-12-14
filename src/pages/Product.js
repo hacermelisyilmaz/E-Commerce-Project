@@ -40,7 +40,6 @@ function Product({ data }) {
       if (item.product.id == productID) isAvailable = true;
       return item;
     });
-    console.log(isAvailable);
     isAvailable
       ? dispatch(updateCartItemQuantity(productID, true))
       : dispatch(addToCart(product));
