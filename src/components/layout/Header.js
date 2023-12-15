@@ -218,7 +218,12 @@ function Header() {
                           Go to Basket
                         </button>
                       </Link>
-                      <button className="border border-secondary rounded-md py-2 px-4 bg-secondary text-white">
+                      <button
+                        className="border border-secondary rounded-md py-2 px-4 bg-secondary text-white"
+                        onClick={() => {
+                          history.push("/order");
+                        }}
+                      >
                         Confirm Order
                       </button>
                     </div>
