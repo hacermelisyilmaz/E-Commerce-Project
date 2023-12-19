@@ -51,3 +51,7 @@
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
 }
+
+input[type="radio"]:checked + label {
+  border-bottom-color: #23a6f0;
+}

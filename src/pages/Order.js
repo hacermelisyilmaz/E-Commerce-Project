@@ -10,8 +10,11 @@ import Spinner from "../components/Spinner";
 
 function Order() {
   const history = useHistory();
+
   const [clickedAdd, setClickedAdd] = useState(false);
   const [address, setAddress] = useState([]);
+  const [tab, setTab] = useState("address");
+
   const { cart } = useSelector((store) => store.shopping);
 
   let productTotal = cart
@@ -27,9 +30,9 @@ function Order() {
   }, 0);
 
   const {
-    register,
-    handleSubmit,
-    formState: { errors, isValid, isSubmitting },
+    register: registerAddress,
+    handleSubmit: handleSubmitAddress,
+    formState: formStateAddress,
   } = useForm({
     defaultValues: {
       title: "",
@@ -40,6 +43,18 @@ function Order() {
       district: "",
       neighborhood: "",
       address: "",
+    },
+    mode: "all",
+  });
+  const {
+    register: registerPayment,
+    handleSubmit: handleSubmitPayment,
+    formState: formStatePayment,
+  } = useForm({
+    defaultValues: {
+      cardno: "",
+      expdate: "",
+      cvv: "",
     },
     mode: "all",
   });
@@ -67,7 +82,7 @@ function Order() {
         history.push("/login");
       });
   }, []);
-
+  console.log(tab);
   return (
     <div className="Order">
       <Header />
@@ -77,78 +92,357 @@ function Order() {
           <div className="flex flex-col gap-8">
             <div className="flex justify-between gap-4">
               <div className="flex flex-col gap-2 w-[65%]">
-                <div className="w-full flex">
-                  <button className="w-1/2 py-4 border border-solid border-neutral rounded-l-md border-b-4 focus:border-b-secondary">
+                <div className="w-full flex text-center">
+                  <input
+                    type="radio"
+                    name="order"
+                    id="address"
+                    className="invisible h-0 w-0"
+                    onClick={(e) => {
+                      setClickedAdd(false);
+                      setTab(e.target.id);
+                    }}
+                  />
+                  <label
+                    htmlFor="address"
+                    className="w-1/2 p-4 border border-solid border-neutral rounded-l-md border-b-4 checked:border-b-secondary"
+                  >
                     <h2 className="text-lg font-bold">Address Information</h2>
                     <p className="text-sm"></p>
-                  </button>
-                  <button className="w-1/2 py-4 border border-solid border-neutral rounded-r-md border-b-4 focus:border-b-secondary">
+                  </label>
+                  <input
+                    type="radio"
+                    name="order"
+                    id="payment"
+                    className="invisible h-0 w-0"
+                    onClick={(e) => {
+                      setClickedAdd(false);
+                      setTab(e.target.id);
+                    }}
+                  />
+                  <label
+                    htmlFor="payment"
+                    className="w-1/2 p-4 border border-solid border-neutral rounded-r-md border-b-4 checked:border-b-secondary"
+                  >
                     <h2 className="text-lg font-bold">Payment Options</h2>
                     <p className="text-sm">
                       You can safely pay using your debit or credit card.
                     </p>
-                  </button>
+                  </label>
                 </div>
-                <div className="p-4 flex flex-wrap justify-between items-end gap-4 border border-solid border-neutral rounded-md">
-                  <div className="w-full flex justify-between">
-                    <h3 className="text-lg font-bold">Delivery Address</h3>
-                    <div className="flex gap-2 items-baseline">
-                      <input
-                        type="checkbox"
-                        name="sameforbill"
-                        defaultChecked
-                      />
-                      <label htmlFor="sameforbill">
-                        Send the bill to the same address
-                      </label>
-                    </div>
-                  </div>
-                  <button
-                    className="w-[48%] h-28 border border-solid border-neutral rounded-md bg-info"
-                    onClick={() => {
-                      setClickedAdd(true);
-                    }}
-                  >
-                    <i className="fa-solid fa-plus text-secondary text-lg"></i>
-                    <p>Add a New Address</p>
-                  </button>
-
-                  {address.map((address, index) => {
-                    return (
-                      <div key={index} className="w-[48%] flex flex-col gap-2">
-                        <div className="flex justify-between">
-                          <div className="flex gap-2">
-                            <input type="radio" name="address" />
-                            <label>{address.title}</label>
-                          </div>
-                          <button className="hover:text-secondary">Edit</button>
-                        </div>
-                        <div className="h-28 p-5 flex flex-col justify-between border border-solid border-neutral rounded-md bg-info">
-                          <div className="flex justify-between">
-                            <div className="flex gap-2 items-baseline">
-                              <i className="fa-solid fa-user text-secondary"></i>
-                              {address.name + " " + address.surname}
-                            </div>
-                            <div className="flex gap-2 items-baseline">
-                              <i className="fa-solid fa-phone text-secondary"></i>
-                              {"(" +
-                                address.phone.slice(0, 3) +
-                                ") *** ** " +
-                                address.phone.slice(8)}
-                            </div>
-                          </div>
-                          <p>{address.address}</p>
-                          <p>{address.district + "/" + address.city}</p>
+                {tab === "address" ? (
+                  <div className="flex flex-col gap-4">
+                    <div className="p-4 flex flex-wrap justify-between items-end gap-4 border border-solid border-neutral rounded-md">
+                      <div className="w-full flex justify-between">
+                        <h3 className="text-lg font-bold">Delivery Address</h3>
+                        <div className="flex gap-2 items-baseline">
+                          <input
+                            type="checkbox"
+                            name="sameforbill"
+                            defaultChecked
+                          />
+                          <label htmlFor="sameforbill">
+                            Send the bill to the same address
+                          </label>
                         </div>
                       </div>
-                    );
-                  })}
-                </div>
+                      <button
+                        className="w-[48%] h-28 border border-solid border-neutral rounded-md bg-info"
+                        onClick={() => {
+                          setClickedAdd(true);
+                        }}
+                      >
+                        <i className="fa-solid fa-plus text-secondary text-lg"></i>
+                        <p>Add a New Address</p>
+                      </button>
+
+                      {address.map((address, index) => {
+                        return (
+                          <div
+                            key={index}
+                            className="w-[48%] flex flex-col gap-2"
+                          >
+                            <div className="flex justify-between">
+                              <div className="flex gap-2">
+                                <input type="radio" name="address" />
+                                <label>{address.title}</label>
+                              </div>
+                              <button className="hover:text-secondary">
+                                Edit
+                              </button>
+                            </div>
+                            <div className="h-28 p-5 flex flex-col justify-between border border-solid border-neutral rounded-md bg-info">
+                              <div className="flex justify-between">
+                                <div className="flex gap-2 items-baseline">
+                                  <i className="fa-solid fa-user text-secondary"></i>
+                                  {address.name + " " + address.surname}
+                                </div>
+                                <div className="flex gap-2 items-baseline">
+                                  <i className="fa-solid fa-phone text-secondary"></i>
+                                  {"(" +
+                                    address.phone.slice(0, 3) +
+                                    ") *** ** " +
+                                    address.phone.slice(8)}
+                                </div>
+                              </div>
+                              <p>{address.address}</p>
+                              <p>{address.district + "/" + address.city}</p>
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                    {clickedAdd && (
+                      <div className="AddressForm p-8 border border-solid border-neutral rounded-md bg-info">
+                        <form
+                          className="flex justify-between items-baseline flex-wrap gap-6"
+                          onSubmit={handleSubmitAddress(onSubmit)}
+                        >
+                          <div className="form-group w-[48%]">
+                            <label htmlFor="title" className="form-label pl-2">
+                              Address Title
+                            </label>
+                            <input
+                              id="title"
+                              className="form-input"
+                              placeholder="Address Title *"
+                              {...registerAddress("title", {
+                                required: "Please set an address title.",
+                              })}
+                            />
+                            {formStateAddress.errors.title ? (
+                              <p className="form-footnote text-red-600">
+                                {formStateAddress.errors.title.message}
+                              </p>
+                            ) : (
+                              <p className="form-footnote"> </p>
+                            )}
+                          </div>
+
+                          <div className="form-group w-[48%]">
+                            <label htmlFor="name" className="form-label pl-2">
+                              Name
+                            </label>
+                            <input
+                              id="name"
+                              className="form-input"
+                              placeholder="Name *"
+                              {...registerAddress("name", {
+                                required: "Name cannot be blank.",
+                              })}
+                            />
+                            {formStateAddress.errors.name ? (
+                              <p className="form-footnote text-red-600">
+                                {formStateAddress.errors.name.message}
+                              </p>
+                            ) : (
+                              <p className="form-footnote"> </p>
+                            )}
+                          </div>
+
+                          <div className="form-group w-[48%]">
+                            <label
+                              htmlFor="surname"
+                              className="form-label pl-2"
+                            >
+                              Surname
+                            </label>
+                            <input
+                              id="surname"
+                              className="form-input"
+                              placeholder="Surname *"
+                              {...registerAddress("surname", {
+                                required: "Surname cannot be blank.",
+                              })}
+                            />
+                            {formStateAddress.errors.surname ? (
+                              <p className="form-footnote text-red-600">
+                                {formStateAddress.errors.surname.message}
+                              </p>
+                            ) : (
+                              <p className="form-footnote"> </p>
+                            )}
+                          </div>
+
+                          <div className="form-group w-[48%]">
+                            <label htmlFor="phone" className="form-label pl-2">
+                              Phone Number
+                            </label>
+                            <input
+                              id="phone"
+                              className="form-input"
+                              placeholder="Phone Number *"
+                              {...registerAddress("phone", {
+                                required: "Phone number cannot be blank.",
+                                minLength: {
+                                  value: 10,
+                                  message:
+                                    "Your phone number must be in the following format: 5xx xxx xxxx",
+                                },
+                              })}
+                            />
+                            {formStateAddress.errors.phone ? (
+                              <p className="form-footnote text-red-600">
+                                {formStateAddress.errors.phone.message}
+                              </p>
+                            ) : (
+                              <p className="form-footnote"> </p>
+                            )}
+                          </div>
+
+                          <div className="form-group w-[48%]">
+                            <label htmlFor="city" className="form-label pl-2">
+                              City
+                            </label>
+                            <input
+                              id="city"
+                              className="form-input"
+                              placeholder="City *"
+                              {...registerAddress("city", {
+                                required: "City cannot be blank.",
+                              })}
+                            />
+                            {formStateAddress.errors.city ? (
+                              <p className="form-footnote text-red-600">
+                                {formStateAddress.errors.city.message}
+                              </p>
+                            ) : (
+                              <p className="form-footnote"> </p>
+                            )}
+                          </div>
+
+                          <div className="form-group w-[48%]">
+                            <label
+                              htmlFor="district"
+                              className="form-label pl-2"
+                            >
+                              District
+                            </label>
+                            <input
+                              id="district"
+                              className="form-input"
+                              placeholder="District *"
+                              {...registerAddress("district", {
+                                required: "District cannot be blank.",
+                              })}
+                            />
+                            {formStateAddress.errors.district ? (
+                              <p className="form-footnote text-red-600">
+                                {formStateAddress.errors.district.message}
+                              </p>
+                            ) : (
+                              <p className="form-footnote"> </p>
+                            )}
+                          </div>
+
+                          <div className="form-group w-[48%]">
+                            <label
+                              htmlFor="neighborhood"
+                              className="form-label pl-2"
+                            >
+                              Neigborhood
+                            </label>
+                            <input
+                              id="neighborhood"
+                              className="form-input"
+                              placeholder="Neigborhood *"
+                              {...registerAddress("neighborhood", {
+                                required: "Neigborhood cannot be blank.",
+                              })}
+                            />
+                            {formStateAddress.errors.neighborhood ? (
+                              <p className="form-footnote text-red-600">
+                                {formStateAddress.errors.neighborhood.message}
+                              </p>
+                            ) : (
+                              <p className="form-footnote"> </p>
+                            )}
+                          </div>
+
+                          <div className="form-group w-[48%]">
+                            <label
+                              htmlFor="address"
+                              className="form-label pl-2"
+                            >
+                              Address Details
+                            </label>
+                            <input
+                              id="address"
+                              className="form-input"
+                              placeholder="Street, building and door number *"
+                              {...registerAddress("address", {
+                                required: "Address Details cannot be blank.",
+                              })}
+                            />
+                            {formStateAddress.errors.address ? (
+                              <p className="form-footnote text-red-600">
+                                {formStateAddress.errors.address.message}
+                              </p>
+                            ) : (
+                              <p className="form-footnote"> </p>
+                            )}
+                          </div>
+
+                          <button
+                            className="blue-button bg-white text-secondary"
+                            onClick={() => {
+                              setClickedAdd(false);
+                            }}
+                          >
+                            Cancel
+                          </button>
+
+                          <button
+                            type="submit"
+                            disabled={
+                              !formStateAddress.isValid ||
+                              formStateAddress.isSubmitting
+                            }
+                            className={
+                              !formStateAddress.isSubmitting &&
+                              formStateAddress.isValid
+                                ? "blue-button"
+                                : "blue-button bg-secondary-focus"
+                            }
+                          >
+                            <span>
+                              {formStateAddress.isSubmitting && (
+                                <Spinner className="text-white" />
+                              )}
+                            </span>
+                            <span>Add Address</span>
+                          </button>
+                        </form>
+                      </div>
+                    )}
+                  </div>
+                ) : (
+                  <div className="flex flex-col border border-solid border-neutral rounded-md">
+                    <h3 className="font-bold text-lg p-4 border border-solid border-transparent border-b-neutral">
+                      Payment with Card
+                    </h3>
+                    <div className="p-4">
+                      <div className="flex justify-between">
+                        <h4 className="text-lg">Card Information</h4>
+                        <button
+                          className="text-sm hover:text-secondary"
+                          onClick={() => setClickedAdd(true)}
+                        >
+                          {clickedAdd
+                            ? "Pay with a Registered Card"
+                            : "Pay with Another Card"}
+                        </button>
+                      </div>
+                      {clickedAdd ? <form></form> : <div></div>}
+                    </div>
+                  </div>
+                )}
               </div>
 
               <div className="w-[30%] flex flex-col gap-4">
                 <button
-                  className="border border-solid border-secondary rounded-md py-3 w-full flex gap-2 justify-center font-bold bg-secondary text-white"
+                  className="border border-solid border-transparent rounded-md py-3 w-full flex gap-2 justify-center font-bold bg-secondary-focus text-white"
+                  disabled={true}
                   onClick={(e) => {
                     history.push("/order");
                   }}
@@ -188,7 +482,8 @@ function Order() {
                   <span>ENTER COUPON CODE</span>
                 </button>
                 <button
-                  className="border border-solid border-secondary rounded-md py-3 w-full flex gap-2 justify-center font-bold bg-secondary text-white"
+                  className="border border-solid border-transparent rounded-md py-3 w-full flex gap-2 justify-center font-bold bg-secondary-focus text-white"
+                  disabled={true}
                   onClick={(e) => {
                     history.push("/order");
                   }}
@@ -198,212 +493,6 @@ function Order() {
                 </button>
               </div>
             </div>
-
-            {clickedAdd && (
-              <div className="AddressForm p-8 border border-solid border-neutral rounded-md bg-info">
-                <form
-                  className="flex justify-between items-baseline flex-wrap gap-6"
-                  onSubmit={handleSubmit(onSubmit)}
-                >
-                  <div className="form-group w-[48%]">
-                    <label htmlFor="title" className="form-label pl-2">
-                      Address Title
-                    </label>
-                    <input
-                      id="title"
-                      className="form-input"
-                      placeholder="Address Title *"
-                      {...register("title", {
-                        required: "Please set an address title.",
-                      })}
-                    />
-                    {errors.title ? (
-                      <p className="form-footnote text-red-600">
-                        {errors.title.message}
-                      </p>
-                    ) : (
-                      <p className="form-footnote"> </p>
-                    )}
-                  </div>
-
-                  <div className="form-group w-[48%]">
-                    <label htmlFor="name" className="form-label pl-2">
-                      Name
-                    </label>
-                    <input
-                      id="name"
-                      className="form-input"
-                      placeholder="Name *"
-                      {...register("name", {
-                        required: "Name cannot be blank.",
-                      })}
-                    />
-                    {errors.name ? (
-                      <p className="form-footnote text-red-600">
-                        {errors.name.message}
-                      </p>
-                    ) : (
-                      <p className="form-footnote"> </p>
-                    )}
-                  </div>
-
-                  <div className="form-group w-[48%]">
-                    <label htmlFor="surname" className="form-label pl-2">
-                      Surname
-                    </label>
-                    <input
-                      id="surname"
-                      className="form-input"
-                      placeholder="Surname *"
-                      {...register("surname", {
-                        required: "Surname cannot be blank.",
-                      })}
-                    />
-                    {errors.surname ? (
-                      <p className="form-footnote text-red-600">
-                        {errors.surname.message}
-                      </p>
-                    ) : (
-                      <p className="form-footnote"> </p>
-                    )}
-                  </div>
-
-                  <div className="form-group w-[48%]">
-                    <label htmlFor="phone" className="form-label pl-2">
-                      Phone Number
-                    </label>
-                    <input
-                      id="phone"
-                      className="form-input"
-                      placeholder="Phone Number *"
-                      {...register("phone", {
-                        required: "Phone number cannot be blank.",
-                        minLength: {
-                          value: 10,
-                          message:
-                            "Your phone number must be in the following format: 5xx xxx xxxx",
-                        },
-                      })}
-                    />
-                    {errors.phone ? (
-                      <p className="form-footnote text-red-600">
-                        {errors.phone.message}
-                      </p>
-                    ) : (
-                      <p className="form-footnote"> </p>
-                    )}
-                  </div>
-
-                  <div className="form-group w-[48%]">
-                    <label htmlFor="city" className="form-label pl-2">
-                      City
-                    </label>
-                    <input
-                      id="city"
-                      className="form-input"
-                      placeholder="City *"
-                      {...register("city", {
-                        required: "City cannot be blank.",
-                      })}
-                    />
-                    {errors.city ? (
-                      <p className="form-footnote text-red-600">
-                        {errors.city.message}
-                      </p>
-                    ) : (
-                      <p className="form-footnote"> </p>
-                    )}
-                  </div>
-
-                  <div className="form-group w-[48%]">
-                    <label htmlFor="district" className="form-label pl-2">
-                      District
-                    </label>
-                    <input
-                      id="district"
-                      className="form-input"
-                      placeholder="District *"
-                      {...register("district", {
-                        required: "District cannot be blank.",
-                      })}
-                    />
-                    {errors.district ? (
-                      <p className="form-footnote text-red-600">
-                        {errors.district.message}
-                      </p>
-                    ) : (
-                      <p className="form-footnote"> </p>
-                    )}
-                  </div>
-
-                  <div className="form-group w-[48%]">
-                    <label htmlFor="neighborhood" className="form-label pl-2">
-                      Neigborhood
-                    </label>
-                    <input
-                      id="neighborhood"
-                      className="form-input"
-                      placeholder="Neigborhood *"
-                      {...register("neighborhood", {
-                        required: "Neigborhood cannot be blank.",
-                      })}
-                    />
-                    {errors.neighborhood ? (
-                      <p className="form-footnote text-red-600">
-                        {errors.neighborhood.message}
-                      </p>
-                    ) : (
-                      <p className="form-footnote"> </p>
-                    )}
-                  </div>
-
-                  <div className="form-group w-[48%]">
-                    <label htmlFor="address" className="form-label pl-2">
-                      Address Details
-                    </label>
-                    <input
-                      id="address"
-                      className="form-input"
-                      placeholder="Street, building and door number *"
-                      {...register("address", {
-                        required: "Address Details cannot be blank.",
-                      })}
-                    />
-                    {errors.address ? (
-                      <p className="form-footnote text-red-600">
-                        {errors.address.message}
-                      </p>
-                    ) : (
-                      <p className="form-footnote"> </p>
-                    )}
-                  </div>
-
-                  <button
-                    className="blue-button bg-white text-secondary"
-                    onClick={() => {
-                      setClickedAdd(false);
-                    }}
-                  >
-                    Cancel
-                  </button>
-
-                  <button
-                    type="submit"
-                    disabled={!isValid || isSubmitting}
-                    className={
-                      !isSubmitting && isValid
-                        ? "blue-button"
-                        : "blue-button bg-secondary-focus"
-                    }
-                  >
-                    <span>
-                      {isSubmitting && <Spinner className="text-white" />}
-                    </span>
-                    <span>Add Address</span>
-                  </button>
-                </form>
-              </div>
-            )}
           </div>
         ) : (
           <div className="px-4">Your basket is empty.</div>
