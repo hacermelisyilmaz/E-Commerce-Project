@@ -82,7 +82,7 @@ function Order() {
         history.push("/login");
       });
   }, []);
-  console.log(tab);
+
   return (
     <div className="Order">
       <Header />
@@ -106,6 +106,7 @@ function Order() {
                   <label
                     htmlFor="address"
                     className="w-1/2 p-4 border border-solid border-neutral rounded-l-md border-b-4 checked:border-b-secondary"
+                    defaultChecked
                   >
                     <h2 className="text-lg font-bold">Address Information</h2>
                     <p className="text-sm"></p>
@@ -421,19 +422,103 @@ function Order() {
                     <h3 className="font-bold text-lg p-4 border border-solid border-transparent border-b-neutral">
                       Payment with Card
                     </h3>
-                    <div className="p-4">
+                    <div className="p-4 flex flex-col gap-4">
                       <div className="flex justify-between">
                         <h4 className="text-lg">Card Information</h4>
-                        <button
-                          className="text-sm hover:text-secondary"
-                          onClick={() => setClickedAdd(true)}
-                        >
-                          {clickedAdd
-                            ? "Pay with a Registered Card"
-                            : "Pay with Another Card"}
-                        </button>
+                        {clickedAdd ? (
+                          <button
+                            className="text-sm hover:text-secondary"
+                            onClick={() => setClickedAdd(false)}
+                          >
+                            Pay with a Registered Card
+                          </button>
+                        ) : (
+                          <button
+                            className="text-sm hover:text-secondary"
+                            onClick={() => setClickedAdd(true)}
+                          >
+                            Pay with Another Card
+                          </button>
+                        )}
                       </div>
-                      {clickedAdd ? <form></form> : <div></div>}
+                      {clickedAdd ? (
+                        <div className="flex">
+                          <form className="pr-4 flex flex-col w-1/2 border border-solid border-transparent border-r-neutral">
+                            <div className="form-group">
+                              <label
+                                htmlFor="cardno"
+                                className="form-label text-sm pl-2"
+                              >
+                                Card Number
+                              </label>
+                              <input
+                                id="cardno"
+                                className="form-input"
+                                placeholder="Card Number"
+                                {...registerPayment("cardno", {
+                                  required: "Please set a card number.",
+                                })}
+                              />
+                              {formStatePayment.errors.cardno && (
+                                <p className="form-footnote text-red-600">
+                                  {formStatePayment.errors.cardno.message}
+                                </p>
+                              )}
+                            </div>
+                            <div className="flex justify-between">
+                              <div className="form-group w-[48%]">
+                                <label
+                                  htmlFor="expdate"
+                                  className="form-label text-sm pl-2"
+                                >
+                                  Expiration Date
+                                </label>
+                                <input
+                                  id="expdate"
+                                  className="form-input"
+                                  placeholder="Expiration Date"
+                                  {...registerPayment("expdate", {
+                                    required: "Please set a card number.",
+                                  })}
+                                />
+                                {formStatePayment.errors.expdate && (
+                                  <p className="form-footnote text-red-600">
+                                    {formStatePayment.errors.expdate.message}
+                                  </p>
+                                )}
+                              </div>
+
+                              <div className="form-group w-[48%]">
+                                <label
+                                  htmlFor="expdate"
+                                  className="form-label text-sm pl-2"
+                                >
+                                  CVV
+                                </label>
+                                <input
+                                  id="cvv"
+                                  className="form-input"
+                                  placeholder="CVV"
+                                  {...registerPayment("cvv", {
+                                    required: "Please set a card number.",
+                                  })}
+                                />
+                                {formStatePayment.errors.cvv && (
+                                  <p className="form-footnote text-red-600">
+                                    {formStatePayment.errors.cvv.message}
+                                  </p>
+                                )}
+                              </div>
+                            </div>
+                          </form>
+                          <div className="pl-4">
+                            <h4 className="text-lg">Installment Plan</h4>
+                            <p>No installment plan available.</p>
+                          </div>
+                        </div>
+                      ) : (
+                        <div></div>
+                      )}
                     </div>
                   </div>
                 )}

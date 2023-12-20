@@ -32,7 +32,7 @@
     @apply text-lg;
   }
   .form-input {
-    @apply mb-1 mt-4 px-4 py-3 border border-solid border-white rounded-md shadow-sm;
+    @apply mb-1 mt-4 px-4 py-3 border border-solid border-white rounded-md shadow-md;
   }
   .form-footnote {
     @apply text-accent text-xs leading-7;
